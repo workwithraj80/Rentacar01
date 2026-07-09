@@ -240,13 +240,14 @@
       </a>
 
       <!-- Desktop Nav Menu -->
-      <nav class="hidden lg:flex items-center space-x-8">
+      <nav class="hidden lg:flex items-center space-x-6">
         <a href="#home" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Home</a>
         <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">About</a>
         <a href="#packages" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Tour Packages</a>
         <a href="#sharing" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Daily Sharing</a>
         <a href="#gallery" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Gallery</a>
         <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Contact</a>
+        <a href="#" onclick="openCustomerModal(event)" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors flex items-center"><i class="fa-regular fa-calendar-check text-[11px] text-gold/80 mr-1.5"></i> Manage Bookings</a>
         <a href="#" onclick="openAdminModal(event)" class="nav-link text-sm font-medium text-gray-400 hover:text-gold transition-colors flex items-center"><i class="fa-solid fa-lock text-[10px] text-gold/80 mr-1.5"></i> Admin Panel</a>
       </nav>
 
@@ -278,6 +279,7 @@
         <a href="#sharing" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Daily Sharing</a>
         <a href="#gallery" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Gallery</a>
         <a href="#contact" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Contact</a>
+        <a href="#" onclick="toggleMobileMenu(); openCustomerModal(event)" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 flex items-center border-b border-white/5"><i class="fa-regular fa-calendar-check text-xs text-gold/80 mr-2"></i> Manage Bookings</a>
         <a href="#" onclick="toggleMobileMenu(); openAdminModal(event)" class="text-base font-medium text-gray-400 hover:text-gold transition-colors py-2 flex items-center"><i class="fa-solid fa-lock text-xs text-gold/80 mr-2"></i> Admin Panel</a>
       </nav>
       <div class="flex flex-col space-y-3">
@@ -857,7 +859,7 @@
             <!-- SEATS ROW 3 (BACK) -->
             <div class="mb-6">
               <div class="text-center text-[10px] text-gold/60 font-mono tracking-widest uppercase mb-3">Back Row</div>
-              <div class="grid grid-cols-2 max-w-[180px] mx-auto gap-4 justify-items-center">
+              <div class="grid grid-cols-3 max-w-[270px] mx-auto gap-4 justify-items-center">
                 <!-- Seat 5 -->
                 <div class="flex flex-col items-center">
                   <div onclick="toggleSeatSelection(5)" id="seat-5" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
@@ -874,6 +876,15 @@
                     <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
                   </div>
                   <span class="text-[10px] text-gray-400 font-mono mt-1">S6</span>
+                </div>
+
+                <!-- Seat 7 -->
+                <div class="flex flex-col items-center">
+                  <div onclick="toggleSeatSelection(7)" id="seat-7" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
+                    <span class="text-xs font-bold">Seat 7</span>
+                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
+                  </div>
+                  <span class="text-[10px] text-gray-400 font-mono mt-1">S7</span>
                 </div>
               </div>
             </div>
@@ -1359,6 +1370,10 @@
                 <div onclick="toggleSeatSelection(6)" id="modal-seat-6" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
                   S6
                 </div>
+                <!-- Seat 7 -->
+                <div onclick="toggleSeatSelection(7)" id="modal-seat-7" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                  S7
+                </div>
               </div>
             </div>
           </div>
@@ -1379,6 +1394,60 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- ====================================
+       CUSTOMER BOOKINGS / CANCELLATION MODAL (SOPHISTICATED DARK GLASS)
+       ==================================== -->
+  <div id="customer-bookings-modal" class="fixed inset-0 z-[120] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in">
+    <div class="w-full max-w-lg glass-modal rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-gold/20 text-white">
+      
+      <!-- Close Button -->
+      <button onclick="closeCustomerModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-gray-400 hover:text-gold text-xl focus:outline-none transition-colors" aria-label="Close Booking Panel">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Step 1: Customer Login with phone number -->
+      <div id="customer-login-screen" class="space-y-6">
+        <div class="text-center space-y-2">
+          <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto text-gold text-xl">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+          <h3 class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white">Manage Your Bookings</h3>
+          <p class="text-xs text-gray-400 font-light max-w-xs mx-auto">Enter your mobile number to view or cancel your active bookings.</p>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label for="customer-login-mobile" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-1.5">Mobile Number (10 digits)</label>
+            <input type="tel" id="customer-login-mobile" pattern="[0-9]{10}" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors" placeholder="e.g. 9876543210">
+          </div>
+
+          <button onclick="handleCustomerLogin()" class="w-full btn-gold text-black font-bold text-center py-3 rounded-xl uppercase tracking-widest text-xs shadow-lg hover:scale-[1.02] active:scale-100 transform duration-200">
+            View My Bookings
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Bookings List screen -->
+      <div id="customer-dashboard-screen" class="hidden space-y-5">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+          <div>
+            <h3 class="text-lg font-serif font-bold text-gold">Your Bookings</h3>
+            <p id="customer-number-label" class="text-[10px] text-gray-400 font-mono">Mobile: 9876543210</p>
+          </div>
+          <button onclick="logoutCustomer()" class="text-xs text-red-400 hover:text-red-300 font-mono flex items-center space-x-1 border border-red-500/20 px-2.5 py-1 rounded-lg bg-red-500/5 hover:bg-red-500/10 transition-colors">
+            <i class="fa-solid fa-sign-out-alt"></i>
+            <span>Log out</span>
+          </button>
+        </div>
+
+        <div id="customer-bookings-container" class="max-h-[350px] overflow-y-auto space-y-4 pr-1 scrollbar-thin">
+          <!-- Bookings dynamically rendered here -->
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1489,9 +1558,10 @@
                     <button onclick="handleAdminSeatClick(4)" id="admin-seat-4" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
                   </div>
                   <!-- Row 3 -->
-                  <div class="grid grid-cols-2 max-w-[140px] mx-auto gap-2 justify-items-center">
+                  <div class="grid grid-cols-3 max-w-[210px] mx-auto gap-2 justify-items-center">
                     <button onclick="handleAdminSeatClick(5)" id="admin-seat-5" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
                     <button onclick="handleAdminSeatClick(6)" id="admin-seat-6" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
+                    <button onclick="handleAdminSeatClick(7)" id="admin-seat-7" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
                   </div>
                 </div>
 
@@ -1893,6 +1963,10 @@
           if (adminModal && !adminModal.classList.contains('hidden')) {
             updateAdminDashboard();
           }
+
+          if (typeof loggedInCustomerMobile !== 'undefined' && loggedInCustomerMobile) {
+            renderCustomerBookings();
+          }
         });
       }
     });
@@ -2068,7 +2142,7 @@
     function getSeatPrice(seatNum) {
       if (seatNum === 1) return 849;
       if (seatNum >= 2 && seatNum <= 4) return 749;
-      if (seatNum >= 5 && seatNum <= 6) return 649;
+      if (seatNum >= 5 && seatNum <= 7) return 649;
       return 0;
     }
 
@@ -2082,8 +2156,8 @@
     function renderSeatsForDate(date) {
       const booked = getBookedSeatsForDate(date);
       
-      // Loop from seat 1 to 6
-      for (let i = 1; i <= 6; i++) {
+      // Loop from seat 1 to 7
+      for (let i = 1; i <= 7; i++) {
         const seatEl = document.getElementById(`seat-${i}`);
         const modalSeatEl = document.getElementById(`modal-seat-${i}`);
         
@@ -2631,6 +2705,134 @@
     }
 
     // ==========================================
+    // CUSTOMER BOOKINGS & CANCELLATION ENGINE
+    // ==========================================
+    let loggedInCustomerMobile = null;
+
+    function openCustomerModal(e) {
+      if (e) e.preventDefault();
+      
+      // Reset screens
+      document.getElementById('customer-login-screen').classList.remove('hidden');
+      document.getElementById('customer-dashboard-screen').classList.add('hidden');
+      document.getElementById('customer-login-mobile').value = '';
+      
+      const modal = document.getElementById('customer-bookings-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCustomerModal() {
+      const modal = document.getElementById('customer-bookings-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleCustomerLogin() {
+      const mobileInput = document.getElementById('customer-login-mobile').value.trim();
+      if (!/^[0-9]{10}$/.test(mobileInput)) {
+        showToast("Please enter a valid 10-digit mobile number.", "error");
+        return;
+      }
+
+      loggedInCustomerMobile = mobileInput;
+      document.getElementById('customer-number-label').textContent = `Mobile: +91 ${mobileInput}`;
+      
+      renderCustomerBookings();
+      
+      document.getElementById('customer-login-screen').classList.add('hidden');
+      document.getElementById('customer-dashboard-screen').classList.remove('hidden');
+      showToast("Logged in successfully!", "success");
+    }
+
+    function logoutCustomer() {
+      loggedInCustomerMobile = null;
+      document.getElementById('customer-login-screen').classList.remove('hidden');
+      document.getElementById('customer-dashboard-screen').classList.add('hidden');
+      showToast("Logged out.", "info");
+    }
+
+    function renderCustomerBookings() {
+      const db = getDbBookings();
+      const container = document.getElementById('customer-bookings-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      let foundBookings = [];
+      Object.keys(db).forEach(date => {
+        const bookings = db[date] || [];
+        bookings.forEach(booking => {
+          if (booking.mobile === loggedInCustomerMobile) {
+            foundBookings.push(booking);
+          }
+        });
+      });
+
+      // Sort bookings by date descending
+      foundBookings.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      if (foundBookings.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-10 px-4 bg-white/5 rounded-2xl border border-white/5 space-y-2">
+            <i class="fa-solid fa-calendar-times text-gray-500 text-3xl"></i>
+            <p class="text-sm font-medium text-gray-300">No bookings found</p>
+            <p class="text-xs text-gray-500 max-w-[250px] mx-auto leading-normal">You don't have any bookings registered with this mobile number yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      foundBookings.forEach(booking => {
+        const seatsDisplay = booking.seats && booking.seats.length > 0 
+          ? `Seats: ${booking.seats.map(s => `S${s}`).join(', ')}` 
+          : 'Cab Booking (No specific seats)';
+          
+        const formattedPrice = booking.price && booking.price > 0 
+          ? `₹${booking.price.toLocaleString('en-IN')}` 
+          : 'Quote Pending';
+
+        const card = document.createElement('div');
+        card.className = "bg-white/5 border border-white/10 rounded-2xl p-4 space-y-3 hover:border-gold/30 transition-all";
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div class="space-y-1">
+              <span class="text-[9px] font-mono text-gold bg-gold/10 px-2 py-0.5 rounded border border-gold/20 uppercase tracking-wider">${booking.packageName}</span>
+              <h4 class="text-sm font-medium text-white mt-1.5 flex items-center">
+                <i class="fa-regular fa-calendar-check text-gold mr-1.5 text-xs"></i>
+                Journey Date: ${booking.date}
+              </h4>
+              <p class="text-xs text-gray-400 font-light">${seatsDisplay}</p>
+              <p class="text-xs text-gray-400 font-light">Pickup: ${booking.pickup}</p>
+            </div>
+            <div class="text-right">
+              <span class="block text-sm font-bold text-emerald-400">${formattedPrice}</span>
+              <span class="inline-block mt-1 text-[9px] font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-500/20 px-1.5 py-0.5 rounded">Active</span>
+            </div>
+          </div>
+          
+          <div class="border-t border-white/5 pt-3 flex justify-end">
+            <button onclick="requestCancelCustomerBooking('${booking.id}', '${booking.date}')" class="text-xs text-red-400 hover:text-white hover:bg-red-600/20 border border-red-500/20 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer flex items-center space-x-1">
+              <i class="fa-regular fa-trash-can text-xs"></i>
+              <span>Cancel Booking</span>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function requestCancelCustomerBooking(id, date) {
+      pendingDeleteId = id;
+      pendingDeleteDate = date;
+      
+      const confirmModal = document.getElementById('confirm-modal');
+      if (confirmModal) {
+        confirmModal.classList.remove('hidden');
+        confirmModal.classList.add('flex');
+      }
+    }
+
+    // ==========================================
     // ADMIN PANEL CONTROLLER SYSTEM
     // ==========================================
     let adminActiveDate = '';
@@ -2720,12 +2922,12 @@
 
       // Calculate Seats occupied on active date
       const occupiedSeats = getBookedSeatsForDate(adminActiveDate);
-      const vacantSeatsCount = 6 - occupiedSeats.length;
+      const vacantSeatsCount = 7 - occupiedSeats.length;
 
       // Update DOM Metrics
       document.getElementById('metric-total-bookings').textContent = totalBookingsCount;
       document.getElementById('metric-date-bookings').textContent = dateBookings.length;
-      document.getElementById('metric-occupied-seats').textContent = `${occupiedSeats.length} / 6`;
+      document.getElementById('metric-occupied-seats').textContent = `${occupiedSeats.length} / 7`;
       document.getElementById('metric-vacant-seats').textContent = vacantSeatsCount;
 
       // Render Visual layout & passenger lists
@@ -2742,7 +2944,7 @@
       const db = getDbBookings();
       const bookings = db[date] || [];
 
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 7; i++) {
         const btn = document.getElementById(`admin-seat-${i}`);
         if (!btn) continue;
 
@@ -3013,6 +3215,11 @@
 
       updateAdminDashboard();
       renderSeatsForDate(currentSharingDate);
+      
+      if (typeof loggedInCustomerMobile !== 'undefined' && loggedInCustomerMobile) {
+        renderCustomerBookings();
+      }
+
       showToast("Reservation cancelled and removed successfully.", "success");
       
       closeConfirmModal();
