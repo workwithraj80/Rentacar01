@@ -1,0 +1,6 @@
+{
+  "name": "Rent a Car",
+  "description": "Premium luxury car rental services. Daily seat sharing and private cab transit between Ghazipur and Lucknow, plus custom outstation rides across India with high-priority service in Uttar Pradesh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

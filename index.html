@@ -1,0 +1,3073 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent a Car | Premium Luxury Travel & Tour Services Ghazipur</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Rent a Car provides elite luxury travel services in Ghazipur. Book tours to Lucknow, Char Dham, Nepal, Kashmir, Shimla, and premium daily sharing.">
+  <meta name="keywords" content="Rent a Car, Ghazipur, Lucknow, Tour and Travel, Char Dham, Nepal, Kashmir, Luxury Cab, Maruti Ertiga">
+  <meta name="author" content="Rent a Car">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rent a Car | Premium Luxury Travel Ghazipur">
+  <meta property="og:description" content="Experience premium intercity transit and custom vacation tours in ultimate comfort with professional drivers.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rent a Car | Premium Luxury Travel Ghazipur">
+  <meta name="twitter:description" content="Premium car rental and tour packages with 24/7 support and certified local drivers.">
+
+  <!-- Fonts & Icons CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            gold: {
+              light: '#f3e5ab',
+              DEFAULT: '#d4af37',
+              dark: '#aa7c11',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Premium Custom Styling -->
+  <style>
+    /* Selection Styling */
+    ::selection {
+      background: #D4AF37;
+      color: #050505;
+    }
+
+    /* Scrollbar Style - Sophisticated Dark */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050505;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #F9E498;
+    }
+
+    /* Sophisticated Dark Typography */
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+    .font-poppins {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Glassmorphism - Sophisticated Dark */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glass-nav {
+      background: rgba(5, 5, 5, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(212, 175, 55, 0.25);
+      box-shadow: 0 15px 35px -5px rgba(212, 175, 55, 0.1);
+    }
+    .glass-modal {
+      background: rgba(8, 8, 8, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+    /* Gold Gradient & Text Gilded Gradients */
+    .gold-gradient, .btn-gold {
+      background: linear-gradient(135deg, #D4AF37 0%, #F9E498 50%, #B8860B 100%);
+      background-size: 200% auto;
+      transition: all 0.4s ease;
+    }
+    .btn-gold:hover {
+      background-position: right center;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.45);
+    }
+    .gold-text {
+      background: linear-gradient(135deg, #D4AF37 0%, #F9E498 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Glow Utilities */
+    .text-glow-gold {
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.35);
+    }
+    .border-glow-gold:hover {
+      border-color: rgba(212, 175, 55, 0.6);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    }
+
+    /* Premium Seat Styling overrides to support dynamic selection */
+    .seat-elem {
+      transition: all 0.3s ease !important;
+    }
+    .seat-elem.bg-emerald-700 {
+      background-color: #1a4d1a !important;
+      border-color: #00FF00 !important;
+    }
+    .seat-elem.bg-red-950 {
+      background-color: #4d1a1a !important;
+      border-color: #FF0000 !important;
+    }
+    .seat-elem.bg-yellow-500 {
+      background-color: #D4AF37 !important;
+      border-color: #FFFFFF !important;
+      color: #000000 !important;
+    }
+
+    /* Custom Pulsing Animations */
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+      50% { transform: scale(1.05); box-shadow: 0 0 15px 5px rgba(212, 175, 55, 0.2); }
+    }
+    @keyframes pulseGreenGlow {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+      50% { transform: scale(1.05); box-shadow: 0 0 15px 5px rgba(34, 197, 94, 0.2); }
+    }
+    .pulse-gold {
+      animation: pulseGlow 2.5s infinite;
+    }
+    .pulse-green {
+      animation: pulseGreenGlow 2.5s infinite;
+    }
+
+    /* Preloader Animation */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #050505;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    /* Hover underline animation */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #D4AF37;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Interactive Seat Layout Visual Elements */
+    .car-cabin-grid {
+      background: radial-gradient(circle at center, #111111 0%, #050505 100%);
+      border: 2px solid rgba(212, 175, 55, 0.25);
+      border-radius: 40px 40px 20px 20px;
+    }
+  </style>
+</head>
+<body class="bg-[#050505] text-gray-100 font-sans overflow-x-hidden antialiased">
+
+  <!-- ====================================
+       PRELOADER
+       ==================================== -->
+  <div id="preloader">
+    <div class="relative flex items-center justify-center mb-4">
+      <div class="w-20 h-20 border-4 border-gold-dark/20 border-t-gold rounded-full animate-spin"></div>
+      <img src="https://i.ibb.co/39SnrR1H/4e337c74-87b1-4d51-bfbb-b6c67cad8a36.jpg" class="absolute w-12 h-12 object-cover rounded-full border border-gold/40 shadow-md animate-pulse" alt="Logo">
+    </div>
+    <h2 class="text-white font-serif tracking-widest text-xl mb-1">RENT A CAR</h2>
+    <p class="text-gold font-mono text-xs tracking-widest uppercase">Luxury Travel Experience</p>
+  </div>
+
+  <!-- ====================================
+       HEADER / NAVBAR
+       ==================================== -->
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center space-x-2.5 group">
+        <img src="https://i.ibb.co/39SnrR1H/4e337c74-87b1-4d51-bfbb-b6c67cad8a36.jpg" class="w-11 h-11 object-cover rounded-full border border-gold shadow-md group-hover:border-gold-light transition-all duration-300 group-hover:scale-105" alt="Rent a Car Logo">
+        <div class="flex flex-col">
+          <span class="font-serif text-xl sm:text-2xl font-black tracking-widest text-white group-hover:text-gold transition-colors">RENT A CAR</span>
+          <span class="text-[9px] text-gold font-mono tracking-widest uppercase -mt-1">Premium Transit</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="hidden lg:flex items-center space-x-8">
+        <a href="#home" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Home</a>
+        <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">About</a>
+        <a href="#packages" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Tour Packages</a>
+        <a href="#sharing" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Daily Sharing</a>
+        <a href="#gallery" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Gallery</a>
+        <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Contact</a>
+        <a href="#" onclick="openAdminModal(event)" class="nav-link text-sm font-medium text-gray-400 hover:text-gold transition-colors flex items-center"><i class="fa-solid fa-lock text-[10px] text-gold/80 mr-1.5"></i> Admin Panel</a>
+      </nav>
+
+      <!-- CTA Book Button -->
+      <div class="hidden sm:flex items-center space-x-4">
+        <a href="tel:9454003387" class="text-gray-300 hover:text-gold transition-colors text-sm font-semibold flex items-center space-x-1">
+          <i class="fa-solid fa-phone text-gold text-xs"></i>
+          <span>9454003387</span>
+        </a>
+        <button onclick="openBookingPopup()" id="nav-book-btn" class="btn-gold text-black font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-lg tracking-wider uppercase shadow-md hover:scale-105 transform duration-300">
+          Book Now
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="lg:hidden flex flex-col justify-between w-6 h-5 text-gray-300 focus:outline-none" id="mobile-menu-btn" aria-label="Toggle Menu">
+        <span class="w-full h-0.5 bg-current rounded transition-all duration-300 origin-left" id="bar1"></span>
+        <span class="w-full h-0.5 bg-current rounded transition-all duration-300" id="bar2"></span>
+        <span class="w-full h-0.5 bg-current rounded transition-all duration-300 origin-left" id="bar3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="hidden lg:hidden w-full glass-nav px-6 py-6 absolute top-20 left-0 border-b border-gold-dark/20 animate-fade-in" id="mobile-drawer">
+      <nav class="flex flex-col space-y-4 mb-6">
+        <a href="#home" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Home</a>
+        <a href="#about" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">About</a>
+        <a href="#packages" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Tour Packages</a>
+        <a href="#sharing" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Daily Sharing</a>
+        <a href="#gallery" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Gallery</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Contact</a>
+        <a href="#" onclick="toggleMobileMenu(); openAdminModal(event)" class="text-base font-medium text-gray-400 hover:text-gold transition-colors py-2 flex items-center"><i class="fa-solid fa-lock text-xs text-gold/80 mr-2"></i> Admin Panel</a>
+      </nav>
+      <div class="flex flex-col space-y-3">
+        <button onclick="toggleMobileMenu(); openBookingPopup()" class="btn-gold text-black font-bold text-center w-full py-3 rounded-lg tracking-widest uppercase">
+          Book Now
+        </button>
+        <a href="tel:9454003387" class="border border-gold/40 text-gold text-center py-3 rounded-lg font-bold text-sm hover:bg-gold/10 transition-all flex items-center justify-center space-x-2">
+          <i class="fa-solid fa-phone"></i>
+          <span>Call 9454003387</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================
+       HERO SECTION WITH BANNER SLIDER
+       ==================================== -->
+  <section id="home" class="relative w-full min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <!-- Fullscreen Slider Backgrounds -->
+    <div class="absolute inset-0 z-0">
+      <div id="hero-bg-1" class="hero-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100" style="background-image: url('https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?auto=format&fit=crop&w=1920&q=80');"></div>
+      <div id="hero-bg-2" class="hero-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1920&q=80');"></div>
+      <div id="hero-bg-3" class="hero-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80');"></div>
+      <!-- Dark Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/60 to-black/80"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div class="inline-flex items-center space-x-2 border border-gold/30 bg-gold-dark/10 px-4 py-1.5 rounded-full mb-6 backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>
+        <span class="text-gold font-mono text-xs tracking-widest uppercase font-semibold">Rent a Car & Tour Services</span>
+      </div>
+      
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+        Explore India With <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark text-glow-gold">Comfort</span>
+      </h1>
+      
+      <p class="max-w-2xl mx-auto text-gray-300 text-base sm:text-xl font-light mb-10 leading-relaxed">
+        Premium Tour & Travel Services. Experience first-class travel custom-tailored to your journey goals with certified professional drivers.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
+        <button onclick="openBookingPopup()" class="w-full sm:w-auto btn-gold text-black font-bold text-sm tracking-widest uppercase px-8 py-4 rounded-xl shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center space-x-2">
+          <i class="fa-solid fa-route"></i>
+          <span>Book Tour</span>
+        </button>
+        <a href="tel:9454003387" class="w-full sm:w-auto border border-gold/40 text-gold hover:text-white hover:bg-gold-dark/20 font-bold text-sm tracking-widest uppercase px-8 py-4 rounded-xl transition-all flex items-center justify-center space-x-2">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>Call Now</span>
+        </a>
+      </div>
+
+      <!-- Dynamic Brand Logo Container -->
+      <div class="relative w-full max-w-[280px] sm:max-w-[320px] mx-auto px-4 mt-4">
+        <div id="carImageContainer" class="relative group rounded-full overflow-hidden p-1.5 bg-gradient-to-tr from-gold-dark via-gold to-gold-light shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:shadow-[0_0_50px_rgba(212,175,55,0.5)] transition-all duration-500">
+          <!-- Fallback brand logo shown on load, replaced dynamically if const carImage is updated -->
+          <img id="carImage" src="https://i.ibb.co/39SnrR1H/4e337c74-87b1-4d51-bfbb-b6c67cad8a36.jpg" class="w-full h-auto rounded-full object-cover transition-transform duration-700 hover:scale-105" alt="Rent a Car Logo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       ABOUT SECTION
+       ==================================== -->
+  <section id="about" class="py-24 relative overflow-hidden bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          Our Heritage of <span class="text-gold">Luxury</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light mx-auto mb-4"></div>
+        <p class="max-w-xl mx-auto text-gray-400 text-sm sm:text-base font-light">
+          Rent a Car is Ghazipur's elite tour and transit planner. We bring five-star luxury directly to your road journeys.
+        </p>
+      </div>
+
+      <!-- About Details Grid -->
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Text details -->
+        <div class="lg:col-span-7 space-y-8">
+          <div class="glass-card p-8 rounded-3xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-gold/5 rounded-full blur-xl"></div>
+            <h3 class="font-serif text-2xl font-bold text-white mb-4 flex items-center space-x-3">
+              <i class="fa-solid fa-crown text-gold"></i>
+              <span>Ghazipur's Premier Travel Planner</span>
+            </h3>
+            <p class="text-gray-300 leading-relaxed font-light mb-6">
+              Located at Banshi Bazar, Ghazipur, near Awadh Honda, <strong>Rent a Car</strong> delivers exquisite custom-tailored travel options across India, Nepal, and elite local circuits. We maintain a fleet of modern, hygienic, high-performance vehicles driven exclusively by certified captains.
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex items-center space-x-3 text-gray-300">
+                <i class="fa-regular fa-circle-check text-gold"></i>
+                <span class="text-sm">Premium Fleet</span>
+              </div>
+              <div class="flex items-center space-x-3 text-gray-300">
+                <i class="fa-regular fa-circle-check text-gold"></i>
+                <span class="text-sm">Tour Packages</span>
+              </div>
+              <div class="flex items-center space-x-3 text-gray-300">
+                <i class="fa-regular fa-circle-check text-gold"></i>
+                <span class="text-sm">Daily Sharing</span>
+              </div>
+              <div class="flex items-center space-x-3 text-gray-300">
+                <i class="fa-regular fa-circle-check text-gold"></i>
+                <span class="text-sm">24x7 Active Support</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Cards Grid -->
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="glass-card p-6 rounded-2xl border-glow-gold transition-all duration-300">
+              <div class="w-12 h-12 rounded-xl bg-gold-dark/15 border border-gold/30 flex items-center justify-center mb-4 text-gold">
+                <i class="fa-solid fa-user-shield text-xl"></i>
+              </div>
+              <h4 class="font-serif text-lg font-bold text-white mb-2">Safe Journey</h4>
+              <p class="text-gray-400 text-xs font-light leading-relaxed">
+                GPS enabled secure transit, thoroughly verified vehicles, and emergency call backups.
+              </p>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl border-glow-gold transition-all duration-300">
+              <div class="w-12 h-12 rounded-xl bg-gold-dark/15 border border-gold/30 flex items-center justify-center mb-4 text-gold">
+                <i class="fa-solid fa-id-card-clip text-xl"></i>
+              </div>
+              <h4 class="font-serif text-lg font-bold text-white mb-2">Professional Drivers</h4>
+              <p class="text-gray-400 text-xs font-light leading-relaxed">
+                Courteous, local-route experts with verified licenses and flawless records.
+              </p>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border-glow-gold transition-all duration-300">
+              <div class="w-12 h-12 rounded-xl bg-gold-dark/15 border border-gold/30 flex items-center justify-center mb-4 text-gold">
+                <i class="fa-solid fa-headset text-xl"></i>
+              </div>
+              <h4 class="font-serif text-lg font-bold text-white mb-2">24×7 Support</h4>
+              <p class="text-gray-400 text-xs font-light leading-relaxed">
+                Always-on booking modifications, quick assistance, and seamless helpdesks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Stat Counters / Bento card side -->
+        <div class="lg:col-span-5 grid grid-cols-2 gap-6">
+          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between text-center relative overflow-hidden">
+            <div class="absolute -top-6 -left-6 w-16 h-16 bg-gold/5 rounded-full blur-lg"></div>
+            <span class="text-gold font-mono text-4xl font-extrabold mb-2" id="count-clients">5000</span>
+            <span class="text-white text-sm font-semibold">Happy Travellers</span>
+            <p class="text-gray-400 text-xs mt-2 font-light">Customized vacations planned beautifully</p>
+          </div>
+          
+          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between text-center relative overflow-hidden">
+            <div class="absolute -top-6 -right-6 w-16 h-16 bg-gold/5 rounded-full blur-lg"></div>
+            <span class="text-gold font-mono text-4xl font-extrabold mb-2" id="count-cars">15</span>
+            <span class="text-white text-sm font-semibold">Active Fleet</span>
+            <p class="text-gray-400 text-xs mt-2 font-light">Immaculate condition premium vehicles</p>
+          </div>
+
+          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between text-center relative overflow-hidden">
+            <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-gold/5 rounded-full blur-lg"></div>
+            <span class="text-gold font-mono text-4xl font-extrabold mb-2" id="count-routes">100</span>
+            <span class="text-white text-sm font-semibold">Routes Covered</span>
+            <p class="text-gray-400 text-xs mt-2 font-light">Spanning hills, holy shrines, and plains</p>
+          </div>
+
+          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between text-center relative overflow-hidden">
+            <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-gold/5 rounded-full blur-lg"></div>
+            <span class="text-gold font-mono text-4xl font-extrabold mb-2" id="count-rating">4.9</span>
+            <span class="text-white text-sm font-semibold">User Rating</span>
+            <p class="text-gray-400 text-xs mt-2 font-light">Exceptional feedback for transit services</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       TOUR PACKAGES SECTION
+       ==================================== -->
+  <section id="packages" class="py-24 relative bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          Exclusive <span class="text-gold">Routes & Custom Rides</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light mx-auto mb-4"></div>
+        <p class="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base font-light">
+          Choose our direct premium connections or book a custom outstation cab starting from anywhere in India with special priority routes across Uttar Pradesh.
+        </p>
+      </div>
+
+      <!-- Tour Cards Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+        
+        <!-- Package 1 (Daily Sharing) -->
+        <div class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between border-glow-gold transition-all duration-300">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://i.ibb.co/4njNFxq5/c6es93a-1572125.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Ghazipur to Lucknow Daily Sharing" referrerPolicy="no-referrer">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-emerald-600/90 text-white font-mono text-xs font-bold px-3 py-1 rounded-full border border-emerald-400/30 shadow-lg">Daily Sharing</span>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur → Lucknow (Daily Sharing)</h3>
+              <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
+                Premium intercity seat sharing. Experience standard luxury, fully air-conditioned executive transit. Select seats and pay only for yours.
+              </p>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+              <span class="text-xs text-gold/80 font-mono uppercase"><i class="fa-solid fa-car"></i> ₹649 - ₹849 / Seat</span>
+              <button onclick="openBookingPopup('Ghazipur → Lucknow (Daily Sharing)')" class="btn-gold text-black font-bold text-xs px-4 py-2.5 rounded-lg uppercase tracking-wider">
+                Book Seats
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 1b (Private Cab - Ghazipur to Lucknow) -->
+        <div class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between border-glow-gold transition-all duration-300">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://i.ibb.co/4njNFxq5/c6es93a-1572125.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Ghazipur to Lucknow Private Cab" referrerPolicy="no-referrer">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-gold-dark/80 text-white font-mono text-xs font-bold px-3 py-1 rounded-full border border-gold/30 shadow-lg">Private Cab</span>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur → Lucknow (Private Cab)</h3>
+              <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
+                Your dedicated, personal luxury Maruti Ertiga. Safe, direct transit for your family or crew. No other passengers, high-end comfort.
+              </p>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+              <span class="text-xs text-gold/80 font-mono uppercase"><i class="fa-solid fa-car"></i> ₹5,499 / Full Cab</span>
+              <button onclick="openBookingPopup('Ghazipur → Lucknow (Private Cab)')" class="btn-gold text-black font-bold text-xs px-4 py-2.5 rounded-lg uppercase tracking-wider">
+                Book Full Cab
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 1c (Private Cab - Lucknow to Ghazipur) -->
+        <div class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between border-glow-gold transition-all duration-300">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://i.ibb.co/4njNFxq5/c6es93a-1572125.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Lucknow to Ghazipur Private Cab" referrerPolicy="no-referrer">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-gold-dark/80 text-white font-mono text-xs font-bold px-3 py-1 rounded-full border border-gold/30 shadow-lg">Private Cab</span>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Lucknow → Ghazipur (Private Cab)</h3>
+              <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
+                Your dedicated, personal luxury Maruti Ertiga. Safe, direct transit starting from Lucknow back to Ghazipur. No other passengers, high-end comfort.
+              </p>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+              <span class="text-xs text-gold/80 font-mono uppercase"><i class="fa-solid fa-car"></i> ₹5,499 / Full Cab</span>
+              <button onclick="openBookingPopup('Lucknow → Ghazipur (Private Cab)')" class="btn-gold text-black font-bold text-xs px-4 py-2.5 rounded-lg uppercase tracking-wider">
+                Book Full Cab
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Custom Trip Booking Form Card -->
+      <div class="max-w-4xl mx-auto glass-card border-glow-gold rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-visible">
+        <div class="text-center mb-8">
+          <span class="text-xs font-mono uppercase tracking-widest text-gold mb-1.5 block">Custom Trip Booking</span>
+          <h3 class="font-serif text-2xl sm:text-4xl font-bold text-white mb-2">Book Custom Ride (All India)</h3>
+          <p class="text-gray-400 text-sm font-light">
+            Plan a journey to anywhere in India. Enter any pickup & drop cities. All India service with high priority in Uttar Pradesh (UP).
+          </p>
+        </div>
+
+        <form id="custom-trip-form" onsubmit="handleCustomTripSubmit(event)" class="space-y-6 relative">
+          <!-- Two Column Inputs for Pickup and Drop with suggestions -->
+          <div class="grid md:grid-cols-2 gap-6 relative">
+            
+            <!-- Pickup Location (Autocomplete) -->
+            <div class="relative">
+              <label for="custom-pickup" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-2">Pickup Location *</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold/60">
+                  <i class="fa-solid fa-map-pin"></i>
+                </span>
+                <input type="text" id="custom-pickup" required autocomplete="off"
+                       class="w-full bg-black/60 border border-white/10 rounded-xl pl-10 pr-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold transition-colors" 
+                       placeholder="Enter pickup city (e.g., Ghazipur, Lucknow...)">
+              </div>
+              <!-- Suggestions Dropdown -->
+              <div id="pickup-suggestions" class="absolute left-0 right-0 z-[120] mt-1 hidden max-h-60 overflow-y-auto bg-zinc-950 border border-white/10 rounded-xl shadow-2xl divide-y divide-white/5 scrollbar-thin"></div>
+            </div>
+
+            <!-- Drop Location (Autocomplete) -->
+            <div class="relative">
+              <label for="custom-drop" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-2">Drop Location *</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold/60">
+                  <i class="fa-solid fa-location-dot"></i>
+                </span>
+                <input type="text" id="custom-drop" required autocomplete="off"
+                       class="w-full bg-black/60 border border-white/10 rounded-xl pl-10 pr-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold transition-colors" 
+                       placeholder="Enter destination city (e.g., Gorakhpur, Delhi...)">
+              </div>
+              <!-- Suggestions Dropdown -->
+              <div id="drop-suggestions" class="absolute left-0 right-0 z-[120] mt-1 hidden max-h-60 overflow-y-auto bg-zinc-950 border border-white/10 rounded-xl shadow-2xl divide-y divide-white/5 scrollbar-thin"></div>
+            </div>
+
+          </div>
+
+          <!-- Date and Passengers -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Journey Date -->
+            <div>
+              <label for="custom-date" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-2">Journey Date *</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold/60">
+                  <i class="fa-solid fa-calendar-days"></i>
+                </span>
+                <input type="date" id="custom-date" required 
+                       class="w-full bg-black/60 border border-white/10 rounded-xl pl-10 pr-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold transition-colors">
+              </div>
+            </div>
+
+            <!-- Passengers Count -->
+            <div>
+              <label for="custom-passengers" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-2">No. of Passengers *</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold/60">
+                  <i class="fa-solid fa-users"></i>
+                </span>
+                <select id="custom-passengers" required 
+                        class="w-full bg-black/60 border border-white/10 rounded-xl pl-10 pr-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold transition-colors">
+                  <option value="1">1 Passenger</option>
+                  <option value="2">2 Passengers</option>
+                  <option value="3">3 Passengers</option>
+                  <option value="4">4 Passengers</option>
+                  <option value="5">5 Passengers</option>
+                  <option value="6">6 Passengers</option>
+                  <option value="7">7 Passengers (Full Vehicle)</option>
+                  <option value="8">8+ Passengers (Multiple Cars)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Name and Mobile Number -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Full Name -->
+            <div>
+              <label for="custom-name" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-2">Full Name *</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold/60">
+                  <i class="fa-solid fa-user"></i>
+                </span>
+                <input type="text" id="custom-name" required 
+                       class="w-full bg-black/60 border border-white/10 rounded-xl pl-10 pr-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold transition-colors" 
+                       placeholder="Enter your name">
+              </div>
+            </div>
+
+            <!-- Mobile Number -->
+            <div>
+              <label for="custom-mobile" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-2">Mobile Number *</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold/60">
+                  <i class="fa-solid fa-phone"></i>
+                </span>
+                <input type="tel" id="custom-mobile" required pattern="[0-9]{10}"
+                       class="w-full bg-black/60 border border-white/10 rounded-xl pl-10 pr-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold transition-colors" 
+                       placeholder="e.g. 9876543210">
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-4">
+            <button type="submit" 
+                    class="w-full btn-gold text-black font-bold text-center py-4 rounded-xl uppercase tracking-widest text-sm shadow-xl hover:scale-[1.02] active:scale-100 transform duration-200 cursor-pointer flex items-center justify-center space-x-3">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Request Quote & Book on WhatsApp</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       DAILY SHARING SECTION
+       ==================================== -->
+  <section id="sharing" class="py-24 relative overflow-hidden bg-[#050505]">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.05),transparent)] pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          Daily <span class="text-gold">Lucknow Sharing</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light mx-auto mb-4"></div>
+        <p class="max-w-xl mx-auto text-gray-400 text-sm sm:text-base font-light">
+          Comfortable and highly affordable daily sharing service from Ghazipur ⇄ Lucknow in our premium <strong>Maruti Ertiga</strong>.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Text details & instructions -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="glass-card p-8 rounded-3xl">
+            <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">Ghazipur ⇄ Lucknow Daily Express</span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-4">Maruti Ertiga Luxury</h3>
+            <p class="text-gray-300 font-light leading-relaxed mb-6">
+              Skip the crowd. Travel in high-tier luxury with individual seat-selection. Choose your favorite seat dynamically on our interactive chart. We run daily return services with dedicated pickups and convenient drops.
+            </p>
+
+            <!-- Pricing/Info points -->
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start space-x-3 text-sm text-gray-300">
+                <div class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold shrink-0 mt-0.5">
+                  <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                </div>
+                <div class="w-full">
+                  <strong class="text-white block font-medium mb-1.5">Affordable Row Pricing</strong>
+                  <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                    <div class="bg-black/40 border border-white/5 rounded-xl p-2 flex flex-col justify-center">
+                      <span class="text-[9px] text-gray-500 uppercase font-sans font-medium mb-0.5">Front Row</span>
+                      <span class="text-gold font-bold">₹849</span>
+                    </div>
+                    <div class="bg-black/40 border border-white/5 rounded-xl p-2 flex flex-col justify-center">
+                      <span class="text-[9px] text-gray-500 uppercase font-sans font-medium mb-0.5">Middle Row</span>
+                      <span class="text-gold font-bold">₹749</span>
+                    </div>
+                    <div class="bg-black/40 border border-white/5 rounded-xl p-2 flex flex-col justify-center">
+                      <span class="text-[9px] text-gray-500 uppercase font-sans font-medium mb-0.5">Back Row</span>
+                      <span class="text-gold font-bold">₹649</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="flex items-start space-x-3 text-sm text-gray-300">
+                <div class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold shrink-0 mt-0.5">
+                  <i class="fa-solid fa-couch text-xs"></i>
+                </div>
+                <div>
+                  <strong class="text-white block font-medium">Interactive Seating</strong> Choose individual front, middle, or back-row seat allocations.
+                </div>
+              </li>
+              <li class="flex items-start space-x-3 text-sm text-gray-300">
+                <div class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold shrink-0 mt-0.5">
+                  <i class="fa-solid fa-bolt text-xs"></i>
+                </div>
+                <div>
+                  <strong class="text-white block font-medium">Rapid Highway Transit</strong> Directly via Purvanchal Expressway for a fast, scenic, safe, and jerk-free cruise.
+                </div>
+              </li>
+              <li class="flex items-start space-x-3 text-sm text-gray-300">
+                <div class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold shrink-0 mt-0.5">
+                  <i class="fa-solid fa-snowflake text-xs"></i>
+                </div>
+                <div>
+                  <strong class="text-white block font-medium">Climate Controlled Cabin</strong> Fully air-conditioned premium vehicle with plenty of luggage space.
+                </div>
+              </li>
+            </ul>
+
+            <!-- Date selection for Daily Sharing -->
+            <div class="bg-black/50 border border-gold/15 p-5 rounded-2xl space-y-3 mb-4">
+              <label for="sharing-date" class="block text-[11px] font-semibold text-gold uppercase font-mono tracking-wider"><i class="fa-solid fa-calendar-days mr-1.5 text-gold-light"></i> Select Journey Date</label>
+              <div class="relative">
+                <input type="date" id="sharing-date" onchange="onSharingDateChange(this.value)" class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold transition-colors font-mono">
+              </div>
+              <p class="text-[10px] text-gray-400 font-light leading-normal">Seats are booked per-date. Select a date to view current seat availability.</p>
+            </div>
+
+            <!-- Selection summary panel -->
+            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex flex-col space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">Selected Seats:</span>
+                <span id="selected-seats-display" class="font-mono text-gold font-bold text-sm bg-gold/10 px-3 py-1 rounded">None</span>
+              </div>
+              <div class="flex justify-between items-center border-t border-white/5 pt-2">
+                <span class="text-xs text-gray-400">Total Price:</span>
+                <span id="selected-seats-price-display" class="font-mono text-gold font-bold text-sm bg-gold/10 px-3 py-1 rounded">₹0</span>
+              </div>
+              <button onclick="bookSelectedSharingSeats()" id="sharing-book-btn" class="btn-gold text-black text-xs font-bold py-3 px-4 rounded-lg uppercase tracking-wider w-full opacity-60 cursor-not-allowed" disabled>
+                Book Selected Seats
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seating visual interactive vehicle -->
+        <div class="lg:col-span-7 flex flex-col items-center">
+          <div class="w-full max-w-sm car-cabin-grid p-8 relative">
+            
+            <!-- Car Cabin Roof Front/Glass Design -->
+            <div class="w-3/4 mx-auto border-b-2 border-white/20 h-8 rounded-t-3xl bg-white/5 mb-8 flex items-center justify-center">
+              <div class="w-1/3 h-1 bg-white/20 rounded-full"></div>
+            </div>
+
+            <!-- Front Dashboard & Steering Area -->
+            <div class="flex justify-between items-center px-6 mb-10 border-b border-white/10 pb-6">
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full border-2 border-dashed border-gray-600 flex items-center justify-center text-gray-600">
+                  <i class="fa-solid fa-circle-notch"></i>
+                </div>
+                <span class="text-[9px] text-gray-500 font-mono mt-1 uppercase">Steering</span>
+              </div>
+              
+              <!-- Driver Seat (Disabled Booked/Unavailable Indicator) -->
+              <div class="flex flex-col items-center">
+                <div class="w-12 h-14 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-500 cursor-not-allowed shadow">
+                  <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <span class="text-[9px] text-gray-400 font-mono mt-1 uppercase">Driver</span>
+              </div>
+            </div>
+
+            <!-- SEATS ROW 1 (FRONT) -->
+            <div class="mb-10">
+              <div class="text-center text-[10px] text-gold/60 font-mono tracking-widest uppercase mb-3">Front Row</div>
+              <div class="flex justify-center">
+                <div class="flex flex-col items-center px-4">
+                  <!-- Seat 1 -->
+                  <div onclick="toggleSeatSelection(1)" id="seat-1" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
+                    <span class="text-xs font-bold">Seat 1</span>
+                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
+                  </div>
+                  <span class="text-[10px] text-gray-400 font-mono mt-1">S1 (Co-Driver)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SEATS ROW 2 (MIDDLE) -->
+            <div class="mb-10">
+              <div class="text-center text-[10px] text-gold/60 font-mono tracking-widest uppercase mb-3">Middle Row</div>
+              <div class="grid grid-cols-3 gap-4 justify-items-center">
+                <!-- Seat 2 -->
+                <div class="flex flex-col items-center">
+                  <div onclick="toggleSeatSelection(2)" id="seat-2" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
+                    <span class="text-xs font-bold">Seat 2</span>
+                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
+                  </div>
+                  <span class="text-[10px] text-gray-400 font-mono mt-1">S2 (Window)</span>
+                </div>
+                
+                <!-- Seat 3 -->
+                <div class="flex flex-col items-center">
+                  <div onclick="toggleSeatSelection(3)" id="seat-3" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
+                    <span class="text-xs font-bold">Seat 3</span>
+                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
+                  </div>
+                  <span class="text-[10px] text-gray-400 font-mono mt-1">S3 (Middle)</span>
+                </div>
+
+                <!-- Seat 4 -->
+                <div class="flex flex-col items-center">
+                  <div onclick="toggleSeatSelection(4)" id="seat-4" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
+                    <span class="text-xs font-bold">Seat 4</span>
+                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
+                  </div>
+                  <span class="text-[10px] text-gray-400 font-mono mt-1">S4 (Window)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SEATS ROW 3 (BACK) -->
+            <div class="mb-6">
+              <div class="text-center text-[10px] text-gold/60 font-mono tracking-widest uppercase mb-3">Back Row</div>
+              <div class="grid grid-cols-2 max-w-[180px] mx-auto gap-4 justify-items-center">
+                <!-- Seat 5 -->
+                <div class="flex flex-col items-center">
+                  <div onclick="toggleSeatSelection(5)" id="seat-5" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
+                    <span class="text-xs font-bold">Seat 5</span>
+                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
+                  </div>
+                  <span class="text-[10px] text-gray-400 font-mono mt-1">S5</span>
+                </div>
+                
+                <!-- Seat 6 -->
+                <div class="flex flex-col items-center">
+                  <div onclick="toggleSeatSelection(6)" id="seat-6" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
+                    <span class="text-xs font-bold">Seat 6</span>
+                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
+                  </div>
+                  <span class="text-[10px] text-gray-400 font-mono mt-1">S6</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seat Color Legend Indicator -->
+            <div class="mt-8 pt-6 border-t border-white/10 grid grid-cols-3 gap-2 justify-items-center text-[10px] font-mono text-gray-400">
+              <div class="flex items-center space-x-1.5">
+                <span class="w-3 h-3 rounded-full bg-emerald-600 border border-emerald-400 block"></span>
+                <span>Available</span>
+              </div>
+              <div class="flex items-center space-x-1.5">
+                <span class="w-3 h-3 rounded-full bg-yellow-500 border border-yellow-300 block"></span>
+                <span>Selected</span>
+              </div>
+              <div class="flex items-center space-x-1.5">
+                <span class="w-3 h-3 rounded-full bg-red-800 border border-red-600 block"></span>
+                <span>Booked</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       GALLERY SECTION
+       ==================================== -->
+  <section id="gallery" class="py-24 bg-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          Visual <span class="text-gold">Journeys</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light mx-auto mb-4"></div>
+        <p class="max-w-xl mx-auto text-gray-400 text-sm sm:text-base font-light">
+          Glance through pristine captures of our luxury travel routes and comfortable travel scenes.
+        </p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div onclick="openLightbox(0)" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Lucknow Gateway">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <span class="text-gold font-mono text-xs tracking-widest uppercase mb-1">Lucknow</span>
+            <h4 class="font-serif text-lg font-bold text-white">Rumi Darwaza</h4>
+          </div>
+        </div>
+
+        <div onclick="openLightbox(1)" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Holy Himalayas">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <span class="text-gold font-mono text-xs tracking-widest uppercase mb-1">Pilgrimage</span>
+            <h4 class="font-serif text-lg font-bold text-white">Holy Kedarnath</h4>
+          </div>
+        </div>
+
+        <div onclick="openLightbox(2)" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Nepal Valley">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <span class="text-gold font-mono text-xs tracking-widest uppercase mb-1">Cross Border</span>
+            <h4 class="font-serif text-lg font-bold text-white">Kathmandu Temples</h4>
+          </div>
+        </div>
+
+        <div onclick="openLightbox(3)" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Kashmir Lakes">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <span class="text-gold font-mono text-xs tracking-widest uppercase mb-1">Kashmir Valley</span>
+            <h4 class="font-serif text-lg font-bold text-white">Pristine Dal Lake</h4>
+          </div>
+        </div>
+
+        <div onclick="openLightbox(4)" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Himachal Hills">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <span class="text-gold font-mono text-xs tracking-widest uppercase mb-1">Himachal</span>
+            <h4 class="font-serif text-lg font-bold text-white">Snowy Manali Pass</h4>
+          </div>
+        </div>
+
+        <div onclick="openLightbox(5)" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Taj Mahal Heritage">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <span class="text-gold font-mono text-xs tracking-widest uppercase mb-1">Heritage</span>
+            <h4 class="font-serif text-lg font-bold text-white">Taj Mahal Taj Agra</h4>
+          </div>
+        </div>
+
+        <div onclick="openLightbox(6)" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sacred Temples">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <span class="text-gold font-mono text-xs tracking-widest uppercase mb-1">Rajasthan</span>
+            <h4 class="font-serif text-lg font-bold text-white">Khatu Shyam Shrine</h4>
+          </div>
+        </div>
+
+        <div onclick="openLightbox(7)" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Premium Comfort">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <span class="text-gold font-mono text-xs tracking-widest uppercase mb-1">Luxury Fleet</span>
+            <h4 class="font-serif text-lg font-bold text-white">First-Class Drive</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       LIGHTBOX PREVIEW FOR GALLERY
+       ==================================== -->
+  <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md hidden flex-col items-center justify-center p-4">
+    <!-- Close Button -->
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gold text-2xl focus:outline-none transition-colors" aria-label="Close Lightbox">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    
+    <!-- Navigation Buttons -->
+    <button onclick="navigateLightbox(-1)" class="absolute left-4 sm:left-8 text-white/50 hover:text-gold text-3xl focus:outline-none transition-colors" aria-label="Previous Image">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button onclick="navigateLightbox(1)" class="absolute right-4 sm:right-8 text-white/50 hover:text-gold text-3xl focus:outline-none transition-colors" aria-label="Next Image">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <!-- Image Display -->
+    <div class="max-w-4xl max-h-[75vh] flex items-center justify-center">
+      <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain rounded-lg border border-white/10 shadow-2xl" alt="Lightbox Preview">
+    </div>
+    
+    <!-- Caption -->
+    <div class="mt-6 text-center">
+      <span id="lightbox-tag" class="text-gold font-mono text-xs tracking-widest uppercase block mb-1">Category</span>
+      <h3 id="lightbox-title" class="font-serif text-xl font-bold text-white">Image Title</h3>
+    </div>
+  </div>
+
+  <!-- ====================================
+       CONTACT SECTION WITH GOOGLE MAP
+       ==================================== -->
+  <section id="contact" class="py-24 bg-gradient-to-t from-[#050505] to-[#0a0a0a] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          Connect <span class="text-gold">With Us</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light mx-auto mb-4"></div>
+        <p class="max-w-xl mx-auto text-gray-400 text-sm sm:text-base font-light">
+          We are ready to host you. Drop by our booking office or get in touch through phone or WhatsApp instantly.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-stretch">
+        
+        <!-- Contact Details glass card -->
+        <div class="lg:col-span-5 flex flex-col justify-between">
+          <div class="glass-card p-8 rounded-3xl h-full flex flex-col justify-between space-y-8">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">Headquarters</span>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-6">Rent a Car Ghazipur</h3>
+              
+              <div class="space-y-6">
+                <!-- Location -->
+                <div class="flex items-start space-x-4">
+                  <div class="w-10 h-10 rounded-lg bg-gold-dark/15 border border-gold/30 flex items-center justify-center text-gold shrink-0 mt-1">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white uppercase font-mono tracking-wider">Office Location</h4>
+                    <p class="text-gray-300 text-sm font-light mt-1 leading-relaxed">
+                      Rent a Car, RKBK Petrol Pump, near Awadh Honda Agency, Bansibazar, Lanka, Ghazipur, Uttar Pradesh 233001
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Call Support -->
+                <div class="flex items-start space-x-4">
+                  <div class="w-10 h-10 rounded-lg bg-gold-dark/15 border border-gold/30 flex items-center justify-center text-gold shrink-0 mt-1">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white uppercase font-mono tracking-wider">Voice Reservations</h4>
+                    <p class="text-gray-300 text-sm font-light mt-1">
+                      <a href="tel:9454003387" class="hover:text-gold transition-colors block font-mono">9454003387 (Primary)</a>
+                    </p>
+                  </div>
+                </div>
+
+                <!-- WhatsApp Booking -->
+                <div class="flex items-start space-x-4">
+                  <div class="w-10 h-10 rounded-lg bg-gold-dark/15 border border-gold/30 flex items-center justify-center text-gold shrink-0 mt-1">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white uppercase font-mono tracking-wider">WhatsApp Reservations</h4>
+                    <p class="text-gray-300 text-sm font-light mt-1">
+                      <a href="https://wa.me/9454003387" target="_blank" class="hover:text-gold transition-colors block font-mono">9454003387 (Active Booking)</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Instant booking quick tip -->
+            <div class="border-t border-white/5 pt-6 mt-6">
+              <span class="text-xs text-gold font-mono block mb-2"><i class="fa-solid fa-circle-exclamation animate-pulse"></i> Instant Booking Tip</span>
+              <p class="text-gray-400 text-xs font-light leading-relaxed">
+                Need immediate booking? Open our online seat selection or click the WhatsApp floating bubble for a direct reservation response within minutes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Directions Container -->
+        <div class="lg:col-span-7 rounded-3xl overflow-hidden border border-gold/20 relative shadow-xl min-h-[400px] flex items-center justify-center bg-[#070707] p-8 sm:p-12">
+          <!-- Subtle Glow Effects in background -->
+          <div class="absolute w-72 h-72 rounded-full bg-gold/5 blur-3xl -top-20 -right-20 pointer-events-none"></div>
+          <div class="absolute w-72 h-72 rounded-full bg-gold/5 blur-3xl -bottom-20 -left-20 pointer-events-none"></div>
+          
+          <div class="relative z-10 flex flex-col items-center max-w-md mx-auto text-center">
+            <!-- Animated Map Pin Radar Circle -->
+            <div class="relative mb-6">
+              <span class="absolute inset-0 inline-flex h-20 w-20 rounded-full bg-gold/10 animate-ping opacity-75"></span>
+              <div class="relative w-20 h-20 rounded-full bg-gradient-to-tr from-gold-dark to-gold-light border border-gold/30 flex items-center justify-center text-black shadow-lg shadow-gold/20">
+                <i class="fa-solid fa-map-location-dot text-3xl"></i>
+              </div>
+            </div>
+
+            <!-- Header and Description -->
+            <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Navigate with Google Maps</h3>
+            <p class="text-gray-400 text-sm font-light leading-relaxed mb-6">
+              Click below to view our exact office location, get live traffic updates, and find the fastest route to us directly on Google Maps.
+            </p>
+
+            <!-- Address Snippet -->
+            <div class="w-full bg-white/5 border border-white/5 rounded-2xl p-4 mb-8">
+              <span class="text-[10px] text-gold font-mono uppercase tracking-widest block mb-1">Destination Address</span>
+              <p class="text-xs text-gray-300 font-light">
+                Rent a Car, RKBK Petrol Pump, near Awadh Honda Agency, Bansibazar, Lanka, Ghazipur, Uttar Pradesh 233001
+              </p>
+            </div>
+
+            <!-- Get Directions Button -->
+            <a href="https://maps.app.goo.gl/2B32V3s8DPD6F9TJA" 
+               target="_blank" 
+               class="btn-gold w-full text-black font-bold text-center py-4 rounded-xl uppercase tracking-widest text-sm shadow-xl hover:scale-[1.03] active:scale-95 transform duration-200 cursor-pointer flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-location-arrow text-base animate-pulse"></i>
+              <span>Get Directions</span>
+            </a>
+          </div>
+
+          <!-- Light Gold Border Framing Layer -->
+          <div class="absolute inset-0 pointer-events-none border border-gold/20 rounded-3xl"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       FOOTER
+       ==================================== -->
+  <footer class="bg-[#050505] border-t border-gold-dark/20 pt-16 pb-8 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        
+        <!-- Company Info block -->
+        <div class="space-y-4">
+          <a href="#home" class="flex items-center space-x-2.5">
+            <img src="https://i.ibb.co/39SnrR1H/4e337c74-87b1-4d51-bfbb-b6c67cad8a36.jpg" class="w-9 h-9 object-cover rounded-full border border-gold/60 shadow-md" alt="Rent a Car Logo">
+            <span class="font-serif text-lg font-black tracking-widest text-white">RENT A CAR</span>
+          </a>
+          <p class="text-gray-400 text-xs font-light leading-relaxed">
+            The premier name in high-end car rentals, vacation tours, and reliable daily sharing journeys across Uttar Pradesh and surrounding states.
+          </p>
+          <!-- Social Icons -->
+          <div class="flex items-center space-x-3 pt-2">
+            <a href="https://www.instagram.com/rent_a_car_0009?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="w-8 h-8 rounded bg-white/5 hover:bg-gold/20 text-gray-400 hover:text-gold flex items-center justify-center transition-all border border-white/5" aria-label="Instagram"><i class="fa-brands fa-instagram text-xs"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <h4 class="font-serif text-white font-bold mb-4 border-b border-gold-dark/20 pb-2">Quick Navigation</h4>
+          <ul class="space-y-2 text-xs sm:text-sm font-light text-gray-400">
+            <li><a href="#home" class="hover:text-gold transition-colors">Home Dashboard</a></li>
+            <li><a href="#about" class="hover:text-gold transition-colors">About History</a></li>
+            <li><a href="#packages" class="hover:text-gold transition-colors">Premium Packages</a></li>
+            <li><a href="#sharing" class="hover:text-gold transition-colors">Daily Sharing Route</a></li>
+            <li><a href="#gallery" class="hover:text-gold transition-colors">Visual Gallery</a></li>
+            <li><a href="#contact" class="hover:text-gold transition-colors">Office Location</a></li>
+          </ul>
+        </div>
+
+        <!-- Tour packages quicklinks -->
+        <div>
+          <h4 class="font-serif text-white font-bold mb-4 border-b border-gold-dark/20 pb-2">Popular Tours</h4>
+          <ul class="space-y-2 text-xs sm:text-sm font-light text-gray-400">
+            <li><a href="#packages" class="hover:text-gold transition-colors">Ghazipur → Lucknow (Daily Sharing)</a></li>
+            <li><a href="#packages" class="hover:text-gold transition-colors">Ghazipur → Lucknow (Private Cab)</a></li>
+            <li><a href="#packages" class="hover:text-gold transition-colors">Lucknow → Ghazipur (Private Cab)</a></li>
+            <li><a href="#packages" class="hover:text-gold transition-colors">Custom Outstation Ride (All India)</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Support details -->
+        <div>
+          <h4 class="font-serif text-white font-bold mb-4 border-b border-gold-dark/20 pb-2">Support Office</h4>
+          <ul class="space-y-3 text-xs sm:text-sm font-light text-gray-400">
+            <li class="flex items-start space-x-2">
+              <i class="fa-solid fa-location-dot text-gold text-xs mt-1"></i>
+              <span>Rent a Car, RKBK Petrol Pump, near Awadh Honda Agency, Bansibazar, Lanka, Ghazipur, Uttar Pradesh, 233001</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i class="fa-solid fa-phone text-gold text-xs"></i>
+              <a href="tel:9454003387" class="hover:text-gold transition-colors font-mono">9454003387</a>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i class="fa-brands fa-whatsapp text-gold text-xs"></i>
+              <a href="https://wa.me/9454003387" target="_blank" class="hover:text-gold transition-colors font-mono">9454003387</a>
+            </li>
+            
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Divider / Copyright -->
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+        <p class="text-xs text-gray-500 font-light">
+          &copy; 2026 Rent a Car. All Rights Reserved. Designed and built with luxury and elite quality.
+        </p>
+        <p class="text-[10px] text-gray-600 font-mono">
+          Strictly Offline Client-Side Single Page Application.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================
+       BOOKING POPUP MODAL
+       ==================================== -->
+  <div id="booking-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-fade-in">
+    <div class="w-full max-w-lg glass-modal rounded-3xl p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh]">
+      
+      <!-- Close modal -->
+      <button onclick="closeBookingPopup()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-gray-400 hover:text-gold text-xl focus:outline-none transition-colors" aria-label="Close Booking Form">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Title -->
+      <div class="text-center mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold mb-1 block">Online Booking</span>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">Secure Your Journey</h3>
+        <p class="text-gray-400 text-xs font-light mt-1">Fill out the luxury reservation request details below.</p>
+      </div>
+
+      <!-- Booking Form -->
+      <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+        <!-- Name -->
+        <div>
+          <label for="book-name" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-1.5">Full Name *</label>
+          <input type="text" id="book-name" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors" placeholder="e.g. Rahul Sharma">
+        </div>
+
+        <!-- Phone Number -->
+        <div>
+          <label for="book-mobile" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-1.5">Mobile Number *</label>
+          <input type="tel" id="book-mobile" required pattern="[0-9]{10}" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors" placeholder="e.g. 9876543210 (10 digits)">
+        </div>
+
+        <!-- Dropdowns / Package Name Selection -->
+        <div>
+          <label for="book-package" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-1.5">Selected Tour Package *</label>
+          <select id="book-package" required onchange="handleModalPackageChange(this.value)" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors">
+            <option value="Ghazipur → Lucknow (Daily Sharing)">Ghazipur → Lucknow (Daily Sharing)</option>
+            <option value="Ghazipur → Lucknow (Private Cab)">Ghazipur → Lucknow (Private Cab - ₹5,499)</option>
+            <option value="Lucknow → Ghazipur (Private Cab)">Lucknow → Ghazipur (Private Cab - ₹5,499)</option>
+            <option value="Custom Trip / Outstation (All India)">Custom Trip / Outstation (All India)</option>
+          </select>
+        </div>
+
+        <!-- Grid for Date & Passengers -->
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Date -->
+          <div>
+            <label for="book-date" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-1.5">Journey Date *</label>
+            <input type="date" id="book-date" required onchange="onModalDateChange(this.value)" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors">
+          </div>
+          
+          <!-- Passengers -->
+          <div>
+            <label for="book-passengers" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-1.5">Passengers *</label>
+            <input type="number" id="book-passengers" required min="1" max="15" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors" value="1">
+          </div>
+        </div>
+
+        <!-- Pickup Location -->
+        <div>
+          <label for="book-pickup" class="block text-[11px] font-semibold text-gray-400 uppercase font-mono tracking-wider mb-1.5">Pickup Address / Location *</label>
+          <input type="text" id="book-pickup" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors" placeholder="e.g. Banshi Bazar, Ghazipur">
+        </div>
+
+        <!-- CONDITIONAL SEAT SELECTION: HIDE IF PACKAGE IS NOT GHAZIPUR -> LUCKNOW -->
+        <div id="modal-seat-section" class="bg-black/50 border border-gold/20 p-4 rounded-xl space-y-3.5">
+          <div class="flex justify-between items-center border-b border-white/10 pb-2">
+            <div>
+              <span class="block text-[11px] font-semibold text-gold uppercase font-mono tracking-wider">Interactive Seating Layout</span>
+              <p class="text-[10px] text-gray-400 font-light mt-0.5">Tap seats directly to book them instantly</p>
+            </div>
+            <div class="flex flex-col items-end space-y-1">
+              <div class="bg-gold/10 px-2.5 py-1 rounded-lg text-[10px] font-mono text-gold border border-gold/20 shadow-inner">
+                Chosen: <span id="modal-selected-seats-label" class="font-bold">None</span>
+              </div>
+              <div class="bg-emerald-500/10 px-2.5 py-1 rounded-lg text-[10px] font-mono text-emerald-400 border border-emerald-500/20 shadow-inner">
+                Price: <span id="modal-selected-seats-price" class="font-bold">₹0</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Compact Mini Seating Grid (Highly Tactile & Styled for Mobile) -->
+          <div class="py-3 flex flex-col items-center bg-black/40 rounded-xl border border-white/5 p-4 space-y-3 shadow-inner">
+            <!-- Row 1: Front Row -->
+            <div class="w-full flex items-center justify-between px-2">
+              <span class="text-[9px] text-gray-500 font-mono uppercase tracking-wider">Front Row</span>
+              <div class="flex space-x-3 items-center">
+                <!-- Driver Dummy -->
+                <div class="w-12 h-10 rounded-xl bg-gray-950/80 border border-white/5 flex flex-col items-center justify-center text-gray-600 text-[9px] font-mono cursor-not-allowed">
+                  <i class="fa-solid fa-user-tie mb-0.5"></i>
+                  <span>Driver</span>
+                </div>
+                <!-- Seat 1 -->
+                <div onclick="toggleSeatSelection(1)" id="modal-seat-1" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                  S1
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: Middle Row -->
+            <div class="w-full flex items-center justify-between px-2">
+              <span class="text-[9px] text-gray-500 font-mono uppercase tracking-wider">Middle Row</span>
+              <div class="flex space-x-1.5">
+                <!-- Seat 2 -->
+                <div onclick="toggleSeatSelection(2)" id="modal-seat-2" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                  S2
+                </div>
+                <!-- Seat 3 -->
+                <div onclick="toggleSeatSelection(3)" id="modal-seat-3" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                  S3
+                </div>
+                <!-- Seat 4 -->
+                <div onclick="toggleSeatSelection(4)" id="modal-seat-4" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                  S4
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: Back Row -->
+            <div class="w-full flex items-center justify-between px-2">
+              <span class="text-[9px] text-gray-500 font-mono uppercase tracking-wider">Back Row</span>
+              <div class="flex space-x-1.5">
+                <!-- Seat 5 -->
+                <div onclick="toggleSeatSelection(5)" id="modal-seat-5" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                  S5
+                </div>
+                <!-- Seat 6 -->
+                <div onclick="toggleSeatSelection(6)" id="modal-seat-6" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                  S6
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Legend for mini layout -->
+          <div class="flex justify-center space-x-4 text-[9px] font-mono text-gray-400">
+            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded bg-emerald-500/30 border border-emerald-400 mr-1.5"></span> Vacant</span>
+            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded bg-gold border border-gold mr-1.5"></span> Chosen</span>
+            <span class="flex items-center"><span class="w-2.5 h-2.5 rounded bg-red-950/80 border border-red-700/50 mr-1.5"></span> Booked</span>
+          </div>
+
+        </div>
+
+        <!-- Confirm Reservation Submit -->
+        <div class="pt-2">
+          <button type="submit" class="w-full btn-gold text-black font-bold text-center py-3.5 rounded-xl uppercase tracking-widest text-sm shadow-lg hover:scale-[1.02] active:scale-100 transform duration-200">
+            Confirm Booking & Send WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================
+       ADMIN TERMINAL MODAL (SOPHISTICATED DARK)
+       ==================================== -->
+  <div id="admin-modal" class="fixed inset-0 z-[120] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-md animate-fade-in">
+    <div class="w-full max-w-5xl glass-modal rounded-3xl p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[95vh] border border-gold/30">
+      
+      <!-- Close Button -->
+      <button onclick="closeAdminModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-gray-400 hover:text-gold text-xl focus:outline-none transition-colors" aria-label="Close Admin Panel">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- SECTION 1: PASSWORD AUTHENTICATION SCREEN -->
+      <div id="admin-auth-screen" class="max-w-md mx-auto py-12 text-center space-y-6">
+        <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold flex items-center justify-center mx-auto text-gold text-2xl animate-pulse">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <div>
+          <h3 class="font-serif text-2xl font-bold text-white">Security Verification</h3>
+          <p class="text-gray-400 text-xs mt-1.5 leading-relaxed font-light">Enter your master passcode to access the live reservations register & seating charts.</p>
+        </div>
+        <div class="space-y-3">
+          <input type="password" id="admin-password-input" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-center text-sm text-white tracking-widest focus:outline-none focus:border-gold transition-colors font-mono" placeholder="••••••••" onkeydown="if(event.key === 'Enter') verifyAdminPassword()">
+        </div>
+        <button onclick="verifyAdminPassword()" class="w-full btn-gold text-black font-bold py-3 rounded-xl uppercase tracking-widest text-xs shadow-lg">
+          Authenticate Credentials
+        </button>
+      </div>
+
+      <!-- SECTION 2: LIVE ADMIN DASHBOARD -->
+      <div id="admin-dashboard-screen" class="hidden space-y-8">
+        
+        <!-- Dashboard Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-white/10 pb-6 gap-4">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="bg-gold/10 text-gold text-[10px] font-mono tracking-widest uppercase px-2.5 py-0.5 rounded-full border border-gold/20">Authorized Terminal</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-white mt-2">Rent a Car <span class="text-glow-gold font-sans font-light text-gold">Control Panel</span></h3>
+            <p class="text-gray-400 text-xs font-light mt-1 leading-normal">Real-time daily sharing cab seating management and reservation archives.</p>
+          </div>
+          
+          <!-- Date Filter Picker for Admin -->
+          <div class="bg-black/60 border border-gold/20 p-3 rounded-xl flex items-center space-x-3 shrink-0">
+            <span class="text-xs text-gray-400 font-mono uppercase tracking-wider"><i class="fa-solid fa-calendar-check text-gold"></i> Date:</span>
+            <input type="date" id="admin-date-picker" onchange="onAdminDatePickerChange(this.value)" class="bg-black border border-white/10 rounded px-2.5 py-1 text-xs text-white focus:outline-none focus:border-gold font-mono">
+          </div>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Total Register -->
+          <div class="bg-black/40 border border-white/5 p-4 rounded-xl text-center">
+            <span class="text-[10px] text-gray-500 font-mono uppercase tracking-wider block mb-1">Total Bookings</span>
+            <span id="metric-total-bookings" class="font-serif text-3xl font-black text-white">0</span>
+          </div>
+          <!-- Bookings for Selected Date -->
+          <div class="bg-black/40 border border-white/5 p-4 rounded-xl text-center">
+            <span class="text-[10px] text-gray-400 font-mono uppercase tracking-wider block mb-1">Date Bookings</span>
+            <span id="metric-date-bookings" class="font-serif text-3xl font-black text-gold">0</span>
+          </div>
+          <!-- Occupied Seats sharing cab -->
+          <div class="bg-black/40 border border-white/5 p-4 rounded-xl text-center">
+            <span class="text-[10px] text-gray-400 font-mono uppercase tracking-wider block mb-1">Occupied Seats</span>
+            <span id="metric-occupied-seats" class="font-serif text-3xl font-black text-red-500">0 / 6</span>
+          </div>
+          <!-- Available Seats sharing cab -->
+          <div class="bg-black/40 border border-white/5 p-4 rounded-xl text-center">
+            <span class="text-[10px] text-gray-400 font-mono uppercase tracking-wider block mb-1">Available Seats</span>
+            <span id="metric-vacant-seats" class="font-serif text-3xl font-black text-emerald-400">6</span>
+          </div>
+        </div>
+
+        <!-- Main Workspace Layout: Seat Grid vs Passenger Register -->
+        <div class="grid lg:grid-cols-12 gap-8">
+          
+          <!-- Left Panel: Seat occupancy layout (Col Span 5) -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-black/50 border border-white/10 p-6 rounded-2xl">
+              <h4 class="font-serif text-base font-bold text-white mb-2 flex items-center justify-between">
+                <span>Ertiga Cabin Map</span>
+                <span id="admin-map-date" class="text-xs font-mono text-gold">2026-07-08</span>
+              </h4>
+              <p class="text-[11px] text-gray-400 font-light mb-6">Click on any seat below to manually **book / block** it or to view passenger details.</p>
+              
+              <!-- Miniature Seat Layout -->
+              <div class="border border-white/5 rounded-2xl p-4 bg-black/60 scale-95 origin-top">
+                <div class="flex justify-between items-center px-4 mb-4 border-b border-white/5 pb-3">
+                  <span class="text-[9px] text-gray-500 font-mono uppercase">Driver Left</span>
+                  <div class="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-600 text-xs">
+                    <i class="fa-solid fa-user-tie"></i>
+                  </div>
+                </div>
+
+                <!-- Seats Grid row-by-row -->
+                <div class="space-y-4">
+                  <!-- Row 1 -->
+                  <div class="flex justify-center">
+                    <button onclick="handleAdminSeatClick(1)" id="admin-seat-1" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
+                  </div>
+                  <!-- Row 2 -->
+                  <div class="grid grid-cols-3 gap-2 justify-items-center">
+                    <button onclick="handleAdminSeatClick(2)" id="admin-seat-2" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
+                    <button onclick="handleAdminSeatClick(3)" id="admin-seat-3" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
+                    <button onclick="handleAdminSeatClick(4)" id="admin-seat-4" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
+                  </div>
+                  <!-- Row 3 -->
+                  <div class="grid grid-cols-2 max-w-[140px] mx-auto gap-2 justify-items-center">
+                    <button onclick="handleAdminSeatClick(5)" id="admin-seat-5" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
+                    <button onclick="handleAdminSeatClick(6)" id="admin-seat-6" class="w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border"></button>
+                  </div>
+                </div>
+
+                <!-- Mini Color Legend -->
+                <div class="flex justify-center space-x-4 text-[9px] text-gray-400 font-mono mt-6">
+                  <span class="flex items-center"><span class="w-2 h-2 rounded bg-emerald-600 mr-1.5"></span> Vacant</span>
+                  <span class="flex items-center"><span class="w-2 h-2 rounded bg-red-700 mr-1.5"></span> Booked</span>
+                </div>
+              </div>
+
+              <!-- Seat block/unblock controller form -->
+              <div id="admin-seat-ctrl-box" class="bg-black/70 border border-gold/15 p-4 rounded-xl hidden space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-bold text-gold font-mono uppercase" id="admin-ctrl-seat-label">Seat X Control</span>
+                  <button onclick="hideAdminSeatCtrlBox()" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                
+                <div id="admin-ctrl-seat-details" class="text-xs text-gray-300 space-y-1 py-1 font-light leading-normal"></div>
+                
+                <div id="admin-ctrl-seat-form" class="space-y-2">
+                  <input type="text" id="admin-ctrl-name" placeholder="Passenger Name" class="w-full bg-black border border-white/10 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-gold">
+                  <input type="tel" id="admin-ctrl-mobile" placeholder="Mobile Number (10 digits)" class="w-full bg-black border border-white/10 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-gold">
+                  <button onclick="saveAdminManualBooking()" class="w-full btn-gold text-black font-bold py-1.5 rounded text-xs uppercase tracking-wider">
+                    Block Seat (Book)
+                  </button>
+                </div>
+
+                <div id="admin-ctrl-seat-release-box" class="hidden pt-1">
+                  <button onclick="releaseAdminSeatBooking()" class="w-full bg-red-950 hover:bg-red-900 border border-red-500 text-red-100 font-bold py-1.5 rounded text-xs uppercase tracking-wider transition-colors">
+                    Unblock / Release Seat
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right Panel: Passenger registers (Col Span 7) -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- Bookings List on selected date -->
+            <div class="bg-black/50 border border-white/10 p-6 rounded-2xl space-y-4">
+              <h4 class="font-serif text-base font-bold text-white flex items-center justify-between">
+                <span>Active Passengers on Selected Date</span>
+                <span id="admin-passengers-count-badge" class="bg-gold/10 text-gold border border-gold/30 text-[10px] font-mono px-2 py-0.5 rounded-full">0 Bookings</span>
+              </h4>
+              
+              <!-- Bookings table container -->
+              <div class="overflow-x-auto border border-white/5 rounded-xl">
+                <table class="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr class="bg-white/5 text-gray-400 font-mono uppercase tracking-wider border-b border-white/10">
+                      <th class="p-3">Passenger</th>
+                      <th class="p-3">Mobile</th>
+                      <th class="p-3">Seats</th>
+                      <th class="p-3">Pickup</th>
+                      <th class="p-3 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-bookings-table-body" class="divide-y divide-white/5 font-light">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Master List across all dates -->
+            <div class="bg-black/50 border border-white/10 p-6 rounded-2xl space-y-4">
+              <h4 class="font-serif text-base font-bold text-white">Master Reservation Registry (All Dates)</h4>
+              <p class="text-[11px] text-gray-400 font-light leading-normal">Scroll and monitor all reservations logged on this device, grouped chronologically.</p>
+              
+              <div class="overflow-x-auto border border-white/5 rounded-xl max-h-64 overflow-y-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr class="bg-white/5 text-gray-400 font-mono uppercase tracking-wider border-b border-white/10">
+                      <th class="p-3">Journey Date</th>
+                      <th class="p-3">Passenger Details</th>
+                      <th class="p-3">Selected Package</th>
+                      <th class="p-3">Seats</th>
+                      <th class="p-3 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-master-bookings-body" class="divide-y divide-white/5 font-light">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================
+       FLOATING BUTTONS / PULSING WIDGETS
+       ==================================== -->
+  <!-- Floating Call Button (Bottom Left) -->
+  <a href="tel:9454003387" class="fixed bottom-6 left-6 z-[90] w-14 h-14 bg-gradient-to-r from-gold-dark to-gold text-black rounded-full flex items-center justify-center shadow-2xl pulse-gold transition-transform hover:scale-115 active:scale-95" aria-label="Call Support">
+    <i class="fa-solid fa-phone-volume text-xl"></i>
+  </a>
+
+  <!-- Floating WhatsApp Button (Bottom Right) -->
+  <a href="https://wa.me/9454003387" target="_blank" class="fixed bottom-6 right-6 z-[90] w-14 h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl pulse-green transition-transform hover:scale-115 active:scale-95" aria-label="Contact on WhatsApp">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+  </a>
+
+  <!-- Scroll To Top Button (Glows and pops above WhatsApp when scrolled down) -->
+  <button onclick="scrollToTop()" id="scroll-to-top" class="fixed bottom-24 right-8 z-[89] w-10 h-10 bg-black/80 border border-gold/30 text-gold rounded-full flex items-center justify-center shadow-lg hover:bg-gold-dark hover:text-black transition-all transform translate-y-10 opacity-0 pointer-events-none duration-300" aria-label="Scroll to top">
+    <i class="fa-solid fa-chevron-up text-sm"></i>
+  </button>
+
+  <!-- ====================================
+       CUSTOM MODAL CONFIRM DIALOG FOR IFRAME COMPATIBILITY
+       ==================================== -->
+  <div id="confirm-modal" class="fixed inset-0 z-[250] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="w-full max-w-sm bg-[#0a0a0a]/95 border border-gold/30 p-6 rounded-2xl shadow-2xl text-center space-y-4">
+      <div class="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/50 flex items-center justify-center mx-auto text-red-500 text-xl">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <div>
+        <h4 class="font-serif text-lg font-bold text-white">Cancel & Delete Booking?</h4>
+        <p class="text-xs text-gray-400 mt-1 leading-normal font-light">Are you sure you want to permanently cancel and delete this reservation from the registry?</p>
+      </div>
+      <div class="flex space-x-3 pt-2">
+        <button onclick="closeConfirmModal()" class="w-1/2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium py-2 rounded-xl text-xs transition-colors cursor-pointer">
+          No, Cancel
+        </button>
+        <button onclick="executeDeleteBooking()" class="w-1/2 bg-red-600 hover:bg-red-700 text-white font-medium py-2 rounded-xl text-xs transition-colors cursor-pointer">
+          Yes, Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================
+       FIREBASE INTEGRATION ENGINE
+       ==================================== -->
+  <script type="module">
+    import { initializeApp } from 'firebase/app';
+    import { 
+      getFirestore, 
+      doc, 
+      getDoc, 
+      setDoc, 
+      updateDoc, 
+      deleteDoc, 
+      collection, 
+      onSnapshot,
+      getDocFromServer
+    } from 'firebase/firestore';
+    import { getAuth, signInAnonymously } from 'firebase/auth';
+    import firebaseConfig from './firebase-applet-config.json';
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app, firebaseConfig.firestoreDatabaseId || '(default)');
+    const auth = getAuth(app);
+
+    // Validate connection on startup
+    async function testConnection() {
+      try {
+        await getDocFromServer(doc(db, 'bookings', 'connection'));
+        console.log("Firebase connection verified successfully.");
+      } catch (error) {
+        console.error("Firebase connection test failed:", error);
+        if (error instanceof Error && error.message.includes('the client is offline')) {
+          console.error("Please check your Firebase configuration.");
+        }
+      }
+    }
+    testConnection();
+
+    // Sign in anonymously to support safe, traced client writes
+    signInAnonymously(auth).catch((err) => {
+      console.warn("Anonymous auth failed, proceeding as guest", err);
+    });
+
+    const OperationType = {
+      CREATE: 'create',
+      UPDATE: 'update',
+      DELETE: 'delete',
+      LIST: 'list',
+      GET: 'get',
+      WRITE: 'write',
+    };
+
+    // Standardized Error Handler (Mandated by SKILL.md)
+    function handleFirestoreError(error, operationType, path) {
+      const errInfo = {
+        error: error instanceof Error ? error.message : String(error),
+        authInfo: {
+          userId: auth.currentUser?.uid,
+          email: auth.currentUser?.email,
+          emailVerified: auth.currentUser?.emailVerified,
+          isAnonymous: auth.currentUser?.isAnonymous,
+          tenantId: auth.currentUser?.tenantId,
+          providerInfo: auth.currentUser?.providerData?.map(provider => ({
+            providerId: provider.providerId,
+            email: provider.email,
+          })) || []
+        },
+        operationType,
+        path
+      };
+      console.error('Firestore Error: ', JSON.stringify(errInfo));
+      throw new Error(JSON.stringify(errInfo));
+    }
+
+    // Define window service interface
+    window.firebaseService = {
+      db,
+      auth,
+      
+      // Subscribe to real-time changes in the bookings collection
+      onBookingsChange(callback) {
+        const path = 'bookings';
+        return onSnapshot(collection(db, path), (snapshot) => {
+          if (snapshot.empty) {
+            callback({});
+            return;
+          }
+
+          const bookingsDb = {};
+          snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            const date = data.date;
+            if (date) {
+              if (!bookingsDb[date]) {
+                bookingsDb[date] = [];
+              }
+              bookingsDb[date].push({
+                id: docSnap.id,
+                ...data
+              });
+            }
+          });
+          callback(bookingsDb);
+        }, (error) => {
+          handleFirestoreError(error, OperationType.GET, path);
+        });
+      },
+
+      // Add a new booking
+      async addBooking(booking) {
+        const path = `bookings/${booking.id}`;
+        try {
+          await setDoc(doc(db, 'bookings', booking.id), booking);
+        } catch (error) {
+          handleFirestoreError(error, OperationType.CREATE, path);
+        }
+      },
+
+      // Update basic fields on a booking (e.g. seats)
+      async updateBooking(bookingId, updatedFields) {
+        const path = `bookings/${bookingId}`;
+        try {
+          await updateDoc(doc(db, 'bookings', bookingId), updatedFields);
+        } catch (error) {
+          handleFirestoreError(error, OperationType.UPDATE, path);
+        }
+      },
+
+      // Delete/Cancel a booking completely
+      async deleteBooking(bookingId) {
+        const path = `bookings/${bookingId}`;
+        try {
+          await deleteDoc(doc(db, 'bookings', bookingId));
+        } catch (error) {
+          handleFirestoreError(error, OperationType.DELETE, path);
+        }
+      }
+    };
+  </script>
+
+  <!-- ====================================
+       JAVASCRIPT DRIVERS
+       ==================================== -->
+  <script>
+    // ==========================================
+    // CAR IMAGE URL PLACEHOLDER
+    // Paste your custom car image URL here to show it in the Hero section
+    // If left blank, our default luxury car image will show.
+    // ==========================================
+    const carImage = "https://i.ibb.co/39SnrR1H/4e337c74-87b1-4d51-bfbb-b6c67cad8a36.jpg";
+
+    // Global Reservation State & Dynamic DB System
+    let selectedSeatsList = [];
+    let currentSharingDate = new Date().toISOString().split('T')[0]; // Default to today's date
+    let localBookingsDb = {};
+
+    // Helpers to access local storage database safely
+    function getDbBookings() {
+      if (Object.keys(localBookingsDb).length > 0) {
+        return localBookingsDb;
+      }
+
+      const data = localStorage.getItem('rentacar_daily_bookings');
+      if (data) {
+        try {
+          localBookingsDb = JSON.parse(data);
+          return localBookingsDb;
+        } catch (e) {
+          console.error("Failed to parse bookings, resetting DB", e);
+        }
+      }
+      
+      // Return empty database if nothing exists
+      localBookingsDb = {};
+      localStorage.setItem('rentacar_daily_bookings', JSON.stringify({}));
+      return {};
+    }
+
+    function getBookedSeatsForDate(date) {
+      const db = getDbBookings();
+      const bookings = db[date] || [];
+      const seats = [];
+      bookings.forEach(b => {
+        if (b.seats && Array.isArray(b.seats)) {
+          b.seats.forEach(s => seats.push(Number(s)));
+        }
+      });
+      return seats;
+    }
+
+    let activeHeroSlideIndex = 0;
+    const heroSlides = ['hero-bg-1', 'hero-bg-2', 'hero-bg-3'];
+    let lightboxActiveIndex = 0;
+
+    // Gallery Lightbox Content definition
+    const galleryItems = [
+      { url: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1200&q=80', tag: 'Lucknow', title: 'Historic Rumi Darwaza Gateway' },
+      { url: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80', tag: 'Pilgrimage', title: 'Sacred Temple of Kedarnath' },
+      { url: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80', tag: 'Cross Border', title: 'Kathmandu Temple Architecture' },
+      { url: 'https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?auto=format&fit=crop&w=1200&q=80', tag: 'Kashmir Valley', title: 'Scenic Houseboats of Dal Lake' },
+      { url: 'https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?auto=format&fit=crop&w=1200&q=80', tag: 'Himachal', title: 'Snowy Peaks of Solang Valley Manali' },
+      { url: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80', tag: 'Heritage', title: 'Taj Mahal in Beautiful Golden Glow' },
+      { url: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=1200&q=80', tag: 'Rajasthan', title: 'Glow of Lamps at Khatu Shyam Ji Temple' },
+      { url: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80', tag: 'Luxury Fleet', title: 'Immaculate First-Class Comfort Cabin' }
+    ];
+
+    // ==========================================
+    // INITIALIZATION & LIFECYCLE
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Check & Inject Custom Car Image if provided
+      const carImgElement = document.getElementById("carImage");
+      const carLabel = document.getElementById("carPlaceholderLabel");
+      if (typeof carImage !== 'undefined' && carImage && carImage.trim() !== "") {
+        carImgElement.src = carImage;
+        if (carLabel) carLabel.style.display = "none";
+      }
+
+      // 2. Clear preloader on window load
+      setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          preloader.style.opacity = '0';
+          preloader.style.visibility = 'hidden';
+        }
+        // Initialize animated counters on loading completion
+        startCounters();
+      }, 800);
+
+      // 3. Automate Hero Slider Rotate (every 5 seconds)
+      setInterval(rotateHeroSlider, 5000);
+
+      // 4. Set today as minimum date & value for journey bookings
+      const dateInput = document.getElementById('book-date');
+      const sharingDateInput = document.getElementById('sharing-date');
+      const today = new Date().toISOString().split('T')[0];
+
+      if (dateInput) {
+        dateInput.min = today;
+        dateInput.value = today;
+      }
+      if (sharingDateInput) {
+        sharingDateInput.min = today;
+        sharingDateInput.value = today;
+      }
+
+      // Seed database if empty and draw initial sharing seats
+      getDbBookings();
+      renderSeatsForDate(currentSharingDate);
+
+      // Subscribe to real-time Firestore synchronization
+      if (window.firebaseService) {
+        window.firebaseService.onBookingsChange((db) => {
+          localBookingsDb = db;
+          localStorage.setItem('rentacar_daily_bookings', JSON.stringify(db));
+          
+          // Re-render sharing seats & admin panel to reflect real-time changes
+          renderSeatsForDate(currentSharingDate);
+          
+          const adminModal = document.getElementById('admin-modal');
+          if (adminModal && !adminModal.classList.contains('hidden')) {
+            updateAdminDashboard();
+          }
+        });
+      }
+    });
+
+    // Handle scroll features (sticky nav, scroll-to-top button visibility)
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header-nav');
+      const scrollTopBtn = document.getElementById('scroll-to-top');
+      
+      // Sticky header class injection
+      if (window.scrollY > 50) {
+        header.classList.add('glass-nav');
+        header.classList.remove('bg-transparent');
+      } else {
+        header.classList.remove('glass-nav');
+      }
+
+      // Scroll to top button display
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+        scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
+      } else {
+        scrollTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+        scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
+      }
+    });
+
+    // ==========================================
+    // MENU CONTROLLERS
+    // ==========================================
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+
+    function toggleMobileMenu() {
+      mobileDrawer.classList.toggle('hidden');
+      // Morph hamburger to 'X'
+      bar1.classList.toggle('rotate-45');
+      bar1.classList.toggle('translate-y-2');
+      bar2.classList.toggle('opacity-0');
+      bar3.classList.toggle('-rotate-45');
+      bar3.classList.toggle('-translate-y-2');
+    }
+
+    // ==========================================
+    // HERO BACKGROUND SLIDER
+    // ==========================================
+    function rotateHeroSlider() {
+      const currentSlide = document.getElementById(heroSlides[activeHeroSlideIndex]);
+      activeHeroSlideIndex = (activeHeroSlideIndex + 1) % heroSlides.length;
+      const nextSlide = document.getElementById(heroSlides[activeHeroSlideIndex]);
+
+      if (currentSlide && nextSlide) {
+        currentSlide.classList.remove('opacity-100');
+        currentSlide.classList.add('opacity-0');
+        nextSlide.classList.remove('opacity-0');
+        nextSlide.classList.add('opacity-100');
+      }
+    }
+
+    // ==========================================
+    // ANIMATED STAT COUNTERS
+    // ==========================================
+    function startCounters() {
+      animateCounter('count-clients', 0, 5000, 1500, '+');
+      animateCounter('count-cars', 0, 15, 1200, '+');
+      animateCounter('count-routes', 0, 100, 1300, '+');
+      animateCounter('count-rating', 0, 4.9, 1000, '');
+    }
+
+    function animateCounter(id, start, end, duration, suffix) {
+      const element = document.getElementById(id);
+      if (!element) return;
+      
+      const startTime = performance.now();
+      const isFloat = end % 1 !== 0;
+
+      function update(currentTime) {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        
+        // Easing function outQuad
+        const easeProgress = progress * (2 - progress);
+        const value = start + easeProgress * (end - start);
+
+        element.textContent = isFloat 
+          ? value.toFixed(1) + suffix 
+          : Math.floor(value).toLocaleString() + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      requestAnimationFrame(update);
+    }
+
+    // ==========================================
+    // TOAST NOTIFICATIONS (PREMIUM GLASSMORPHIC)
+    // ==========================================
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container') || (() => {
+        const c = document.createElement('div');
+        c.id = 'toast-container';
+        c.className = 'fixed top-6 right-6 z-[200] space-y-3 pointer-events-none max-w-sm w-full px-4';
+        document.body.appendChild(c);
+        return c;
+      })();
+
+      const toast = document.createElement('div');
+      toast.className = 'pointer-events-auto w-full glass-modal border p-4 rounded-2xl shadow-2xl flex items-start space-x-3 transition-all duration-300 transform translate-x-12 opacity-0';
+      
+      if (type === 'success') {
+        toast.classList.add('border-emerald-500/30');
+        toast.innerHTML = `
+          <div class="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500 flex items-center justify-center text-emerald-400 shrink-0">
+            <i class="fa-solid fa-circle-check text-sm"></i>
+          </div>
+          <div class="flex-1 pt-0.5">
+            <p class="text-xs font-bold text-white uppercase tracking-wider">Success</p>
+            <p class="text-[11px] text-gray-300 mt-0.5 leading-normal font-light">${message}</p>
+          </div>
+        `;
+      } else if (type === 'error') {
+        toast.classList.add('border-red-500/30');
+        toast.innerHTML = `
+          <div class="w-8 h-8 rounded-full bg-red-500/10 border border-red-500 flex items-center justify-center text-red-400 shrink-0">
+            <i class="fa-solid fa-circle-exclamation text-sm"></i>
+          </div>
+          <div class="flex-1 pt-0.5">
+            <p class="text-xs font-bold text-white uppercase tracking-wider">Error</p>
+            <p class="text-[11px] text-gray-300 mt-0.5 leading-normal font-light">${message}</p>
+          </div>
+        `;
+      } else {
+        toast.classList.add('border-gold/30');
+        toast.innerHTML = `
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold flex items-center justify-center text-gold shrink-0">
+            <i class="fa-solid fa-circle-info text-sm"></i>
+          </div>
+          <div class="flex-1 pt-0.5">
+            <p class="text-xs font-bold text-white uppercase tracking-wider">Notification</p>
+            <p class="text-[11px] text-gray-300 mt-0.5 leading-normal font-light">${message}</p>
+          </div>
+        `;
+      }
+
+      container.appendChild(toast);
+      
+      // Trigger slide-in
+      setTimeout(() => {
+        toast.classList.remove('translate-x-12', 'opacity-0');
+        toast.classList.add('translate-x-0', 'opacity-100');
+      }, 50);
+
+      // Self-destruct after 4 seconds
+      setTimeout(() => {
+        toast.classList.add('translate-x-12', 'opacity-0');
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      }, 3700);
+    }
+
+    // ==========================================
+    // SEAT PRICING CALCULATOR
+    // ==========================================
+    function getSeatPrice(seatNum) {
+      if (seatNum === 1) return 849;
+      if (seatNum >= 2 && seatNum <= 4) return 749;
+      if (seatNum >= 5 && seatNum <= 6) return 649;
+      return 0;
+    }
+
+    function getSelectedSeatsTotalPrice() {
+      return selectedSeatsList.reduce((sum, seat) => sum + getSeatPrice(seat), 0);
+    }
+
+    // ==========================================
+    // MARUTI ERTIGA DYNAMIC SEAT LAYOUT SYSTEM
+    // ==========================================
+    function renderSeatsForDate(date) {
+      const booked = getBookedSeatsForDate(date);
+      
+      // Loop from seat 1 to 6
+      for (let i = 1; i <= 6; i++) {
+        const seatEl = document.getElementById(`seat-${i}`);
+        const modalSeatEl = document.getElementById(`modal-seat-${i}`);
+        
+        // --- 1. Update Main Screen Seat Layout ---
+        if (seatEl) {
+          // Reset classes
+          seatEl.className = "seat-elem w-14 h-16 rounded-2xl flex flex-col items-center justify-center shadow-md transition-all duration-200 transform";
+          
+          // Is it booked on this date?
+          if (booked.includes(i)) {
+            // Red style for booked
+            seatEl.classList.add('bg-red-950', 'border-2', 'border-red-700/60', 'text-gray-500', 'cursor-not-allowed');
+            seatEl.innerHTML = `
+              <span class="text-xs font-bold text-red-300/80">Seat ${i}</span>
+              <i class="fa-solid fa-ban text-[9px] mt-1 text-red-500"></i>
+            `;
+            // Clear it from selection list if it was there
+            const selIndex = selectedSeatsList.indexOf(i);
+            if (selIndex !== -1) {
+              selectedSeatsList.splice(selIndex, 1);
+            }
+          } else {
+            // Green style for vacant
+            seatEl.classList.add('bg-emerald-950/60', 'border-2', 'border-emerald-500/40', 'text-white', 'cursor-pointer', 'hover:scale-105', 'hover:border-emerald-400');
+            
+            // Is it selected?
+            if (selectedSeatsList.includes(i)) {
+              seatEl.classList.remove('bg-emerald-950/60', 'border-emerald-500/40');
+              seatEl.classList.add('bg-gold/90', 'border-gold', 'text-black');
+              seatEl.innerHTML = `
+                <span class="text-xs font-bold">Seat ${i}</span>
+                <span class="text-[9px] text-black font-mono font-bold mt-0.5">₹${getSeatPrice(i)}</span>
+              `;
+            } else {
+              seatEl.innerHTML = `
+                <span class="text-xs font-bold text-gray-200">Seat ${i}</span>
+                <span class="text-[9px] text-emerald-400 font-mono mt-0.5">₹${getSeatPrice(i)}</span>
+              `;
+            }
+          }
+        }
+
+        // --- 2. Update Modal Mini Seat Layout ---
+        if (modalSeatEl) {
+          // Reset classes
+          modalSeatEl.className = "seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold shadow-md transition-all duration-150 transform cursor-pointer";
+          
+          if (booked.includes(i)) {
+            modalSeatEl.classList.add('bg-red-950/80', 'border', 'border-red-700/50', 'text-red-400/60', 'cursor-not-allowed');
+            modalSeatEl.innerHTML = `S${i}`;
+          } else if (selectedSeatsList.includes(i)) {
+            modalSeatEl.classList.add('bg-gold', 'border', 'border-gold', 'text-black', 'scale-105');
+            modalSeatEl.innerHTML = `S${i}<span class="text-[8px] font-mono font-bold block -mt-0.5">₹${getSeatPrice(i)}</span>`;
+          } else {
+            modalSeatEl.classList.add('bg-emerald-950/40', 'border', 'border-emerald-500/30', 'text-emerald-300', 'hover:border-emerald-400');
+            modalSeatEl.innerHTML = `S${i}<span class="text-[8px] font-mono font-medium text-emerald-400 block -mt-0.5">₹${getSeatPrice(i)}</span>`;
+          }
+        }
+      }
+      updateSharingDashboardState();
+    }
+
+    function toggleSeatSelection(seatNumber) {
+      const booked = getBookedSeatsForDate(currentSharingDate);
+      if (booked.includes(seatNumber)) {
+        showToast(`Seat ${seatNumber} has already been reserved for this date.`, 'error');
+        return;
+      }
+
+      // Add a clean tactile mobile haptic feedback vibration if supported
+      if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate(15);
+      }
+
+      const index = selectedSeatsList.indexOf(seatNumber);
+
+      if (index === -1) {
+        selectedSeatsList.push(seatNumber);
+      } else {
+        selectedSeatsList.splice(index, 1);
+      }
+
+      renderSeatsForDate(currentSharingDate);
+    }
+
+    function onSharingDateChange(val) {
+      if (!val) return;
+      currentSharingDate = val;
+      
+      // Keep booking modal input in sync
+      const modalDateInput = document.getElementById('book-date');
+      if (modalDateInput) {
+        modalDateInput.value = val;
+      }
+      
+      selectedSeatsList = [];
+      renderSeatsForDate(currentSharingDate);
+      showToast(`Switched view to ${val}. Loaded seating register successfully!`, 'info');
+    }
+
+    // Modal date change triggers dynamic update to main view & seats
+    function onModalDateChange(val) {
+      if (!val) return;
+      currentSharingDate = val;
+      
+      // Sync main date field
+      const mainSharingDate = document.getElementById('sharing-date');
+      if (mainSharingDate) {
+        mainSharingDate.value = val;
+      }
+      
+      selectedSeatsList = [];
+      renderSeatsForDate(currentSharingDate);
+      showToast(`Journey date updated to ${val}. Available seats updated.`, 'info');
+    }
+
+    function updateSharingDashboardState() {
+      selectedSeatsList.sort((a, b) => a - b);
+      const displayLabel = document.getElementById('selected-seats-display');
+      const modalLabel = document.getElementById('modal-selected-seats-label');
+      const actionButton = document.getElementById('sharing-book-btn');
+      const passInput = document.getElementById('book-passengers');
+      
+      const priceDisplay = document.getElementById('selected-seats-price-display');
+      const modalPrice = document.getElementById('modal-selected-seats-price');
+
+      const textValue = selectedSeatsList.length > 0 ? selectedSeatsList.join(', ') : 'None';
+      
+      if (displayLabel) displayLabel.textContent = textValue;
+      if (modalLabel) modalLabel.textContent = textValue;
+      
+      // Calculate and render price
+      const totalPrice = getSelectedSeatsTotalPrice();
+      if (priceDisplay) priceDisplay.textContent = '₹' + totalPrice;
+      if (modalPrice) modalPrice.textContent = '₹' + totalPrice;
+      
+      // Keep passenger input perfectly in sync with chosen seats count
+      if (passInput && selectedSeatsList.length > 0) {
+        passInput.value = selectedSeatsList.length;
+      }
+
+      if (selectedSeatsList.length > 0) {
+        if (actionButton) {
+          actionButton.removeAttribute('disabled');
+          actionButton.classList.remove('opacity-60', 'cursor-not-allowed');
+        }
+      } else {
+        if (actionButton) {
+          actionButton.setAttribute('disabled', 'true');
+          actionButton.classList.add('opacity-60', 'cursor-not-allowed');
+        }
+      }
+    }
+
+    function bookSelectedSharingSeats() {
+      if (selectedSeatsList.length === 0) return;
+      
+      openBookingPopup('Ghazipur → Lucknow (Daily Sharing)');
+      
+      // Update form passengers & date automatically
+      const passInput = document.getElementById('book-passengers');
+      if (passInput) passInput.value = selectedSeatsList.length;
+
+      const dateInput = document.getElementById('book-date');
+      if (dateInput) dateInput.value = currentSharingDate;
+    }
+
+    // ==========================================
+    // ALL INDIA CITY DATABASE & AUTOCOMPLETE (UP PRIORITIZED)
+    // ==========================================
+    const INDIAN_CITIES = [
+      // Major Uttar Pradesh (UP) Cities - High Priority
+      { name: "Ghazipur", state: "Uttar Pradesh", isUP: true },
+      { name: "Lucknow", state: "Uttar Pradesh", isUP: true },
+      { name: "Varanasi", state: "Uttar Pradesh", isUP: true },
+      { name: "Gorakhpur", state: "Uttar Pradesh", isUP: true },
+      { name: "Ayodhya", state: "Uttar Pradesh", isUP: true },
+      { name: "Noida", state: "Uttar Pradesh", isUP: true },
+      { name: "Ghaziabad", state: "Uttar Pradesh", isUP: true },
+      { name: "Kanpur", state: "Uttar Pradesh", isUP: true },
+      { name: "Prayagraj", state: "Uttar Pradesh", isUP: true },
+      { name: "Agra", state: "Uttar Pradesh", isUP: true },
+      { name: "Jaunpur", state: "Uttar Pradesh", isUP: true },
+      { name: "Azamgarh", state: "Uttar Pradesh", isUP: true },
+      { name: "Mau", state: "Uttar Pradesh", isUP: true },
+      { name: "Ballia", state: "Uttar Pradesh", isUP: true },
+      { name: "Deoria", state: "Uttar Pradesh", isUP: true },
+      { name: "Basti", state: "Uttar Pradesh", isUP: true },
+      { name: "Mirzapur", state: "Uttar Pradesh", isUP: true },
+      { name: "Jhansi", state: "Uttar Pradesh", isUP: true },
+      { name: "Mathura", state: "Uttar Pradesh", isUP: true },
+      { name: "Aligarh", state: "Uttar Pradesh", isUP: true },
+      { name: "Meerut", state: "Uttar Pradesh", isUP: true },
+      { name: "Bareilly", state: "Uttar Pradesh", isUP: true },
+      { name: "Moradabad", state: "Uttar Pradesh", isUP: true },
+      { name: "Saharanpur", state: "Uttar Pradesh", isUP: true },
+      { name: "Firozabad", state: "Uttar Pradesh", isUP: true },
+      { name: "Muzaffarnagar", state: "Uttar Pradesh", isUP: true },
+      { name: "Rampur", state: "Uttar Pradesh", isUP: true },
+      { name: "Shahjahanpur", state: "Uttar Pradesh", isUP: true },
+      { name: "Farrukhabad", state: "Uttar Pradesh", isUP: true },
+      { name: "Hapur", state: "Uttar Pradesh", isUP: true },
+      { name: "Amroha", state: "Uttar Pradesh", isUP: true },
+      { name: "Etawah", state: "Uttar Pradesh", isUP: true },
+      { name: "Sambhal", state: "Uttar Pradesh", isUP: true },
+      { name: "Bulandshahr", state: "Uttar Pradesh", isUP: true },
+      { name: "Raebareli", state: "Uttar Pradesh", isUP: true },
+      { name: "Orai", state: "Uttar Pradesh", isUP: true },
+      { name: "Bahraich", state: "Uttar Pradesh", isUP: true },
+      { name: "Unnao", state: "Uttar Pradesh", isUP: true },
+      { name: "Fatehpur", state: "Uttar Pradesh", isUP: true },
+
+      // Other Indian Cities
+      { name: "Delhi", state: "Delhi", isUP: false },
+      { name: "Mumbai", state: "Maharashtra", isUP: false },
+      { name: "Bangalore", state: "Karnataka", isUP: false },
+      { name: "Hyderabad", state: "Telangana", isUP: false },
+      { name: "Chennai", state: "Tamil Nadu", isUP: false },
+      { name: "Kolkata", state: "West Bengal", isUP: false },
+      { name: "Pune", state: "Maharashtra", isUP: false },
+      { name: "Ahmedabad", state: "Gujarat", isUP: false },
+      { name: "Jaipur", state: "Rajasthan", isUP: false },
+      { name: "Surat", state: "Gujarat", isUP: false },
+      { name: "Patna", state: "Bihar", isUP: false },
+      { name: "Bhopal", state: "Madhya Pradesh", isUP: false },
+      { name: "Indore", state: "Madhya Pradesh", isUP: false },
+      { name: "Ludhiana", state: "Punjab", isUP: false },
+      { name: "Vadodara", state: "Gujarat", isUP: false },
+      { name: "Nashik", state: "Maharashtra", isUP: false },
+      { name: "Faridabad", state: "Haryana", isUP: false },
+      { name: "Rajkot", state: "Gujarat", isUP: false },
+      { name: "Srinagar", state: "Jammu & Kashmir", isUP: false },
+      { name: "Jabalpur", state: "Madhya Pradesh", isUP: false },
+      { name: "Amritsar", state: "Punjab", isUP: false },
+      { name: "Gwalior", state: "Madhya Pradesh", isUP: false },
+      { name: "Jodhpur", state: "Rajasthan", isUP: false },
+      { name: "Coimbatore", state: "Tamil Nadu", isUP: false },
+      { name: "Vijayawada", state: "Andhra Pradesh", isUP: false },
+      { name: "Madurai", state: "Tamil Nadu", isUP: false },
+      { name: "Raipur", state: "Chhattisgarh", isUP: false },
+      { name: "Kota", state: "Rajasthan", isUP: false },
+      { name: "Guwahati", state: "Assam", isUP: false },
+      { name: "Chandigarh", state: "Chandigarh", isUP: false },
+      { name: "Solapur", state: "Maharashtra", isUP: false },
+      { name: "Hubli-Dharwad", state: "Karnataka", isUP: false },
+      { name: "Mysore", state: "Karnataka", isUP: false },
+      { name: "Gurgaon", state: "Haryana", isUP: false },
+      { name: "Jalandhar", state: "Punjab", isUP: false },
+      { name: "Tiruchirappalli", state: "Tamil Nadu", isUP: false },
+      { name: "Bhubaneswar", state: "Odisha", isUP: false },
+      { name: "Salem", state: "Tamil Nadu", isUP: false },
+      { name: "Warangal", state: "Telangana", isUP: false },
+      { name: "Guntur", state: "Andhra Pradesh", isUP: false },
+      { name: "Dehradun", state: "Uttarakhand", isUP: false },
+      { name: "Ranchi", state: "Jharkhand", isUP: false },
+      { name: "Kochi", state: "Kerala", isUP: false },
+      { name: "Thiruvananthapuram", state: "Kerala", isUP: false }
+    ];
+
+    function setupCityAutocomplete(inputId, suggestionsId) {
+      const input = document.getElementById(inputId);
+      const suggestionsContainer = document.getElementById(suggestionsId);
+
+      if (!input || !suggestionsContainer) return;
+
+      function renderSuggestions(query) {
+        suggestionsContainer.innerHTML = '';
+        
+        let filtered = [];
+        if (!query.trim()) {
+          // Default popular choices (all from UP for maximum quick access and prioritization)
+          filtered = INDIAN_CITIES.filter(c => c.isUP).slice(0, 8);
+        } else {
+          const lowerQuery = query.toLowerCase();
+          
+          // Filter matching cities
+          const matches = INDIAN_CITIES.filter(city => 
+            city.name.toLowerCase().includes(lowerQuery) || 
+            city.state.toLowerCase().includes(lowerQuery)
+          );
+
+          // Separate matches into UP (Priority) and Other
+          const upMatches = matches.filter(city => city.isUP).sort((a, b) => a.name.localeCompare(b.name));
+          const otherMatches = matches.filter(city => !city.isUP).sort((a, b) => a.name.localeCompare(b.name));
+
+          // Combine them, putting UP matches first
+          filtered = [...upMatches, ...otherMatches].slice(0, 15);
+        }
+
+        if (filtered.length === 0) {
+          suggestionsContainer.innerHTML = `
+            <div class="px-4 py-3 text-sm text-gray-500 italic">No cities found. Feel free to type any city name.</div>
+          `;
+          suggestionsContainer.classList.remove('hidden');
+          return;
+        }
+
+        filtered.forEach(city => {
+          const item = document.createElement('div');
+          item.className = "px-4 py-3.5 hover:bg-gold/10 cursor-pointer text-sm text-white flex justify-between items-center transition-colors border-b border-white/5 last:border-b-0";
+          item.innerHTML = `
+            <div class="flex flex-col">
+              <span class="font-medium text-white">${city.name}</span>
+              <span class="text-xs text-gray-400 font-light">${city.state}</span>
+            </div>
+            ${city.isUP ? '<span class="text-[9px] bg-gold/15 text-gold border border-gold/30 px-2 py-0.5 rounded uppercase font-mono tracking-wider font-semibold">UP Priority</span>' : ''}
+          `;
+          
+          item.addEventListener('click', () => {
+            input.value = `${city.name} (${city.state})`;
+            suggestionsContainer.classList.add('hidden');
+          });
+          suggestionsContainer.appendChild(item);
+        });
+
+        suggestionsContainer.classList.remove('hidden');
+      }
+
+      input.addEventListener('focus', () => {
+        renderSuggestions(input.value);
+      });
+
+      input.addEventListener('input', (e) => {
+        renderSuggestions(e.target.value);
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!input.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+          suggestionsContainer.classList.add('hidden');
+        }
+      });
+    }
+
+    // Initialize Autocomplete for custom pickup & drop inputs on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', () => {
+      setupCityAutocomplete('custom-pickup', 'pickup-suggestions');
+      setupCityAutocomplete('custom-drop', 'drop-suggestions');
+      
+      // Also default journey date to tomorrow
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().split('T')[0];
+      const customDateInput = document.getElementById('custom-date');
+      if (customDateInput) {
+        customDateInput.value = tomorrowStr;
+        customDateInput.min = today.toISOString().split('T')[0];
+      }
+    });
+
+    // Handle Custom Trip Form Submit
+    function handleCustomTripSubmit(event) {
+      event.preventDefault();
+
+      const pickup = document.getElementById('custom-pickup').value.trim();
+      const drop = document.getElementById('custom-drop').value.trim();
+      const date = document.getElementById('custom-date').value;
+      const passengers = document.getElementById('custom-passengers').value;
+      const name = document.getElementById('custom-name').value.trim();
+      const mobile = document.getElementById('custom-mobile').value.trim();
+
+      if (!pickup || !drop || !date || !name || !mobile) {
+        showToast("Please fill in all required fields.", "error");
+        return;
+      }
+
+      const customPackageName = `Custom Route: ${pickup} ➔ ${drop}`;
+      const customPickupDisplay = `${pickup} to ${drop}`;
+
+      // 1. SAVE BOOKING LOCALLY & FIRESTORE
+      const newBooking = {
+        id: 'b-' + Date.now(),
+        name: name,
+        mobile: mobile,
+        packageName: customPackageName,
+        pickup: customPickupDisplay,
+        passengers: Number(passengers) || 1,
+        seats: [],
+        price: 0, // Custom trip receives dynamic quote (set to 0 to prevent Firestore serialization error)
+        date: date,
+        timestamp: new Date().toISOString()
+      };
+
+      if (window.firebaseService) {
+        window.firebaseService.addBooking(newBooking).catch((err) => {
+          console.error("Firebase write error:", err);
+          showToast("Cloud sync failed. Booking saved locally.", "error");
+        });
+      }
+
+      const db = getDbBookings();
+      if (!db[date]) {
+        db[date] = [];
+      }
+      db[date].push(newBooking);
+      localStorage.setItem('rentacar_daily_bookings', JSON.stringify(db));
+
+      if (!document.getElementById('admin-modal').classList.contains('hidden')) {
+        updateAdminDashboard();
+      }
+
+      // Pre-filled Message Formatting for Custom Trip
+      const textMessage = `Hello Rent a Car,\n\nI want to request a quote for a Custom Outstation Trip.\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage/Type:\nCustom Route (All India)\n\nJourney Date:\n${date}\n\nPickup City:\n${pickup}\n\nDestination City:\n${drop}\n\nNo. of Passengers:\n${passengers}\n\nPlease share the custom price quote for this ride. Thank you!`;
+
+      const encodedMsg = encodeURIComponent(textMessage);
+      const whatsappURL = `https://wa.me/9454003387?text=${encodedMsg}`;
+
+      showToast("Booking request sent! Opening WhatsApp...", "success");
+
+      // Reset form fields
+      document.getElementById('custom-pickup').value = '';
+      document.getElementById('custom-drop').value = '';
+      document.getElementById('custom-name').value = '';
+      document.getElementById('custom-mobile').value = '';
+
+      // Open WhatsApp
+      setTimeout(() => {
+        window.open(whatsappURL, '_blank');
+      }, 1000);
+    }
+
+    // ==========================================
+    // BOOKING POPUP & CONDITIONAL VISIBILITY
+    // ==========================================
+    function openBookingPopup(packageName = '') {
+      const modal = document.getElementById('booking-modal');
+      const packDropdown = document.getElementById('book-package');
+      
+      if (packageName) {
+        packDropdown.value = packageName;
+      }
+      
+      handleModalPackageChange(packDropdown.value);
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden'); // Disable background scrolling
+    }
+
+    function closeBookingPopup() {
+      const modal = document.getElementById('booking-modal');
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function handleModalPackageChange(value) {
+      const seatSection = document.getElementById('modal-seat-section');
+      const seatLabel = document.getElementById('modal-selected-seats-label');
+
+      if (value === 'Ghazipur → Lucknow (Daily Sharing)') {
+        seatSection.style.display = 'block';
+        if (selectedSeatsList.length > 0) {
+          seatLabel.textContent = selectedSeatsList.join(', ');
+        } else {
+          seatLabel.textContent = 'None (Optional - Select on layout)';
+        }
+      } else {
+        seatSection.style.display = 'none';
+      }
+    }
+
+    // ==========================================
+    // RESERVATION CONFIRMATION / WHATSAPP TRIGGER
+    // ==========================================
+    function handleBookingSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('book-name').value.trim();
+      const mobile = document.getElementById('book-mobile').value.trim();
+      const packageSelected = document.getElementById('book-package').value;
+      const date = document.getElementById('book-date').value;
+      const pickup = document.getElementById('book-pickup').value.trim();
+      const passengers = document.getElementById('book-passengers').value;
+
+      if (!name || !mobile || !date) {
+        showToast("Please fill in all required fields (Name, Mobile, Journey Date).", "error");
+        return;
+      }
+
+      let bookedSeatsForThis = [];
+      let seatsMsg = 'Not Applicable';
+      let priceMsg = '';
+      let totalBookingAmt = 0;
+      if (packageSelected === 'Ghazipur → Lucknow (Daily Sharing)') {
+        bookedSeatsForThis = [...selectedSeatsList];
+        seatsMsg = bookedSeatsForThis.length > 0 ? bookedSeatsForThis.join(', ') : 'None Declared';
+        if (bookedSeatsForThis.length > 0) {
+          totalBookingAmt = bookedSeatsForThis.reduce((sum, s) => sum + getSeatPrice(s), 0);
+          priceMsg = `\n\nTotal Price:\n₹${totalBookingAmt}`;
+        }
+      } else if (packageSelected === 'Ghazipur → Lucknow (Private Cab)' || packageSelected === 'Lucknow → Ghazipur (Private Cab)') {
+        seatsMsg = 'Full Cab (No Sharing)';
+        totalBookingAmt = 5499;
+        priceMsg = `\n\nTotal Price:\n₹${totalBookingAmt}`;
+      }
+
+      // 1. SAVE BOOKING LOCALLY & FIRESTORE
+      const newBooking = {
+        id: 'b-' + Date.now(),
+        name: name,
+        mobile: mobile,
+        packageName: packageSelected,
+        pickup: pickup || 'Not Declared',
+        passengers: Number(passengers) || 1,
+        seats: bookedSeatsForThis,
+        price: totalBookingAmt > 0 ? totalBookingAmt : 0, // Prevent Firestore undefined value error
+        date: date,
+        timestamp: new Date().toISOString()
+      };
+
+      if (window.firebaseService) {
+        window.firebaseService.addBooking(newBooking).catch((err) => {
+          console.error("Firebase write error:", err);
+          showToast("Cloud sync failed. Booking saved locally.", "error");
+        });
+      }
+
+      const db = getDbBookings();
+      if (!db[date]) {
+        db[date] = [];
+      }
+      db[date].push(newBooking);
+      localStorage.setItem('rentacar_daily_bookings', JSON.stringify(db));
+
+      // 2. CLEAR SELECTION AND UPDATE VIEW
+      selectedSeatsList = [];
+      renderSeatsForDate(currentSharingDate);
+      if (!document.getElementById('admin-modal').classList.contains('hidden')) {
+        updateAdminDashboard();
+      }
+
+      // Pre-filled Message Formatting
+      const textMessage = `Hello Rent a Car,\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage:\n${packageSelected}\n\nJourney Date:\n${date}\n\nPickup:\n${pickup || 'Not Declared'}\n\nPassengers:\n${passengers}\n\nSelected Seats:\n${seatsMsg}${priceMsg}\n\nPlease confirm my booking.`;
+
+      const encodedMsg = encodeURIComponent(textMessage);
+      const whatsappURL = `https://wa.me/9454003387?text=${encodedMsg}`;
+
+      showToast("Booking logged successfully! Redirecting to WhatsApp...", "success");
+
+      // Open WhatsApp in a secure secondary tab
+      setTimeout(() => {
+        window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+      }, 800);
+      
+      closeBookingPopup();
+    }
+
+    // ==========================================
+    // ADMIN PANEL CONTROLLER SYSTEM
+    // ==========================================
+    let adminActiveDate = '';
+    let adminCtrlSeat = null;
+    let adminCtrlBookingId = null;
+
+    function openAdminModal(event) {
+      if (event) {
+        event.preventDefault();
+      }
+      
+      const modal = document.getElementById('admin-modal');
+      const authScreen = document.getElementById('admin-auth-screen');
+      const dashScreen = document.getElementById('admin-dashboard-screen');
+      const passInput = document.getElementById('admin-password-input');
+
+      // Reset View states
+      modal.classList.remove('hidden');
+      authScreen.classList.remove('hidden');
+      dashScreen.classList.add('hidden');
+      passInput.value = '';
+      
+      // Auto focus
+      setTimeout(() => {
+        passInput.focus();
+      }, 100);
+
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeAdminModal() {
+      const modal = document.getElementById('admin-modal');
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function verifyAdminPassword() {
+      const pin = document.getElementById('admin-password-input').value;
+      if (pin === '7860') {
+        const authScreen = document.getElementById('admin-auth-screen');
+        const dashScreen = document.getElementById('admin-dashboard-screen');
+        
+        authScreen.classList.add('hidden');
+        dashScreen.classList.remove('hidden');
+
+        // Initialize picker to current dynamic sharing date
+        adminActiveDate = currentSharingDate;
+        const adminDatePicker = document.getElementById('admin-date-picker');
+        if (adminDatePicker) {
+          adminDatePicker.value = adminActiveDate;
+        }
+
+        updateAdminDashboard();
+        showToast("Authenticated successfully! Welcome back, Administrator.", "success");
+      } else {
+        showToast("Invalid security credentials. Access Denied.", "error");
+        
+        // Shake feedback
+        const passInput = document.getElementById('admin-password-input');
+        passInput.classList.add('border-red-500');
+        setTimeout(() => {
+          passInput.classList.remove('border-red-500');
+        }, 600);
+      }
+    }
+
+    function onAdminDatePickerChange(val) {
+      if (!val) return;
+      adminActiveDate = val;
+      updateAdminDashboard();
+      showToast(`Terminal synced to reservations of ${val}`, 'info');
+    }
+
+    function updateAdminDashboard() {
+      // Set date display
+      document.getElementById('admin-map-date').textContent = adminActiveDate;
+
+      const db = getDbBookings();
+      const dateBookings = db[adminActiveDate] || [];
+      const allDates = Object.keys(db);
+      
+      // Calculate Total Metrics across all time
+      let totalBookingsCount = 0;
+      allDates.forEach(d => {
+        totalBookingsCount += db[d].length;
+      });
+
+      // Calculate Seats occupied on active date
+      const occupiedSeats = getBookedSeatsForDate(adminActiveDate);
+      const vacantSeatsCount = 6 - occupiedSeats.length;
+
+      // Update DOM Metrics
+      document.getElementById('metric-total-bookings').textContent = totalBookingsCount;
+      document.getElementById('metric-date-bookings').textContent = dateBookings.length;
+      document.getElementById('metric-occupied-seats').textContent = `${occupiedSeats.length} / 6`;
+      document.getElementById('metric-vacant-seats').textContent = vacantSeatsCount;
+
+      // Render Visual layout & passenger lists
+      renderAdminSeatMap(adminActiveDate);
+      renderAdminPassengersTable(dateBookings);
+      renderMasterRegistry(db);
+
+      // Reset controller panel
+      hideAdminSeatCtrlBox();
+    }
+
+    function renderAdminSeatMap(date) {
+      const booked = getBookedSeatsForDate(date);
+      const db = getDbBookings();
+      const bookings = db[date] || [];
+
+      for (let i = 1; i <= 6; i++) {
+        const btn = document.getElementById(`admin-seat-${i}`);
+        if (!btn) continue;
+
+        // Reset classes
+        btn.className = "w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border text-center cursor-pointer";
+
+        if (booked.includes(i)) {
+          btn.classList.add('bg-red-950/80', 'border-red-600', 'text-red-300', 'hover:bg-red-900');
+          btn.textContent = `S${i} (Book)`;
+        } else {
+          btn.classList.add('bg-emerald-950/80', 'border-emerald-600', 'text-emerald-300', 'hover:bg-emerald-900');
+          btn.textContent = `S${i} (Free)`;
+        }
+      }
+    }
+
+    function renderAdminPassengersTable(bookings) {
+      const tbody = document.getElementById('admin-bookings-table-body');
+      const badge = document.getElementById('admin-passengers-count-badge');
+      
+      tbody.innerHTML = '';
+      badge.textContent = `${bookings.length} Bookings`;
+
+      if (bookings.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="p-6 text-center text-gray-500 italic font-light">No passengers registered for this date yet.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      bookings.forEach(b => {
+        const seatsDisplay = b.seats && b.seats.length > 0 
+          ? b.seats.map(s => `<span class="bg-gold/10 text-gold border border-gold/25 px-1.5 py-0.5 rounded text-[10px] font-mono mr-1">S${s}</span>`).join('')
+          : '<span class="text-gray-600 italic">Not sharing</span>';
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-white/5 transition-colors";
+        tr.innerHTML = `
+          <td class="p-3 font-medium text-white">${b.name}</td>
+          <td class="p-3 text-gray-300 font-mono">${b.mobile}</td>
+          <td class="p-3">${seatsDisplay}</td>
+          <td class="p-3 text-gray-400 max-w-[120px] truncate" title="${b.pickup}">${b.pickup}</td>
+          <td class="p-3 text-right">
+            <button onclick="deleteBookingFromAdmin('${b.id}', '${adminActiveDate}')" class="text-red-400 hover:text-red-300 p-1.5 focus:outline-none" title="Cancel Booking">
+              <i class="fa-solid fa-trash text-xs"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderMasterRegistry(db) {
+      const tbody = document.getElementById('admin-master-bookings-body');
+      tbody.innerHTML = '';
+
+      const dates = Object.keys(db).sort((a, b) => new Date(b) - new Date(a)); // Sort latest first
+      let grandTotal = 0;
+
+      dates.forEach(date => {
+        const list = db[date] || [];
+        list.forEach(b => {
+          grandTotal++;
+          const tr = document.createElement('tr');
+          tr.className = "hover:bg-white/5 transition-colors border-b border-white/5";
+          
+          const seatsLabel = b.seats && b.seats.length > 0 ? `Seats: ${b.seats.join(', ')}` : 'Private Car';
+
+          tr.innerHTML = `
+            <td class="p-3 text-gold font-mono font-medium">${date}</td>
+            <td class="p-3">
+              <p class="font-medium text-white">${b.name}</p>
+              <p class="text-[10px] text-gray-400 font-mono">${b.mobile} | ${b.pickup}</p>
+            </td>
+            <td class="p-3 text-gray-300">${b.packageName}</td>
+            <td class="p-3 text-gray-300 font-mono">${seatsLabel}</td>
+            <td class="p-3 text-right">
+              <button onclick="deleteBookingFromAdmin('${b.id}', '${date}')" class="text-red-400 hover:text-red-300 p-1.5" title="Delete Booking">
+                <i class="fa-solid fa-trash-can text-xs"></i>
+              </button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      });
+
+      if (grandTotal === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="p-6 text-center text-gray-500 italic font-light">The Master Registry is completely empty.</td>
+          </tr>
+        `;
+      }
+    }
+
+    function handleAdminSeatClick(seatNum) {
+      adminCtrlSeat = seatNum;
+      
+      const db = getDbBookings();
+      const bookings = db[adminActiveDate] || [];
+      
+      // Find booking occupying this seat
+      const booking = bookings.find(b => b.seats && b.seats.includes(seatNum));
+      
+      const ctrlBox = document.getElementById('admin-seat-ctrl-box');
+      const ctrlLabel = document.getElementById('admin-ctrl-seat-label');
+      const ctrlDetails = document.getElementById('admin-ctrl-seat-details');
+      const ctrlForm = document.getElementById('admin-ctrl-seat-form');
+      const ctrlRelease = document.getElementById('admin-ctrl-seat-release-box');
+
+      ctrlBox.classList.remove('hidden');
+      ctrlLabel.textContent = `Seat ${seatNum} Controls`;
+
+      if (booking) {
+        // Seat is occupied
+        adminCtrlBookingId = booking.id;
+        ctrlDetails.innerHTML = `
+          <p><strong class="text-white">Passenger:</strong> ${booking.name}</p>
+          <p><strong class="text-white">Mobile:</strong> ${booking.mobile}</p>
+          <p><strong class="text-white">Pickup:</strong> ${booking.pickup}</p>
+          <p><strong class="text-white">Timestamp:</strong> ${new Date(booking.timestamp).toLocaleTimeString()}</p>
+        `;
+        ctrlForm.classList.add('hidden');
+        ctrlRelease.classList.remove('hidden');
+      } else {
+        // Seat is vacant
+        adminCtrlBookingId = null;
+        ctrlDetails.innerHTML = `<p class="text-emerald-400 italic">This seat is currently vacant. You can manually block/reserve it below.</p>`;
+        ctrlForm.classList.remove('hidden');
+        ctrlRelease.classList.add('hidden');
+        
+        // Clear inputs
+        document.getElementById('admin-ctrl-name').value = '';
+        document.getElementById('admin-ctrl-mobile').value = '';
+      }
+    }
+
+    function hideAdminSeatCtrlBox() {
+      const ctrlBox = document.getElementById('admin-seat-ctrl-box');
+      if (ctrlBox) ctrlBox.classList.add('hidden');
+      adminCtrlSeat = null;
+      adminCtrlBookingId = null;
+    }
+
+    function saveAdminManualBooking() {
+      const name = document.getElementById('admin-ctrl-name').value.trim();
+      const mobile = document.getElementById('admin-ctrl-mobile').value.trim();
+
+      if (!name) {
+        showToast("Passenger Name is required to block a seat.", "error");
+        return;
+      }
+      if (mobile && mobile.length !== 10) {
+        showToast("Mobile Number must be exactly 10 digits.", "error");
+        return;
+      }
+
+      const manualBooking = {
+        id: 'block-' + Date.now(),
+        name: name,
+        mobile: mobile || 'Blocked',
+        packageName: 'Ghazipur → Lucknow (Daily Sharing)',
+        pickup: 'Admin Blocked',
+        passengers: 1,
+        seats: [adminCtrlSeat],
+        date: adminActiveDate,
+        timestamp: new Date().toISOString()
+      };
+
+      if (window.firebaseService) {
+        window.firebaseService.addBooking(manualBooking).catch((err) => {
+          console.error("Firebase block error:", err);
+        });
+      }
+
+      const db = getDbBookings();
+      if (!db[adminActiveDate]) {
+        db[adminActiveDate] = [];
+      }
+      db[adminActiveDate].push(manualBooking);
+      localStorage.setItem('rentacar_daily_bookings', JSON.stringify(db));
+
+      // Refresh screens
+      updateAdminDashboard();
+      renderSeatsForDate(currentSharingDate);
+      showToast(`Seat ${adminCtrlSeat} successfully blocked for ${name}!`, 'success');
+    }
+
+    function releaseAdminSeatBooking() {
+      if (!adminCtrlBookingId) return;
+
+      const db = getDbBookings();
+      const bookings = db[adminActiveDate] || [];
+      const bookingIdx = bookings.findIndex(b => b.id === adminCtrlBookingId);
+
+      if (bookingIdx !== -1) {
+        const booking = bookings[bookingIdx];
+        
+        // If booking has multiple seats, remove just this one
+        if (booking.seats && booking.seats.length > 1) {
+          const updatedSeats = booking.seats.filter(s => s !== adminCtrlSeat);
+          booking.seats = updatedSeats;
+          if (window.firebaseService) {
+            window.firebaseService.updateBooking(adminCtrlBookingId, { seats: updatedSeats }).catch(err => console.error(err));
+          }
+        } else {
+          // If only this seat, remove booking completely
+          bookings.splice(bookingIdx, 1);
+          if (window.firebaseService) {
+            window.firebaseService.deleteBooking(adminCtrlBookingId).catch(err => console.error(err));
+          }
+        }
+
+        db[adminActiveDate] = bookings;
+        localStorage.setItem('rentacar_daily_bookings', JSON.stringify(db));
+
+        updateAdminDashboard();
+        renderSeatsForDate(currentSharingDate);
+        showToast(`Seat ${adminCtrlSeat} unblocked & released successfully!`, 'success');
+      }
+    }
+
+    // Global Pending Delete States to support custom Confirm Modal
+    let pendingDeleteId = null;
+    let pendingDeleteDate = null;
+
+    function deleteBookingFromAdmin(bookingId, date) {
+      pendingDeleteId = bookingId;
+      pendingDeleteDate = date;
+      
+      const confirmModal = document.getElementById('confirm-modal');
+      if (confirmModal) {
+        confirmModal.classList.remove('hidden');
+        confirmModal.classList.add('flex');
+      } else {
+        // Safe immediate fallback if modal isn't loaded
+        executeDeleteBooking();
+      }
+    }
+
+    function closeConfirmModal() {
+      const confirmModal = document.getElementById('confirm-modal');
+      if (confirmModal) {
+        confirmModal.classList.add('hidden');
+        confirmModal.classList.remove('flex');
+      }
+      pendingDeleteId = null;
+      pendingDeleteDate = null;
+    }
+
+    function executeDeleteBooking() {
+      if (!pendingDeleteId || !pendingDeleteDate) return;
+
+      if (window.firebaseService) {
+        window.firebaseService.deleteBooking(pendingDeleteId).catch((err) => {
+          console.error("Firebase delete error:", err);
+        });
+      }
+
+      const db = getDbBookings();
+      let bookings = db[pendingDeleteDate] || [];
+      bookings = bookings.filter(b => b.id !== pendingDeleteId);
+      
+      db[pendingDeleteDate] = bookings;
+      localStorage.setItem('rentacar_daily_bookings', JSON.stringify(db));
+
+      updateAdminDashboard();
+      renderSeatsForDate(currentSharingDate);
+      showToast("Reservation cancelled and removed successfully.", "success");
+      
+      closeConfirmModal();
+    }
+
+    // ==========================================
+    // GALLERY LIGHTBOX MANAGER
+    // ==========================================
+    function openLightbox(index) {
+      lightboxActiveIndex = index;
+      const lightbox = document.getElementById('lightbox');
+      updateLightboxContent();
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function navigateLightbox(direction) {
+      lightboxActiveIndex = (lightboxActiveIndex + direction + galleryItems.length) % galleryItems.length;
+      updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+      const item = galleryItems[lightboxActiveIndex];
+      document.getElementById('lightbox-img').src = item.url;
+      document.getElementById('lightbox-tag').textContent = item.tag;
+      document.getElementById('lightbox-title').textContent = item.title;
+    }
+
+    // Key board listener for Lightbox closing/navigating
+    window.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      }
+    });
+
+    // ==========================================
+    // CORE SCROLL TOP
+    // ==========================================
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>

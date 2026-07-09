@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "Booking": {
+      "title": "Booking",
+      "description": "A car reservation or shared-seat booking on a specific date",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique booking identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Passenger name"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "10-digit mobile number"
+        },
+        "packageName": {
+          "type": "string",
+          "description": "Selected travel package or route"
+        },
+        "pickup": {
+          "type": "string",
+          "description": "Passenger pickup location"
+        },
+        "passengers": {
+          "type": "number",
+          "description": "Number of passengers in this booking"
+        },
+        "seats": {
+          "type": "array",
+          "description": "Array of seat numbers reserved (1 to 7)"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of journey in YYYY-MM-DD format"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "ISO timestamp when booking was created"
+        }
+      },
+      "required": ["id", "name", "mobile", "packageName", "date", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Collection containing all car rentals and daily seat bookings"
+    }
+  }
+}

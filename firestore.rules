@@ -1,0 +1,72 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. Global Safety Net (Default Deny Catch-All)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Global Helper Functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // 3. Validation Blueprint for Booking Entities
+    function isValidBooking(data) {
+      return data.id is string 
+        && data.id.size() <= 128 
+        && data.id.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.name is string 
+        && data.name.size() > 0 
+        && data.name.size() <= 100
+        && data.mobile is string 
+        && data.mobile.size() <= 15 
+        && data.mobile.matches('^[0-9a-zA-Z \\-\\+\\(\\)]+$')
+        && data.packageName is string 
+        && data.packageName.size() > 0 
+        && data.packageName.size() <= 150
+        && (data.pickup == null || (data.pickup is string && data.pickup.size() <= 250))
+        && (data.passengers == null || (data.passengers is int && data.passengers >= 1 && data.passengers <= 7))
+        && (data.seats == null || (data.seats is list && data.seats.size() <= 7))
+        && data.date is string 
+        && data.date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && data.timestamp is string 
+        && data.timestamp.size() <= 50;
+    }
+
+    // 4. Secure Match Block for Bookings Collection
+    match /bookings/{bookingId} {
+      
+      // Allow read/get operations
+      allow get: if isValidId(bookingId);
+      allow list: if true; // Allows the client to perform seat availability checks securely
+
+      // Allow creating a booking with strict payload validation
+      allow create: if isValidId(bookingId) 
+        && isValidBooking(incoming())
+        && incoming().id == bookingId;
+
+      // Allow updating with precise validation
+      allow update: if isValidId(bookingId)
+        && isValidBooking(incoming())
+        && incoming().id == existing().id
+        && incoming().date == existing().date // Journey date is immutable after booking
+        && (
+          // Action: Modify seat configuration or basic info (must pass full validation)
+          incoming().diff(existing()).affectedKeys().hasAny(['seats', 'name', 'mobile', 'pickup', 'passengers'])
+        );
+
+      // Allow deleting a booking
+      allow delete: if isValidId(bookingId);
+    }
+  }
+}
