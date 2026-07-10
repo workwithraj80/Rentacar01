@@ -33,6 +33,10 @@
           "type": "array",
           "description": "Array of seat numbers reserved (1 to 7)"
         },
+        "departureTime": {
+          "type": "string",
+          "description": "Selected departure timing (e.g., '6:00 AM', '3:00 PM', '4:00 PM')"
+        },
         "date": {
           "type": "string",
           "description": "Date of journey in YYYY-MM-DD format"

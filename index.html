@@ -265,6 +265,7 @@
         <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">About</a>
         <a href="#packages" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Tour Packages</a>
         <a href="#packages" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Daily Sharing</a>
+        <a href="#our-cars" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Our Cars</a>
         <a href="#gallery" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Gallery</a>
         <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Contact</a>
         <a href="#" onclick="openCustomerModal(event)" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors flex items-center"><i class="fa-regular fa-calendar-check text-[11px] text-gold/80 mr-1.5"></i> Manage Bookings</a>
@@ -297,6 +298,7 @@
         <a href="#about" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">About</a>
         <a href="#packages" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Tour Packages</a>
         <a href="#packages" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Daily Sharing</a>
+        <a href="#our-cars" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Our Cars</a>
         <a href="#gallery" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Gallery</a>
         <a href="#contact" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Contact</a>
         <a href="#" onclick="toggleMobileMenu(); openCustomerModal(event)" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 flex items-center border-b border-white/5"><i class="fa-regular fa-calendar-check text-xs text-gold/80 mr-2"></i> Manage Bookings</a>
@@ -389,7 +391,7 @@
             <div>
               <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur ↔ Lucknow (Daily Sharing)</h3>
               <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
-                Premium intercity seat sharing. Experience standard luxury, fully air-conditioned executive transit. Select seats and pay only for yours. Available daily in both directions (Ghazipur to Lucknow & Lucknow to Ghazipur).
+                Premium intercity seat sharing. Experience standard luxury, fully air-conditioned executive transit. Select seats and pay only for yours. Available daily (Ghazipur to Lucknow: 6:00 AM | Lucknow to Ghazipur: 3:00 PM & 4:00 PM).
               </p>
             </div>
             <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
@@ -552,12 +554,83 @@
           </div>
         </form>
       </div>
+    <!-- ====================================
+       CAR SECTION 
+       ==================================== -->
+  <section id="our-cars" class="py-24 bg-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          Our <span class="text-gold">Cars</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light mx-auto mb-4"></div>
+        <p class="max-w-xl mx-auto text-gray-400 text-sm sm:text-base font-light">
+          Glance through our fleet of pristine, air-conditioned, and highly comfortable luxury travel vehicles.
+        </p>
+      </div>
+
+      <!-- Car Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        
+        <div onclick="openCarBooking('VERNA')" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://i.ibb.co/FLkHctcx/20260309-084649-9e1d3c22.avif" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Hyundai Verna" referrerPolicy="no-referrer">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <h4 class="font-serif text-lg font-bold text-white">VERNA</h4>
+            <button onclick="event.stopPropagation(); openCarBooking('VERNA')" class="btn-gold text-black font-bold text-center w-full py-3 rounded-lg tracking-widest uppercase cursor-pointer">
+              Book Now
+            </button>
+          </div>
+        </div>
+
+        <div onclick="openCarBooking('DEZIRE')" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://i.ibb.co/bjFhPVrJ/swift-dezire-qkiyc44g1gsnm9knfj34fnfwchfjty68ff3kovuaqo.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Swift Dezire" referrerPolicy="no-referrer">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <h4 class="font-serif text-lg font-bold text-white">DEZIRE</h4>
+            <button onclick="event.stopPropagation(); openCarBooking('DEZIRE')" class="btn-gold text-black font-bold text-center w-full py-3 rounded-lg tracking-widest uppercase cursor-pointer">
+              Book Now
+            </button>
+          </div>
+        </div>
+
+        <div onclick="openCarBooking('WAGON-R')" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://i.ibb.co/zH5M9bKV/20250617123626-Maruti-Suzuki-Wagon-R-Solid-White-1.avif" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Maruti Suzuki Wagon R" referrerPolicy="no-referrer">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <h4 class="font-serif text-lg font-bold text-white">WAGON-R</h4>
+            <button onclick="event.stopPropagation(); openCarBooking('WAGON-R')" class="btn-gold text-black font-bold text-center w-full py-3 rounded-lg tracking-widest uppercase cursor-pointer">
+              Book Now
+            </button>
+          </div>
+        </div>
+
+        <div onclick="openCarBooking('ERTIGA')" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://i.ibb.co/q3437MBd/colour-marutisuzuki-ertiga-pearl-metallic-arctic-white-600x400.jpg" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Maruti Suzuki Ertiga" referrerPolicy="no-referrer">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <h4 class="font-serif text-lg font-bold text-white">ERTIGA</h4>
+            <button onclick="event.stopPropagation(); openCarBooking('ERTIGA')" class="btn-gold text-black font-bold text-center w-full py-3 rounded-lg tracking-widest uppercase cursor-pointer">
+              Book Now
+            </button>
+          </div>
+        </div>
+
+        <div onclick="openCarBooking('XL-6')" class="relative h-64 overflow-hidden rounded-2xl group cursor-pointer border border-white/10 hover:border-gold/40 transition-colors">
+          <img src="https://i.ibb.co/xSmZQGQ7/maruti-suzuki-xl6-right-front-three-quarter0.avif" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Maruti Suzuki XL6" referrerPolicy="no-referrer">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6">
+            <h4 class="font-serif text-lg font-bold text-white">XL-6</h4>
+            <button onclick="event.stopPropagation(); openCarBooking('XL-6')" class="btn-gold text-black font-bold text-center w-full py-3 rounded-lg tracking-widest uppercase cursor-pointer">
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-
-
-
- 
 
   <!-- ====================================
        GALLERY SECTION
@@ -1052,6 +1125,22 @@
         <div>
           <label for="book-pickup" class="block text-xs sm:text-[13px] font-bold text-gray-300 uppercase font-mono tracking-wider mb-1.5">Pickup Address / Location *</label>
           <input type="text" id="book-pickup" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors" placeholder="e.g. Banshi Bazar, Ghazipur">
+        </div>
+
+        <!-- CONDITIONAL TIMING SECTION FOR DAILY SHARING -->
+        <div id="modal-timing-section" class="hidden bg-black/50 border border-gold/20 p-4 rounded-xl">
+          <label for="book-time" class="block text-xs sm:text-[13px] font-bold text-gray-300 uppercase font-mono tracking-wider mb-1.5">Departure Timing *</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gold/60 text-base">
+              <i class="fa-regular fa-clock"></i>
+            </span>
+            <select id="book-time" class="w-full bg-black/50 border border-white/10 rounded-xl pl-12 pr-10 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors appearance-none cursor-pointer">
+              <!-- Dynamically populated options based on route -->
+            </select>
+            <span class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-gold/60">
+              <i class="fa-solid fa-chevron-down text-sm"></i>
+            </span>
+          </div>
         </div>
 
         <!-- CONDITIONAL SEAT SELECTION: HIDE IF PACKAGE IS NOT GHAZIPUR -> LUCKNOW -->
@@ -1621,6 +1710,7 @@
     let currentSharingDate = new Date().toISOString().split('T')[0]; // Default to today's date
     let currentSharingRoute = 'Ghazipur → Lucknow (Daily Sharing)';
     let localBookingsDb = {};
+    let selectedCarModel = '';
 
     // Helpers to access local storage database safely
     function getDbBookings() {
@@ -2388,12 +2478,19 @@
     // ==========================================
     // BOOKING POPUP & CONDITIONAL VISIBILITY
     // ==========================================
+    function openCarBooking(carName) {
+      selectedCarModel = carName;
+      openBookingPopup('Custom Trip / Outstation (All India)');
+    }
+
     function openBookingPopup(packageName = '') {
       const modal = document.getElementById('booking-modal');
       const packDropdown = document.getElementById('book-package');
       
       if (packageName) {
         packDropdown.value = packageName;
+      } else {
+        selectedCarModel = '';
       }
       
       handleModalPackageChange(packDropdown.value);
@@ -2410,6 +2507,13 @@
     function handleModalPackageChange(value) {
       const seatSection = document.getElementById('modal-seat-section');
       const seatLabel = document.getElementById('modal-selected-seats-label');
+      const timingSection = document.getElementById('modal-timing-section');
+      const timeSelect = document.getElementById('book-time');
+
+      // Clear custom car model if the package doesn't support choice
+      if (value !== 'Custom Trip / Outstation (All India)' && !value.includes('Private Cab')) {
+        selectedCarModel = '';
+      }
 
       if (value && value.includes('Daily Sharing')) {
         seatSection.style.display = 'block';
@@ -2418,8 +2522,33 @@
           seatLabel.textContent = 'None (Optional - Select on layout)';
         }
         renderSeatsForDate(currentSharingDate);
+
+        // Populate & show dynamic timings based on route direction
+        if (timingSection && timeSelect) {
+          timingSection.classList.remove('hidden');
+          timeSelect.innerHTML = '';
+          if (value.includes('Ghazipur → Lucknow')) {
+            const opt = document.createElement('option');
+            opt.value = '6:00 AM';
+            opt.textContent = 'Ghazipur to Lucknow (6:00 AM)';
+            timeSelect.appendChild(opt);
+          } else if (value.includes('Lucknow → Ghazipur')) {
+            const opt1 = document.createElement('option');
+            opt1.value = '3:00 PM';
+            opt1.textContent = 'Lucknow to Ghazipur (3:00 PM)';
+            timeSelect.appendChild(opt1);
+
+            const opt2 = document.createElement('option');
+            opt2.value = '4:00 PM';
+            opt2.textContent = 'Lucknow to Ghazipur (4:00 PM)';
+            timeSelect.appendChild(opt2);
+          }
+        }
       } else {
         seatSection.style.display = 'none';
+        if (timingSection) {
+          timingSection.classList.add('hidden');
+        }
       }
     }
 
@@ -2445,12 +2574,18 @@
       let seatsMsg = 'Not Applicable';
       let priceMsg = '';
       let totalBookingAmt = 0;
+      let departureTime = '';
+
       if (packageSelected && packageSelected.includes('Daily Sharing')) {
         bookedSeatsForThis = [...selectedSeatsList];
         seatsMsg = bookedSeatsForThis.length > 0 ? bookedSeatsForThis.map(getSeatName).join(', ') : 'None Declared';
         if (bookedSeatsForThis.length > 0) {
           totalBookingAmt = bookedSeatsForThis.reduce((sum, s) => sum + getSeatPrice(s), 0);
           priceMsg = `\n\nTotal Price:\n₹${totalBookingAmt}`;
+        }
+        const timeEl = document.getElementById('book-time');
+        if (timeEl) {
+          departureTime = timeEl.value;
         }
       } else if (packageSelected === 'Ghazipur → Lucknow (Private Cab)' || packageSelected === 'Lucknow → Ghazipur (Private Cab)') {
         seatsMsg = 'Full Cab (No Sharing)';
@@ -2464,11 +2599,13 @@
         name: name,
         mobile: mobile,
         packageName: packageSelected,
+        carModel: selectedCarModel || 'Any',
         pickup: pickup || 'Not Declared',
         passengers: Number(passengers) || 1,
         seats: bookedSeatsForThis,
         price: totalBookingAmt > 0 ? totalBookingAmt : 0, // Prevent Firestore undefined value error
         date: date,
+        departureTime: departureTime,
         timestamp: new Date().toISOString()
       };
 
@@ -2494,7 +2631,15 @@
       }
 
       // Pre-filled Message Formatting
-      const textMessage = `Hello Rent a Car,\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage:\n${packageSelected}\n\nJourney Date:\n${date}\n\nPickup:\n${pickup || 'Not Declared'}\n\nPassengers:\n${passengers}\n\nSelected Seats:\n${seatsMsg}${priceMsg}\n\nPlease confirm my booking.`;
+      let carText = '';
+      if (selectedCarModel) {
+        carText = `\n\nPreferred Car:\n${selectedCarModel}`;
+      }
+      let timingText = '';
+      if (departureTime) {
+        timingText = `\n\nDeparture Time:\n${departureTime}`;
+      }
+      const textMessage = `Hello Rent a Car,\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage:\n${packageSelected}${carText}${timingText}\n\nJourney Date:\n${date}\n\nPickup:\n${pickup || 'Not Declared'}\n\nPassengers:\n${passengers}\n\nSelected Seats:\n${seatsMsg}${priceMsg}\n\nPlease confirm my booking.`;
 
       const encodedMsg = encodeURIComponent(textMessage);
       const whatsappURL = `https://wa.me/9454003387?text=${encodedMsg}`;
@@ -2608,6 +2753,7 @@
               </h4>
               <p class="text-xs text-gray-400 font-light">${seatsDisplay}</p>
               <p class="text-xs text-gray-400 font-light">Pickup: ${booking.pickup}</p>
+              ${booking.departureTime ? `<p class="text-xs text-gold/90 font-mono mt-1"><i class="fa-regular fa-clock text-gold mr-1"></i>Departure: ${booking.departureTime}</p>` : ''}
             </div>
             <div class="text-right">
               <span class="block text-sm font-bold text-emerald-400">${formattedPrice}</span>
@@ -2800,7 +2946,10 @@
         tr.innerHTML = `
           <td class="block sm:table-cell p-1.5 sm:p-3 border-b border-white/5 sm:border-none pb-2 sm:pb-3 flex justify-between sm:block">
             <span class="sm:hidden text-gray-500 font-mono text-[10px] uppercase tracking-wider self-center">Passenger</span>
-            <span class="font-medium text-white text-right sm:text-left">${b.name}</span>
+            <div class="text-right sm:text-left">
+              <span class="font-medium text-white block">${b.name}</span>
+              ${b.departureTime ? `<span class="text-[10px] text-gold font-mono flex items-center justify-end sm:justify-start gap-1 mt-0.5"><i class="fa-regular fa-clock text-[9px]"></i> ${b.departureTime}</span>` : ''}
+            </div>
           </td>
           <td class="block sm:table-cell p-1.5 sm:p-3 border-b border-white/5 sm:border-none py-2 sm:py-3 flex justify-between sm:block">
             <span class="sm:hidden text-gray-500 font-mono text-[10px] uppercase tracking-wider self-center">Mobile</span>
@@ -2850,7 +2999,7 @@
               <span class="sm:hidden text-gray-500 font-mono text-[10px] uppercase tracking-wider self-center">Passenger</span>
               <div class="text-right sm:text-left">
                 <p class="font-medium text-white">${b.name}</p>
-                <p class="text-[10px] text-gray-400 font-mono">${b.mobile} | ${b.pickup}</p>
+                <p class="text-[10px] text-gray-400 font-mono">${b.mobile} | ${b.pickup}${b.departureTime ? ` | Dep: ${b.departureTime}` : ''}</p>
               </div>
             </td>
             <td class="block sm:table-cell p-1.5 sm:p-3 border-b border-white/5 sm:border-none py-2 sm:py-3 flex justify-between sm:block">
