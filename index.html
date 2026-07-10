@@ -209,6 +209,26 @@
       border: 2px solid rgba(212, 175, 55, 0.25);
       border-radius: 40px 40px 20px 20px;
     }
+
+    /* Print Stylesheet for Daily Sharing Passenger Manifest */
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      body > *:not(#print-section) {
+        display: none !important;
+      }
+      #print-section {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-[#050505] text-gray-100 font-sans overflow-x-hidden antialiased">
@@ -244,7 +264,7 @@
         <a href="#home" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Home</a>
         <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">About</a>
         <a href="#packages" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Tour Packages</a>
-        <a href="#sharing" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Daily Sharing</a>
+        <a href="#packages" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Daily Sharing</a>
         <a href="#gallery" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Gallery</a>
         <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors">Contact</a>
         <a href="#" onclick="openCustomerModal(event)" class="nav-link text-sm font-medium text-gray-300 hover:text-gold transition-colors flex items-center"><i class="fa-regular fa-calendar-check text-[11px] text-gold/80 mr-1.5"></i> Manage Bookings</a>
@@ -276,7 +296,7 @@
         <a href="#home" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Home</a>
         <a href="#about" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">About</a>
         <a href="#packages" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Tour Packages</a>
-        <a href="#sharing" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Daily Sharing</a>
+        <a href="#packages" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Daily Sharing</a>
         <a href="#gallery" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Gallery</a>
         <a href="#contact" onclick="toggleMobileMenu()" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 border-b border-white/5">Contact</a>
         <a href="#" onclick="toggleMobileMenu(); openCustomerModal(event)" class="text-base font-medium text-gray-300 hover:text-gold transition-colors py-2 flex items-center border-b border-white/5"><i class="fa-regular fa-calendar-check text-xs text-gold/80 mr-2"></i> Manage Bookings</a>
@@ -356,7 +376,7 @@
       </div>
 
       <!-- Tour Cards Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
         
         <!-- Package 1 (Daily Sharing) -->
         <div class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between border-glow-gold transition-all duration-300">
@@ -381,16 +401,39 @@
           </div>
         </div>
 
-        <!-- Package 1b (Private Cab - Ghazipur to Lucknow) -->
+        <!-- Package 1b (Daily Sharing - Lucknow to Ghazipur) -->
+        <div class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between border-glow-gold transition-all duration-300">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://i.ibb.co/4njNFxq5/c6es93a-1572125.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Lucknow to Ghazipur Daily Sharing" referrerPolicy="no-referrer">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-emerald-600/90 text-white font-mono text-xs font-bold px-3 py-1 rounded-full border border-emerald-400/30 shadow-lg">Daily Sharing</span>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Lucknow → Ghazipur (Daily Sharing)</h3>
+              <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
+                Premium intercity seat sharing. Convenient daily return service from Lucknow back to Ghazipur. Comfort of individual seats at highly affordable rates.
+              </p>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+              <span class="text-xs text-gold/80 font-mono uppercase"><i class="fa-solid fa-car"></i> ₹649 - ₹849 / Seat</span>
+              <button onclick="openBookingPopup('Lucknow → Ghazipur (Daily Sharing)')" class="btn-gold text-black font-bold text-xs px-4 py-2.5 rounded-lg uppercase tracking-wider">
+                Book Seats
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 1c (Private Cab - Ghazipur to Lucknow) -->
         <div class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between border-glow-gold transition-all duration-300">
           <div class="relative h-56 overflow-hidden">
             <img src="https://i.ibb.co/4njNFxq5/c6es93a-1572125.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Ghazipur to Lucknow Private Cab" referrerPolicy="no-referrer">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-            <span class="absolute top-4 right-4 bg-gold-dark/80 text-white font-mono text-xs font-bold px-3 py-1 rounded-full border border-gold/30 shadow-lg">Private Cab</span>
+            <span class="absolute top-4 right-4 bg-gold-dark/80 text-white font-mono text-xs font-bold px-3 py-1 rounded-full border border-gold/30 shadow-lg">One Way</span>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <div>
-              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur → Lucknow (Private Cab)</h3>
+              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur → Lucknow (One Way)(Private Cab)</h3>
               <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
                 Your dedicated, personal luxury Maruti Ertiga. Safe, direct transit for your family or crew. No other passengers, high-end comfort.
               </p>
@@ -404,16 +447,16 @@
           </div>
         </div>
 
-        <!-- Package 1c (Private Cab - Lucknow to Ghazipur) -->
+        <!-- Package 1d (Private Cab - Lucknow to Ghazipur) -->
         <div class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between border-glow-gold transition-all duration-300">
           <div class="relative h-56 overflow-hidden">
             <img src="https://i.ibb.co/4njNFxq5/c6es93a-1572125.webp" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Lucknow to Ghazipur Private Cab" referrerPolicy="no-referrer">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-            <span class="absolute top-4 right-4 bg-gold-dark/80 text-white font-mono text-xs font-bold px-3 py-1 rounded-full border border-gold/30 shadow-lg">Private Cab</span>
+            <span class="absolute top-4 right-4 bg-gold-dark/80 text-white font-mono text-xs font-bold px-3 py-1 rounded-full border border-gold/30 shadow-lg">One Way</span>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <div>
-              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Lucknow → Ghazipur (Private Cab)</h3>
+              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Lucknow → Ghazipur (One Way)(Private Cab)</h3>
               <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
                 Your dedicated, personal luxury Maruti Ertiga. Safe, direct transit starting from Lucknow back to Ghazipur. No other passengers, high-end comfort.
               </p>
@@ -544,8 +587,8 @@
           <div class="pt-4">
             <button type="submit" 
                     class="w-full btn-gold text-black font-bold text-center py-4 rounded-xl uppercase tracking-widest text-sm shadow-xl hover:scale-[1.02] active:scale-100 transform duration-200 cursor-pointer flex items-center justify-center space-x-3">
-              <i class="fa-brands fa-whatsapp text-lg"></i>
               <span>Request Quote & Book on WhatsApp</span>
+              <i class="fa-brands fa-whatsapp text-lg"></i>
             </button>
           </div>
         </form>
@@ -556,236 +599,184 @@
   <!-- ====================================
        DAILY SHARING SECTION
        ==================================== -->
-  <section id="sharing" class="py-24 relative overflow-hidden bg-[#050505]">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.05),transparent)] pointer-events-none"></div>
+  <section id="sharing" class="py-24 relative bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
       <div class="text-center mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold mb-1.5 block">Shared Luxury Transit</span>
         <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
-          Daily <span class="text-gold">Lucknow Sharing</span>
+          Real-time <span class="text-gold">Daily Sharing Seats</span>
         </h2>
         <div class="w-24 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light mx-auto mb-4"></div>
-        <p class="max-w-xl mx-auto text-gray-400 text-sm sm:text-base font-light">
-          Comfortable and highly affordable daily sharing service from Ghazipur ⇄ Lucknow in our premium <strong>Maruti Ertiga</strong>.
+        <p class="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base font-light">
+          Book individual seats in our luxury air-conditioned executive Maruti Ertiga. Real-time availability synced directly with our registry.
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-12 gap-12 items-center">
-        <!-- Text details & instructions -->
+      <!-- Main Sharing Interactive Grid -->
+      <div class="grid lg:grid-cols-12 gap-8 max-w-5xl mx-auto items-start">
+        
+        <!-- Left Column: Controls & Information -->
         <div class="lg:col-span-5 space-y-6">
-          <div class="glass-card p-8 rounded-3xl">
-            <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">Ghazipur ⇄ Lucknow Daily Express</span>
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-4">Maruti Ertiga Luxury</h3>
-            <p class="text-gray-300 font-light leading-relaxed mb-6">
-              Skip the crowd. Travel in high-tier luxury with individual seat-selection. Choose your favorite seat dynamically on our interactive chart. We run daily return services with dedicated pickups and convenient drops.
-            </p>
+          <div class="glass-card p-6 rounded-2xl border border-white/5 space-y-5">
+            
+            <!-- Journey Direction Selector (Bi-directional Route) -->
+            <div>
+              <label class="block text-xs sm:text-[13px] font-bold text-gray-300 uppercase font-mono tracking-wider mb-2.5">
+                <i class="fa-solid fa-route text-gold"></i> Select Route
+              </label>
+              <div class="grid grid-cols-2 gap-2 bg-black/60 p-1.5 rounded-xl border border-white/5">
+                <button onclick="setSharingRoute('Ghazipur → Lucknow (Daily Sharing)')" id="route-btn-gl" class="py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 bg-gold text-black cursor-pointer">
+                  Ghazipur → Lucknow
+                </button>
+                <button onclick="setSharingRoute('Lucknow → Ghazipur (Daily Sharing)')" id="route-btn-lg" class="py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 text-gray-400 hover:text-white cursor-pointer">
+                  Lucknow → Ghazipur
+                </button>
+              </div>
+            </div>
 
-            <!-- Pricing/Info points -->
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start space-x-3 text-sm text-gray-300">
-                <div class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold shrink-0 mt-0.5">
-                  <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
-                </div>
-                <div class="w-full">
-                  <strong class="text-white block font-medium mb-1.5">Affordable Row Pricing</strong>
-                  <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
-                    <div class="bg-black/40 border border-white/5 rounded-xl p-2 flex flex-col justify-center">
-                      <span class="text-[9px] text-gray-500 uppercase font-sans font-medium mb-0.5">Front Row</span>
-                      <span class="text-gold font-bold">₹849</span>
-                    </div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl p-2 flex flex-col justify-center">
-                      <span class="text-[9px] text-gray-500 uppercase font-sans font-medium mb-0.5">Middle Row</span>
-                      <span class="text-gold font-bold">₹749</span>
-                    </div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl p-2 flex flex-col justify-center">
-                      <span class="text-[9px] text-gray-500 uppercase font-sans font-medium mb-0.5">Back Row</span>
-                      <span class="text-gold font-bold">₹649</span>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="flex items-start space-x-3 text-sm text-gray-300">
-                <div class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold shrink-0 mt-0.5">
-                  <i class="fa-solid fa-couch text-xs"></i>
-                </div>
-                <div>
-                  <strong class="text-white block font-medium">Interactive Seating</strong> Choose individual front, middle, or back-row seat allocations.
-                </div>
-              </li>
-              <li class="flex items-start space-x-3 text-sm text-gray-300">
-                <div class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold shrink-0 mt-0.5">
-                  <i class="fa-solid fa-bolt text-xs"></i>
-                </div>
-                <div>
-                  <strong class="text-white block font-medium">Rapid Highway Transit</strong> Directly via Purvanchal Expressway for a fast, scenic, safe, and jerk-free cruise.
-                </div>
-              </li>
-              <li class="flex items-start space-x-3 text-sm text-gray-300">
-                <div class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold shrink-0 mt-0.5">
-                  <i class="fa-solid fa-snowflake text-xs"></i>
-                </div>
-                <div>
-                  <strong class="text-white block font-medium">Climate Controlled Cabin</strong> Fully air-conditioned premium vehicle with plenty of luggage space.
-                </div>
-              </li>
-            </ul>
-
-            <!-- Date selection for Daily Sharing -->
-            <div class="bg-black/50 border border-gold/15 p-5 rounded-2xl space-y-3 mb-4">
-              <label for="sharing-date" class="block text-[11px] font-semibold text-gold uppercase font-mono tracking-wider"><i class="fa-solid fa-calendar-days mr-1.5 text-gold-light"></i> Select Journey Date</label>
+            <!-- Date Selection Input -->
+            <div>
+              <label for="sharing-date" class="block text-xs sm:text-[13px] font-bold text-gray-300 uppercase font-mono tracking-wider mb-2">
+                <i class="fa-regular fa-calendar-check text-gold"></i> Choose Travel Date
+              </label>
               <div class="relative">
-                <input type="date" id="sharing-date" onchange="onSharingDateChange(this.value)" class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold transition-colors font-mono">
+                <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gold/60 text-base">
+                  <i class="fa-regular fa-calendar"></i>
+                </span>
+                <input type="date" id="sharing-date" onchange="onSharingDateChange(this.value)"
+                       class="w-full bg-black/60 border border-white/10 rounded-xl pl-12 pr-4 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors font-mono">
               </div>
-              <p class="text-[10px] text-gray-400 font-light leading-normal">Seats are booked per-date. Select a date to view current seat availability.</p>
             </div>
 
-            <!-- Selection summary panel -->
-            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex flex-col space-y-3">
-              <div class="flex justify-between items-center">
-                <span class="text-xs text-gray-400">Selected Seats:</span>
-                <span id="selected-seats-display" class="font-mono text-gold font-bold text-sm bg-gold/10 px-3 py-1 rounded">None</span>
+            <!-- Seat Pricing Card Info -->
+            <div class="bg-black/40 border border-white/5 p-4 rounded-xl space-y-2.5 text-xs text-gray-400 font-light leading-normal">
+              <h5 class="text-xs font-bold text-white font-mono uppercase tracking-wider mb-1 flex items-center space-x-1.5">
+                <i class="fa-solid fa-tags text-gold"></i>
+                <span>Fare Breakdown</span>
+              </h5>
+              <div class="flex justify-between border-b border-white/5 pb-1.5">
+                <span>Front Row (Co-driver F1)</span>
+                <span class="font-mono text-gold font-bold">₹849 / Seat</span>
               </div>
-              <div class="flex justify-between items-center border-t border-white/5 pt-2">
-                <span class="text-xs text-gray-400">Total Price:</span>
-                <span id="selected-seats-price-display" class="font-mono text-gold font-bold text-sm bg-gold/10 px-3 py-1 rounded">₹0</span>
+              <div class="flex justify-between border-b border-white/5 pb-1.5">
+                <span>Middle Row (M1, M2, M3)</span>
+                <span class="font-mono text-gold font-bold">₹749 / Seat</span>
               </div>
-              <button onclick="bookSelectedSharingSeats()" id="sharing-book-btn" class="btn-gold text-black text-xs font-bold py-3 px-4 rounded-lg uppercase tracking-wider w-full opacity-60 cursor-not-allowed" disabled>
-                Book Selected Seats
-              </button>
+              <div class="flex justify-between">
+                <span>Back Row (B1, B2, B3)</span>
+                <span class="font-mono text-gold font-bold">₹649 / Seat</span>
+              </div>
             </div>
+
           </div>
         </div>
 
-        <!-- Seating visual interactive vehicle -->
-        <div class="lg:col-span-7 flex flex-col items-center">
-          <div class="w-full max-w-sm car-cabin-grid p-8 relative">
+        <!-- Right Column: Ertiga Dynamic Seat layout -->
+        <div class="lg:col-span-7">
+          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-glow-gold flex flex-col items-center">
             
-            <!-- Car Cabin Roof Front/Glass Design -->
-            <div class="w-3/4 mx-auto border-b-2 border-white/20 h-8 rounded-t-3xl bg-white/5 mb-8 flex items-center justify-center">
-              <div class="w-1/3 h-1 bg-white/20 rounded-full"></div>
+            <div class="w-full flex justify-between items-center border-b border-white/5 pb-4 mb-6">
+              <div>
+                <h4 class="font-serif text-lg font-bold text-white">Ertiga Cabin Layout</h4>
+                <p class="text-[10px] sm:text-xs text-gray-400 font-light mt-0.5">Select your preferred seat directly on the cabin map below</p>
+              </div>
+              <!-- Status Indicators / Dynamic Stats -->
+              <div class="flex flex-col items-end space-y-1">
+                <div class="bg-gold/10 px-2.5 py-1 rounded-lg text-[10px] font-mono text-gold border border-gold/20 shadow-inner">
+                  Chosen: <span id="selected-seats-display" class="font-bold">None</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Front Dashboard & Steering Area -->
-            <div class="flex justify-between items-center px-6 mb-10 border-b border-white/10 pb-6">
-              <div class="flex flex-col items-center">
-                <div class="w-10 h-10 rounded-full border-2 border-dashed border-gray-600 flex items-center justify-center text-gray-600">
-                  <i class="fa-solid fa-circle-notch"></i>
-                </div>
-                <span class="text-[9px] text-gray-500 font-mono mt-1 uppercase">Steering</span>
-              </div>
+            <!-- Interactive Ertiga Cabin Map visual representation -->
+            <div class="w-full max-w-sm border border-white/5 rounded-2xl p-6 bg-black/60 shadow-2xl relative">
               
-              <!-- Driver Seat (Disabled Booked/Unavailable Indicator) -->
-              <div class="flex flex-col items-center">
-                <div class="w-12 h-14 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-500 cursor-not-allowed shadow">
-                  <i class="fa-solid fa-user-tie"></i>
+              <!-- Front Driver Section -->
+              <div class="flex justify-between items-center px-4 mb-6 border-b border-white/5 pb-4">
+                <span class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Driver Console</span>
+                <div class="w-12 h-10 rounded-xl bg-gray-950/80 border border-white/5 flex flex-col items-center justify-center text-gray-600 text-[9px] font-mono cursor-not-allowed">
+                  <i class="fa-solid fa-user-tie mb-0.5"></i>
+                  <span>Driver</span>
                 </div>
-                <span class="text-[9px] text-gray-400 font-mono mt-1 uppercase">Driver</span>
+              </div>
+
+              <!-- Seats Grid row-by-row (Matching model mapping) -->
+              <div class="space-y-5">
+                <!-- Row 1: Front Row -->
+                <div class="w-full flex items-center justify-between px-2">
+                  <span class="text-[9px] text-gray-500 font-mono uppercase tracking-wider">Front Row</span>
+                  <div class="flex items-center">
+                    <!-- Seat 1 -->
+                    <div onclick="toggleSeatSelection(1)" id="sharing-seat-1" class="seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                      F1
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 2: Middle Row -->
+                <div class="w-full flex items-center justify-between px-2">
+                  <span class="text-[9px] text-gray-500 font-mono uppercase tracking-wider">Middle Row</span>
+                  <div class="flex space-x-2">
+                    <!-- Seat 2 -->
+                    <div onclick="toggleSeatSelection(2)" id="sharing-seat-2" class="seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                      M1
+                    </div>
+                    <!-- Seat 3 -->
+                    <div onclick="toggleSeatSelection(3)" id="sharing-seat-3" class="seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                      M2
+                    </div>
+                    <!-- Seat 4 -->
+                    <div onclick="toggleSeatSelection(4)" id="sharing-seat-4" class="seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                      M3
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 3: Back Row -->
+                <div class="w-full flex items-center justify-between px-2">
+                  <span class="text-[9px] text-gray-500 font-mono uppercase tracking-wider">Back Row</span>
+                  <div class="flex space-x-2">
+                    <!-- Seat 5 -->
+                    <div onclick="toggleSeatSelection(5)" id="sharing-seat-5" class="seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                      B1
+                    </div>
+                    <!-- Seat 6 -->
+                    <div onclick="toggleSeatSelection(6)" id="sharing-seat-6" class="seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                      B2
+                    </div>
+                    <!-- Seat 7 -->
+                    <div onclick="toggleSeatSelection(7)" id="sharing-seat-7" class="seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
+                      B3
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Color Legend -->
+              <div class="flex justify-center space-x-4 text-[9px] font-mono text-gray-400 mt-6 border-t border-white/5 pt-4">
+                <span class="flex items-center"><span class="w-2.5 h-2.5 rounded bg-emerald-500/30 border border-emerald-400 mr-1.5"></span> Vacant</span>
+                <span class="flex items-center"><span class="w-2.5 h-2.5 rounded bg-gold border border-gold mr-1.5"></span> Selected</span>
+                <span class="flex items-center"><span class="w-2.5 h-2.5 rounded bg-red-950/80 border border-red-700/50 mr-1.5"></span> Booked</span>
               </div>
             </div>
 
-            <!-- SEATS ROW 1 (FRONT) -->
-            <div class="mb-10">
-              <div class="text-center text-[10px] text-gold/60 font-mono tracking-widest uppercase mb-3">Front Row</div>
-              <div class="flex justify-center">
-                <div class="flex flex-col items-center px-4">
-                  <!-- Seat 1 -->
-                  <div onclick="toggleSeatSelection(1)" id="seat-1" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
-                    <span class="text-xs font-bold">Seat 1</span>
-                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
-                  </div>
-                  <span class="text-[10px] text-gray-400 font-mono mt-1">S1 (Co-Driver)</span>
-                </div>
-              </div>
-            </div>
+            <!-- Booking CTA Button -->
+            <button onclick="bookSelectedSharingSeats()" id="sharing-book-btn" class="w-full max-w-sm btn-gold text-black font-bold text-center py-3.5 rounded-xl uppercase tracking-widest text-xs shadow-lg mt-6 hover:scale-[1.02] transform duration-150 flex items-center justify-center space-x-2 opacity-60 cursor-not-allowed" disabled>
+              <i class="fa-solid fa-chair text-sm"></i>
+              <span>Book Chosen Seats</span>
+            </button>
 
-            <!-- SEATS ROW 2 (MIDDLE) -->
-            <div class="mb-10">
-              <div class="text-center text-[10px] text-gold/60 font-mono tracking-widest uppercase mb-3">Middle Row</div>
-              <div class="grid grid-cols-3 gap-4 justify-items-center">
-                <!-- Seat 2 -->
-                <div class="flex flex-col items-center">
-                  <div onclick="toggleSeatSelection(2)" id="seat-2" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
-                    <span class="text-xs font-bold">Seat 2</span>
-                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
-                  </div>
-                  <span class="text-[10px] text-gray-400 font-mono mt-1">S2 (Window)</span>
-                </div>
-                
-                <!-- Seat 3 -->
-                <div class="flex flex-col items-center">
-                  <div onclick="toggleSeatSelection(3)" id="seat-3" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
-                    <span class="text-xs font-bold">Seat 3</span>
-                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
-                  </div>
-                  <span class="text-[10px] text-gray-400 font-mono mt-1">S3 (Middle)</span>
-                </div>
-
-                <!-- Seat 4 -->
-                <div class="flex flex-col items-center">
-                  <div onclick="toggleSeatSelection(4)" id="seat-4" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
-                    <span class="text-xs font-bold">Seat 4</span>
-                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
-                  </div>
-                  <span class="text-[10px] text-gray-400 font-mono mt-1">S4 (Window)</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- SEATS ROW 3 (BACK) -->
-            <div class="mb-6">
-              <div class="text-center text-[10px] text-gold/60 font-mono tracking-widest uppercase mb-3">Back Row</div>
-              <div class="grid grid-cols-3 max-w-[270px] mx-auto gap-4 justify-items-center">
-                <!-- Seat 5 -->
-                <div class="flex flex-col items-center">
-                  <div onclick="toggleSeatSelection(5)" id="seat-5" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
-                    <span class="text-xs font-bold">Seat 5</span>
-                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
-                  </div>
-                  <span class="text-[10px] text-gray-400 font-mono mt-1">S5</span>
-                </div>
-                
-                <!-- Seat 6 -->
-                <div class="flex flex-col items-center">
-                  <div onclick="toggleSeatSelection(6)" id="seat-6" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
-                    <span class="text-xs font-bold">Seat 6</span>
-                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
-                  </div>
-                  <span class="text-[10px] text-gray-400 font-mono mt-1">S6</span>
-                </div>
-
-                <!-- Seat 7 -->
-                <div class="flex flex-col items-center">
-                  <div onclick="toggleSeatSelection(7)" id="seat-7" class="seat-elem w-14 h-16 rounded-2xl bg-emerald-700 border-2 border-emerald-500 flex flex-col items-center justify-center text-white cursor-pointer hover:scale-105 transform duration-200 shadow-md">
-                    <span class="text-xs font-bold">Seat 7</span>
-                    <i class="fa-solid fa-circle-check text-[9px] mt-1 opacity-0"></i>
-                  </div>
-                  <span class="text-[10px] text-gray-400 font-mono mt-1">S7</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Seat Color Legend Indicator -->
-            <div class="mt-8 pt-6 border-t border-white/10 grid grid-cols-3 gap-2 justify-items-center text-[10px] font-mono text-gray-400">
-              <div class="flex items-center space-x-1.5">
-                <span class="w-3 h-3 rounded-full bg-emerald-600 border border-emerald-400 block"></span>
-                <span>Available</span>
-              </div>
-              <div class="flex items-center space-x-1.5">
-                <span class="w-3 h-3 rounded-full bg-yellow-500 border border-yellow-300 block"></span>
-                <span>Selected</span>
-              </div>
-              <div class="flex items-center space-x-1.5">
-                <span class="w-3 h-3 rounded-full bg-red-800 border border-red-600 block"></span>
-                <span>Booked</span>
-              </div>
-            </div>
-            
           </div>
         </div>
+
       </div>
+
     </div>
   </section>
+
+ 
 
   <!-- ====================================
        GALLERY SECTION
@@ -1180,7 +1171,7 @@
             <li><a href="#home" class="hover:text-gold transition-colors">Home Dashboard</a></li>
             <li><a href="#about" class="hover:text-gold transition-colors">About History</a></li>
             <li><a href="#packages" class="hover:text-gold transition-colors">Premium Packages</a></li>
-            <li><a href="#sharing" class="hover:text-gold transition-colors">Daily Sharing Route</a></li>
+            <li><a href="#packages" class="hover:text-gold transition-colors">Daily Sharing Route</a></li>
             <li><a href="#gallery" class="hover:text-gold transition-colors">Visual Gallery</a></li>
             <li><a href="#contact" class="hover:text-gold transition-colors">Office Location</a></li>
           </ul>
@@ -1191,6 +1182,7 @@
           <h4 class="font-serif text-white font-bold mb-4 border-b border-gold-dark/20 pb-2">Popular Tours</h4>
           <ul class="space-y-2 text-xs sm:text-sm font-light text-gray-400">
             <li><a href="#packages" class="hover:text-gold transition-colors">Ghazipur → Lucknow (Daily Sharing)</a></li>
+            <li><a href="#packages" class="hover:text-gold transition-colors">Lucknow → Ghazipur (Daily Sharing)</a></li>
             <li><a href="#packages" class="hover:text-gold transition-colors">Ghazipur → Lucknow (Private Cab)</a></li>
             <li><a href="#packages" class="hover:text-gold transition-colors">Lucknow → Ghazipur (Private Cab)</a></li>
             <li><a href="#packages" class="hover:text-gold transition-colors">Custom Outstation Ride (All India)</a></li>
@@ -1274,6 +1266,7 @@
           <label for="book-package" class="block text-xs sm:text-[13px] font-bold text-gray-300 uppercase font-mono tracking-wider mb-1.5">Selected Tour Package *</label>
           <select id="book-package" required onchange="handleModalPackageChange(this.value)" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors">
             <option value="Ghazipur → Lucknow (Daily Sharing)">Ghazipur → Lucknow (Daily Sharing)</option>
+            <option value="Lucknow → Ghazipur (Daily Sharing)">Lucknow → Ghazipur (Daily Sharing)</option>
             <option value="Ghazipur → Lucknow (Private Cab)">Ghazipur → Lucknow (Private Cab - ₹5,499)</option>
             <option value="Lucknow → Ghazipur (Private Cab)">Lucknow → Ghazipur (Private Cab - ₹5,499)</option>
             <option value="Custom Trip / Outstation (All India)">Custom Trip / Outstation (All India)</option>
@@ -1331,7 +1324,7 @@
                 </div>
                 <!-- Seat 1 -->
                 <div onclick="toggleSeatSelection(1)" id="modal-seat-1" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
-                  S1
+                  F1
                 </div>
               </div>
             </div>
@@ -1342,15 +1335,15 @@
               <div class="flex space-x-1.5">
                 <!-- Seat 2 -->
                 <div onclick="toggleSeatSelection(2)" id="modal-seat-2" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
-                  S2
+                  M1
                 </div>
                 <!-- Seat 3 -->
                 <div onclick="toggleSeatSelection(3)" id="modal-seat-3" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
-                  S3
+                  M2
                 </div>
                 <!-- Seat 4 -->
                 <div onclick="toggleSeatSelection(4)" id="modal-seat-4" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
-                  S4
+                  M3
                 </div>
               </div>
             </div>
@@ -1361,15 +1354,15 @@
               <div class="flex space-x-1.5">
                 <!-- Seat 5 -->
                 <div onclick="toggleSeatSelection(5)" id="modal-seat-5" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
-                  S5
+                  B1
                 </div>
                 <!-- Seat 6 -->
                 <div onclick="toggleSeatSelection(6)" id="modal-seat-6" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
-                  S6
+                  B2
                 </div>
                 <!-- Seat 7 -->
                 <div onclick="toggleSeatSelection(7)" id="modal-seat-7" class="seat-elem w-12 h-10 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold cursor-pointer transition-all duration-150">
-                  S7
+                  B3
                 </div>
               </div>
             </div>
@@ -1490,10 +1483,19 @@
             <p class="text-gray-400 text-xs font-light mt-1 leading-normal">Real-time daily sharing cab seating management and reservation archives.</p>
           </div>
           
-          <!-- Date Filter Picker for Admin -->
-          <div class="bg-black/60 border border-gold/20 p-3 rounded-xl flex items-center space-x-3 shrink-0">
-            <span class="text-xs text-gray-400 font-mono uppercase tracking-wider"><i class="fa-solid fa-calendar-check text-gold"></i> Date:</span>
-            <input type="date" id="admin-date-picker" onchange="onAdminDatePickerChange(this.value)" class="bg-black border border-white/10 rounded px-2.5 py-1 text-xs text-white focus:outline-none focus:border-gold font-mono">
+          <!-- Date & Route Filter Pickers for Admin -->
+          <div class="flex flex-wrap gap-3 items-center shrink-0">
+            <div class="bg-black/60 border border-gold/20 p-3 rounded-xl flex items-center space-x-3">
+              <span class="text-xs text-gray-400 font-mono uppercase tracking-wider"><i class="fa-solid fa-calendar-check text-gold"></i> Date:</span>
+              <input type="date" id="admin-date-picker" onchange="onAdminDatePickerChange(this.value)" class="bg-black border border-white/10 rounded px-2.5 py-1 text-xs text-white focus:outline-none focus:border-gold font-mono">
+            </div>
+            <div class="bg-black/60 border border-gold/20 p-3 rounded-xl flex items-center space-x-3">
+              <span class="text-xs text-gray-400 font-mono uppercase tracking-wider"><i class="fa-solid fa-route text-gold"></i> Route:</span>
+              <select id="admin-pack-filter" onchange="updateAdminDashboard()" class="bg-black border border-white/10 rounded px-2.5 py-1 text-xs text-white focus:outline-none focus:border-gold">
+                <option value="Ghazipur → Lucknow (Daily Sharing)">Ghazipur → Lucknow</option>
+                <option value="Lucknow → Ghazipur (Daily Sharing)">Lucknow → Ghazipur</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -1600,9 +1602,15 @@
           <div class="lg:col-span-7 space-y-6">
             <!-- Bookings List on selected date -->
             <div class="bg-black/50 border border-white/10 p-6 rounded-2xl space-y-4">
-              <h4 class="font-serif text-base font-bold text-white flex items-center justify-between">
+              <h4 class="font-serif text-base font-bold text-white flex items-center justify-between flex-wrap gap-2">
                 <span>Active Passengers on Selected Date</span>
-                <span id="admin-passengers-count-badge" class="bg-gold/10 text-gold border border-gold/30 text-[10px] font-mono px-2 py-0.5 rounded-full">0 Bookings</span>
+                <div class="flex items-center space-x-2">
+                  <span id="admin-passengers-count-badge" class="bg-gold/10 text-gold border border-gold/30 text-[10px] font-mono px-2 py-0.5 rounded-full">0 Bookings</span>
+                  <button onclick="printSharingReport()" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white hover:text-gold text-[10px] font-mono px-3 py-1 rounded-lg flex items-center space-x-1.5 transition-colors cursor-pointer" title="Print Daily Manifest (PDF)">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Print Manifest</span>
+                  </button>
+                </div>
               </h4>
               
               <!-- Bookings table container -->
@@ -1851,6 +1859,7 @@
     // Global Reservation State & Dynamic DB System
     let selectedSeatsList = [];
     let currentSharingDate = new Date().toISOString().split('T')[0]; // Default to today's date
+    let currentSharingRoute = 'Ghazipur → Lucknow (Daily Sharing)';
     let localBookingsDb = {};
 
     // Helpers to access local storage database safely
@@ -1875,12 +1884,24 @@
       return {};
     }
 
-    function getBookedSeatsForDate(date) {
+    function getBookedSeatsForDate(date, packageName) {
       const db = getDbBookings();
       const bookings = db[date] || [];
       const seats = [];
+      
+      let targetPackage = packageName;
+      if (!targetPackage) {
+        const modal = document.getElementById('booking-modal');
+        const packDropdown = document.getElementById('book-package');
+        if (modal && !modal.classList.contains('hidden') && packDropdown) {
+          targetPackage = packDropdown.value;
+        } else {
+          targetPackage = currentSharingRoute;
+        }
+      }
+
       bookings.forEach(b => {
-        if (b.seats && Array.isArray(b.seats)) {
+        if (b.packageName === targetPackage && b.seats && Array.isArray(b.seats)) {
           b.seats.forEach(s => seats.push(Number(s)));
         }
       });
@@ -2146,6 +2167,18 @@
       return selectedSeatsList.reduce((sum, seat) => sum + getSeatPrice(seat), 0);
     }
 
+    function getSeatName(seatNum) {
+      const parsed = Number(seatNum);
+      if (parsed === 1) return 'F1';
+      if (parsed === 2) return 'M1';
+      if (parsed === 3) return 'M2';
+      if (parsed === 4) return 'M3';
+      if (parsed === 5) return 'B1';
+      if (parsed === 6) return 'B2';
+      if (parsed === 7) return 'B3';
+      return `S${parsed}`;
+    }
+
     // ==========================================
     // MARUTI ERTIGA DYNAMIC SEAT LAYOUT SYSTEM
     // ==========================================
@@ -2154,21 +2187,17 @@
       
       // Loop from seat 1 to 7
       for (let i = 1; i <= 7; i++) {
-        const seatEl = document.getElementById(`seat-${i}`);
+        const seatEl = document.getElementById(`sharing-seat-${i}`);
         const modalSeatEl = document.getElementById(`modal-seat-${i}`);
         
         // --- 1. Update Main Screen Seat Layout ---
         if (seatEl) {
-          // Reset classes
-          seatEl.className = "seat-elem w-14 h-16 rounded-2xl flex flex-col items-center justify-center shadow-md transition-all duration-200 transform";
-          
-          // Is it booked on this date?
+          // Reset classes and innerHTML based on state
           if (booked.includes(i)) {
-            // Red style for booked
-            seatEl.classList.add('bg-red-950', 'border-2', 'border-red-700/60', 'text-gray-500', 'cursor-not-allowed');
+            seatEl.className = "seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold shadow-md transition-all duration-150 transform bg-red-950/80 border border-red-700/50 text-red-400/60 cursor-not-allowed";
             seatEl.innerHTML = `
-              <span class="text-xs font-bold text-red-300/80">Seat ${i}</span>
-              <i class="fa-solid fa-ban text-[9px] mt-1 text-red-500"></i>
+              <span>${getSeatName(i)}</span>
+              <span class="text-[7px] text-red-500 font-mono tracking-tighter uppercase font-semibold -mt-0.5">Booked</span>
             `;
             // Clear it from selection list if it was there
             const selIndex = selectedSeatsList.indexOf(i);
@@ -2176,21 +2205,17 @@
               selectedSeatsList.splice(selIndex, 1);
             }
           } else {
-            // Green style for vacant
-            seatEl.classList.add('bg-emerald-950/60', 'border-2', 'border-emerald-500/40', 'text-white', 'cursor-pointer', 'hover:scale-105', 'hover:border-emerald-400');
-            
-            // Is it selected?
             if (selectedSeatsList.includes(i)) {
-              seatEl.classList.remove('bg-emerald-950/60', 'border-emerald-500/40');
-              seatEl.classList.add('bg-gold/90', 'border-gold', 'text-black');
+              seatEl.className = "seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold shadow-md transition-all duration-150 transform bg-gold border border-gold text-black scale-105 cursor-pointer";
               seatEl.innerHTML = `
-                <span class="text-xs font-bold">Seat ${i}</span>
-                <span class="text-[9px] text-black font-mono font-bold mt-0.5">₹${getSeatPrice(i)}</span>
+                <span>${getSeatName(i)}</span>
+                <span class="text-[8px] font-mono font-bold block -mt-0.5">₹${getSeatPrice(i)}</span>
               `;
             } else {
+              seatEl.className = "seat-elem w-14 h-11 rounded-xl flex flex-col items-center justify-center text-[10px] font-bold shadow-md transition-all duration-150 transform bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 hover:border-emerald-400 cursor-pointer";
               seatEl.innerHTML = `
-                <span class="text-xs font-bold text-gray-200">Seat ${i}</span>
-                <span class="text-[9px] text-emerald-400 font-mono mt-0.5">₹${getSeatPrice(i)}</span>
+                <span>${getSeatName(i)}</span>
+                <span class="text-[8px] font-mono font-medium text-emerald-400 block -mt-0.5">₹${getSeatPrice(i)}</span>
               `;
             }
           }
@@ -2203,13 +2228,13 @@
           
           if (booked.includes(i)) {
             modalSeatEl.classList.add('bg-red-950/80', 'border', 'border-red-700/50', 'text-red-400/60', 'cursor-not-allowed');
-            modalSeatEl.innerHTML = `S${i}`;
+            modalSeatEl.innerHTML = `${getSeatName(i)}`;
           } else if (selectedSeatsList.includes(i)) {
             modalSeatEl.classList.add('bg-gold', 'border', 'border-gold', 'text-black', 'scale-105');
-            modalSeatEl.innerHTML = `S${i}<span class="text-[8px] font-mono font-bold block -mt-0.5">₹${getSeatPrice(i)}</span>`;
+            modalSeatEl.innerHTML = `${getSeatName(i)}<span class="text-[8px] font-mono font-bold block -mt-0.5">₹${getSeatPrice(i)}</span>`;
           } else {
             modalSeatEl.classList.add('bg-emerald-950/40', 'border', 'border-emerald-500/30', 'text-emerald-300', 'hover:border-emerald-400');
-            modalSeatEl.innerHTML = `S${i}<span class="text-[8px] font-mono font-medium text-emerald-400 block -mt-0.5">₹${getSeatPrice(i)}</span>`;
+            modalSeatEl.innerHTML = `${getSeatName(i)}<span class="text-[8px] font-mono font-medium text-emerald-400 block -mt-0.5">₹${getSeatPrice(i)}</span>`;
           }
         }
       }
@@ -2270,6 +2295,33 @@
       showToast(`Journey date updated to ${val}. Available seats updated.`, 'info');
     }
 
+    function setSharingRoute(route) {
+      currentSharingRoute = route;
+      selectedSeatsList = []; // Reset selection on route switch
+      
+      const glBtn = document.getElementById('route-btn-gl');
+      const lgBtn = document.getElementById('route-btn-lg');
+      
+      if (route === 'Ghazipur → Lucknow (Daily Sharing)') {
+        if (glBtn) {
+          glBtn.className = "py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 bg-gold text-black";
+        }
+        if (lgBtn) {
+          lgBtn.className = "py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 text-gray-400 hover:text-white";
+        }
+      } else {
+        if (glBtn) {
+          glBtn.className = "py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 text-gray-400 hover:text-white";
+        }
+        if (lgBtn) {
+          lgBtn.className = "py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 bg-gold text-black";
+        }
+      }
+      
+      renderSeatsForDate(currentSharingDate);
+      showToast(`Switched route to ${route === 'Ghazipur → Lucknow (Daily Sharing)' ? 'Ghazipur to Lucknow' : 'Lucknow to Ghazipur'}!`, 'info');
+    }
+
     function updateSharingDashboardState() {
       selectedSeatsList.sort((a, b) => a - b);
       const displayLabel = document.getElementById('selected-seats-display');
@@ -2280,7 +2332,7 @@
       const priceDisplay = document.getElementById('selected-seats-price-display');
       const modalPrice = document.getElementById('modal-selected-seats-price');
 
-      const textValue = selectedSeatsList.length > 0 ? selectedSeatsList.join(', ') : 'None';
+      const textValue = selectedSeatsList.length > 0 ? selectedSeatsList.map(getSeatName).join(', ') : 'None';
       
       if (displayLabel) displayLabel.textContent = textValue;
       if (modalLabel) modalLabel.textContent = textValue;
@@ -2311,7 +2363,7 @@
     function bookSelectedSharingSeats() {
       if (selectedSeatsList.length === 0) return;
       
-      openBookingPopup('Ghazipur → Lucknow (Daily Sharing)');
+      openBookingPopup(currentSharingRoute);
       
       // Update form passengers & date automatically
       const passInput = document.getElementById('book-passengers');
@@ -2602,13 +2654,13 @@
       const seatSection = document.getElementById('modal-seat-section');
       const seatLabel = document.getElementById('modal-selected-seats-label');
 
-      if (value === 'Ghazipur → Lucknow (Daily Sharing)') {
+      if (value && value.includes('Daily Sharing')) {
         seatSection.style.display = 'block';
-        if (selectedSeatsList.length > 0) {
-          seatLabel.textContent = selectedSeatsList.join(', ');
-        } else {
+        selectedSeatsList = []; // Reset selected seats to prevent carryover
+        if (seatLabel) {
           seatLabel.textContent = 'None (Optional - Select on layout)';
         }
+        renderSeatsForDate(currentSharingDate);
       } else {
         seatSection.style.display = 'none';
       }
@@ -2636,9 +2688,9 @@
       let seatsMsg = 'Not Applicable';
       let priceMsg = '';
       let totalBookingAmt = 0;
-      if (packageSelected === 'Ghazipur → Lucknow (Daily Sharing)') {
+      if (packageSelected && packageSelected.includes('Daily Sharing')) {
         bookedSeatsForThis = [...selectedSeatsList];
-        seatsMsg = bookedSeatsForThis.length > 0 ? bookedSeatsForThis.join(', ') : 'None Declared';
+        seatsMsg = bookedSeatsForThis.length > 0 ? bookedSeatsForThis.map(getSeatName).join(', ') : 'None Declared';
         if (bookedSeatsForThis.length > 0) {
           totalBookingAmt = bookedSeatsForThis.reduce((sum, s) => sum + getSeatPrice(s), 0);
           priceMsg = `\n\nTotal Price:\n₹${totalBookingAmt}`;
@@ -2906,8 +2958,12 @@
       // Set date display
       document.getElementById('admin-map-date').textContent = adminActiveDate;
 
+      const adminPackFilter = document.getElementById('admin-pack-filter');
+      const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
+
       const db = getDbBookings();
-      const dateBookings = db[adminActiveDate] || [];
+      const allDateBookings = db[adminActiveDate] || [];
+      const dateBookings = allDateBookings.filter(b => b.packageName === activePackage);
       const allDates = Object.keys(db);
       
       // Calculate Total Metrics across all time
@@ -2917,7 +2973,7 @@
       });
 
       // Calculate Seats occupied on active date
-      const occupiedSeats = getBookedSeatsForDate(adminActiveDate);
+      const occupiedSeats = getBookedSeatsForDate(adminActiveDate, activePackage);
       const vacantSeatsCount = 7 - occupiedSeats.length;
 
       // Update DOM Metrics
@@ -2936,7 +2992,9 @@
     }
 
     function renderAdminSeatMap(date) {
-      const booked = getBookedSeatsForDate(date);
+      const adminPackFilter = document.getElementById('admin-pack-filter');
+      const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
+      const booked = getBookedSeatsForDate(date, activePackage);
       const db = getDbBookings();
       const bookings = db[date] || [];
 
@@ -2947,12 +3005,13 @@
         // Reset classes
         btn.className = "w-16 py-2.5 rounded-lg text-xs font-bold font-mono transition-all border text-center cursor-pointer";
 
+        const label = getSeatName(i);
         if (booked.includes(i)) {
           btn.classList.add('bg-red-950/80', 'border-red-600', 'text-red-300', 'hover:bg-red-900');
-          btn.textContent = `S${i} (Book)`;
+          btn.textContent = `${label} (Book)`;
         } else {
           btn.classList.add('bg-emerald-950/80', 'border-emerald-600', 'text-emerald-300', 'hover:bg-emerald-900');
-          btn.textContent = `S${i} (Free)`;
+          btn.textContent = `${label} (Free)`;
         }
       }
     }
@@ -2975,7 +3034,7 @@
 
       bookings.forEach(b => {
         const seatsDisplay = b.seats && b.seats.length > 0 
-          ? b.seats.map(s => `<span class="bg-gold/10 text-gold border border-gold/25 px-1.5 py-0.5 rounded text-[10px] font-mono mr-1">S${s}</span>`).join('')
+          ? b.seats.map(s => `<span class="bg-gold/10 text-gold border border-gold/25 px-1.5 py-0.5 rounded text-[10px] font-mono mr-1">${getSeatName(s)}</span>`).join('')
           : '<span class="text-gray-600 italic">Not sharing</span>';
 
         const tr = document.createElement('tr');
@@ -3009,7 +3068,7 @@
           const tr = document.createElement('tr');
           tr.className = "hover:bg-white/5 transition-colors border-b border-white/5";
           
-          const seatsLabel = b.seats && b.seats.length > 0 ? `Seats: ${b.seats.join(', ')}` : 'Private Car';
+          const seatsLabel = b.seats && b.seats.length > 0 ? `Seats: ${b.seats.map(getSeatName).join(', ')}` : 'Private Car';
 
           tr.innerHTML = `
             <td class="p-3 text-gold font-mono font-medium">${date}</td>
@@ -3041,11 +3100,14 @@
     function handleAdminSeatClick(seatNum) {
       adminCtrlSeat = seatNum;
       
+      const adminPackFilter = document.getElementById('admin-pack-filter');
+      const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
+
       const db = getDbBookings();
       const bookings = db[adminActiveDate] || [];
       
-      // Find booking occupying this seat
-      const booking = bookings.find(b => b.seats && b.seats.includes(seatNum));
+      // Find booking occupying this seat for the active route package
+      const booking = bookings.find(b => b.packageName === activePackage && b.seats && b.seats.includes(seatNum));
       
       const ctrlBox = document.getElementById('admin-seat-ctrl-box');
       const ctrlLabel = document.getElementById('admin-ctrl-seat-label');
@@ -3054,7 +3116,7 @@
       const ctrlRelease = document.getElementById('admin-ctrl-seat-release-box');
 
       ctrlBox.classList.remove('hidden');
-      ctrlLabel.textContent = `Seat ${seatNum} Controls`;
+      ctrlLabel.textContent = `${getSeatName(seatNum)} Controls`;
 
       if (booking) {
         // Seat is occupied
@@ -3100,14 +3162,18 @@
         return;
       }
 
+      const adminPackFilter = document.getElementById('admin-pack-filter');
+      const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
+
       const manualBooking = {
         id: 'block-' + Date.now(),
         name: name,
         mobile: mobile || 'Blocked',
-        packageName: 'Ghazipur → Lucknow (Daily Sharing)',
+        packageName: activePackage,
         pickup: 'Admin Blocked',
         passengers: 1,
         seats: [adminCtrlSeat],
+        price: getSeatPrice(adminCtrlSeat),
         date: adminActiveDate,
         timestamp: new Date().toISOString()
       };
@@ -3163,6 +3229,192 @@
         renderSeatsForDate(currentSharingDate);
         showToast(`Seat ${adminCtrlSeat} unblocked & released successfully!`, 'success');
       }
+    }
+
+    function printSharingReport() {
+      const adminPackFilter = document.getElementById('admin-pack-filter');
+      const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
+
+      const db = getDbBookings();
+      const allDateBookings = db[adminActiveDate] || [];
+      const dateBookings = allDateBookings.filter(b => b.packageName === activePackage);
+
+      // Map out all seats 1-7
+      const seatMap = {};
+      for (let i = 1; i <= 7; i++) {
+        seatMap[i] = { booked: false, name: 'Vacant', mobile: '-', pickup: '-' };
+      }
+      dateBookings.forEach(b => {
+        if (b.seats && Array.isArray(b.seats)) {
+          b.seats.forEach(s => {
+            const num = Number(s);
+            if (num >= 1 && num <= 7) {
+              seatMap[num] = {
+                booked: true,
+                name: b.name,
+                mobile: b.mobile,
+                pickup: b.pickup
+              };
+            }
+          });
+        }
+      });
+
+      const getSeatPrintHTML = (num) => {
+        const info = seatMap[num];
+        if (info.booked) {
+          return `
+            <div style="border: 2px solid #000; background-color: #f2f2f2; border-radius: 8px; padding: 10px; text-align: center; font-size: 11px; box-sizing: border-box; min-height: 52px; display: flex; flex-direction: column; justify-content: center;">
+              <strong style="display: block; font-size: 13px; margin-bottom: 2px;">${getSeatName(num)}</strong>
+              <span style="font-weight: bold; color: #cc0000; font-size: 9px; text-transform: uppercase;">BOOKED</span>
+              <span style="font-size: 10px; display: block; margin-top: 1px; max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500;">${info.name}</span>
+            </div>
+          `;
+        } else {
+          return `
+            <div style="border: 1px dashed #aaa; background-color: #fff; border-radius: 8px; padding: 10px; text-align: center; font-size: 11px; box-sizing: border-box; min-height: 52px; display: flex; flex-direction: column; justify-content: center;">
+              <strong style="display: block; font-size: 13px; margin-bottom: 2px; color: #777;">${getSeatName(num)}</strong>
+              <span style="color: #22c55e; font-weight: bold; font-size: 9px; text-transform: uppercase;">VACANT</span>
+              <span style="font-size: 10px; display: block; margin-top: 1px; color: #999;">-</span>
+            </div>
+          `;
+        }
+      };
+
+      // Table of bookings
+      let bookingsRows = '';
+      if (dateBookings.length === 0) {
+        bookingsRows = `
+          <tr>
+            <td colspan="5" style="text-align: center; padding: 15px; color: #666; font-style: italic; border: 1px solid #ddd;">No passengers registered for this date yet.</td>
+          </tr>
+        `;
+      } else {
+        dateBookings.forEach(b => {
+          const seatsDisplay = b.seats && b.seats.length > 0 
+            ? b.seats.map(s => getSeatName(s)).join(', ')
+            : 'Private Car';
+          bookingsRows += `
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; font-size: 12px; color: #000;">${b.name}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; font-family: monospace; font-size: 12px;">${b.mobile}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #c29d38; font-size: 12px;">${seatsDisplay}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; font-size: 12px;">${b.pickup}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; font-size: 12px; text-align: right;">₹${b.price}</td>
+            </tr>
+          `;
+        });
+      }
+
+      // Format Route Text
+      const routeText = activePackage.replace(' (Daily Sharing)', '');
+
+      // Locate or create the print container div
+      const printDiv = document.getElementById('print-section') || (() => {
+        const d = document.createElement('div');
+        d.id = 'print-section';
+        document.body.appendChild(d);
+        return d;
+      })();
+
+      printDiv.innerHTML = `
+        <div style="padding: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000; background: #fff; max-width: 800px; margin: 0 auto; box-sizing: border-box;">
+          
+          <!-- Heading Section -->
+          <div style="text-align: center; border-bottom: 3px double #000; padding-bottom: 15px; margin-bottom: 25px;">
+            <h1 style="font-size: 36px; font-weight: 900; letter-spacing: 4px; margin: 0; text-transform: uppercase; font-family: Georgia, serif; color: #000;">RENT A CAR</h1>
+            <p style="font-size: 11px; margin: 6px 0 0 0; text-transform: uppercase; letter-spacing: 2px; color: #444; font-weight: bold;">Daily Sharing Seating Manifest & Journey Log</p>
+          </div>
+
+          <!-- Metadata Section -->
+          <div style="display: flex; justify-content: space-between; margin-bottom: 25px; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+            <div>
+              <p style="margin: 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">JOURNEY DATE</span> <span style="font-size: 16px; font-family: monospace; font-weight: bold; color: #000;">${adminActiveDate}</span></p>
+              <p style="margin: 10px 0 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">ROUTE</span> <span style="font-size: 15px; font-weight: bold; color: #000;">${routeText}</span></p>
+            </div>
+            <div style="text-align: right;">
+              <p style="margin: 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">SEATS OCCUPIED</span> <span style="font-size: 16px; font-weight: bold; color: #cc0000;">${getBookedSeatsForDate(adminActiveDate, activePackage).length} / 7 Seats</span></p>
+              <p style="margin: 10px 0 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">GENERATED TIMELOG</span> <span style="font-family: monospace; font-size: 12px; color: #000;">${new Date().toLocaleDateString('en-IN')} ${new Date().toLocaleTimeString('en-IN', {hour: '2-digit', minute:'2-digit'})}</span></p>
+            </div>
+          </div>
+
+          <!-- Cabin Map Layout Section -->
+          <div style="margin-bottom: 35px;">
+            <h3 style="font-size: 15px; font-family: 'Helvetica Neue', Arial, sans-serif; border-bottom: 2px solid #000; padding-bottom: 6px; margin-top: 0; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Ertiga Cabin Layout</h3>
+            
+            <div style="border: 2px solid #000; border-radius: 20px; padding: 25px; max-width: 380px; margin: 0 auto; background-color: #fafafa; box-sizing: border-box;">
+              <!-- Driver left display banner -->
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 12px; margin-bottom: 18px; font-size: 10px; text-transform: uppercase; font-weight: bold; color: #555; letter-spacing: 1px;">
+                <span>Driver Left Side</span>
+                <div style="border: 1px solid #000; border-radius: 6px; padding: 5px 12px; background-color: #e5e5e5; font-size: 10px; font-weight: 900; color: #000;">Driver Console</div>
+              </div>
+
+              <!-- Row 1: Front -->
+              <div style="margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 10px; font-weight: bold; text-transform: uppercase; color: #666; letter-spacing: 0.5px; width: 80px;">Front Row</span>
+                <div style="width: 120px;">
+                  ${getSeatPrintHTML(1)}
+                </div>
+              </div>
+
+              <!-- Row 2: Middle -->
+              <div style="margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 10px; font-weight: bold; text-transform: uppercase; color: #666; letter-spacing: 0.5px; width: 80px;">Middle Row</span>
+                <div style="display: flex; gap: 10px; flex-grow: 1; justify-content: flex-end;">
+                  <div style="width: 75px;">${getSeatPrintHTML(2)}</div>
+                  <div style="width: 75px;">${getSeatPrintHTML(3)}</div>
+                  <div style="width: 75px;">${getSeatPrintHTML(4)}</div>
+                </div>
+              </div>
+
+              <!-- Row 3: Back -->
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 10px; font-weight: bold; text-transform: uppercase; color: #666; letter-spacing: 0.5px; width: 80px;">Back Row</span>
+                <div style="display: flex; gap: 10px; flex-grow: 1; justify-content: flex-end;">
+                  <div style="width: 75px;">${getSeatPrintHTML(5)}</div>
+                  <div style="width: 75px;">${getSeatPrintHTML(6)}</div>
+                  <div style="width: 75px;">${getSeatPrintHTML(7)}</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Passenger List Section -->
+          <div style="margin-bottom: 30px;">
+            <h3 style="font-size: 15px; font-family: 'Helvetica Neue', Arial, sans-serif; border-bottom: 2px solid #000; padding-bottom: 6px; margin-top: 0; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Passenger Booking Details</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+              <thead>
+                <tr style="background-color: #f2f2f2; border-bottom: 2px solid #000;">
+                  <th style="padding: 10px; border: 1px solid #ddd; text-align: left; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Passenger Name</th>
+                  <th style="padding: 10px; border: 1px solid #ddd; text-align: left; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Mobile Number</th>
+                  <th style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; width: 100px;">Seat(s)</th>
+                  <th style="padding: 10px; border: 1px solid #ddd; text-align: left; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Pickup Location</th>
+                  <th style="padding: 10px; border: 1px solid #ddd; text-align: right; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; width: 100px;">Fare Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${bookingsRows}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Footer/Stamp area -->
+          <div style="margin-top: 60px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; color: #444; border-top: 1px solid #eee; padding-top: 15px;">
+            <div>
+              <p style="margin: 2px 0; font-weight: bold; color: #000;">Official Seating Record — RENT A CAR</p>
+              <p style="margin: 2px 0;">Computer generated manifest synced with cloud database.</p>
+            </div>
+            <div style="text-align: right; width: 220px; border-top: 1.5px solid #000; padding-top: 6px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; color: #000;">
+              Authorized Dispatch Signature
+            </div>
+          </div>
+
+        </div>
+      `;
+
+      // Trigger standard print
+      window.print();
     }
 
     // Global Pending Delete States to support custom Confirm Modal
