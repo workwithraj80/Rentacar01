@@ -389,9 +389,9 @@
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <div>
-              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur ↔ Lucknow (Daily Sharing)</h3>
+              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur ↔ Lucknow (Daily Sharing Cab)</h3>
               <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
-                Premium intercity seat sharing. Experience standard luxury, fully air-conditioned executive transit. Select seats and pay only for yours. Available daily (Ghazipur to Lucknow: 6:00 AM | Lucknow to Ghazipur: 3:00 PM & 4:00 PM).
+                Premium intercity seat sharing. Experience standard luxury, fully air-conditioned executive transit. Select seats and pay only for yours. <span id="dynamic-sharing-info">Available daily (Ghazipur to Lucknow: 6:00 AM, 6:30 AM | Lucknow to Ghazipur: 3:00 PM & 4:00 PM).</span>
               </p>
             </div>
             <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
@@ -412,7 +412,7 @@
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <div>
-              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur ↔ Lucknow (Private Cab)</h3>
+              <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Ghazipur ↔ Lucknow (Private Cab ONE WAY)</h3>
               <p class="text-gray-400 text-xs sm:text-sm font-light mb-6">
                 Your dedicated, personal luxury Maruti Ertiga. Safe, direct transit for your family or crew. No other passengers, high-end comfort. Available daily in both directions (Ghazipur to Lucknow & Lucknow to Ghazipur).
               </p>
@@ -1452,6 +1452,35 @@
               </div>
 
             </div>
+
+            <!-- Daily Sharing Cab Timing Editor Card -->
+            <div class="bg-black/50 border border-white/10 p-4 sm:p-6 rounded-2xl space-y-4 mt-4">
+              <h4 class="font-serif text-base font-bold text-white flex items-center justify-between">
+                <span>Edit Daily Cab Timings</span>
+                <i class="fa-regular fa-clock text-gold"></i>
+              </h4>
+              <p class="text-[11px] text-gray-400 font-light leading-normal">
+                Configure departure timings for Daily Sharing Cabs. Enter comma-separated timings (e.g., <span class="text-gold font-mono">6:00 AM, 6:30 AM</span>). These update both user and admin choices instantly.
+              </p>
+              
+              <div class="space-y-3">
+                <!-- Ghazipur to Lucknow -->
+                <div class="space-y-1">
+                  <label class="block text-[10px] font-mono text-gray-400 uppercase tracking-wider">Ghazipur → Lucknow Timings</label>
+                  <input type="text" id="admin-timing-gl" class="w-full bg-black border border-white/10 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-gold" placeholder="e.g. 6:00 AM, 6:30 AM">
+                </div>
+                <!-- Lucknow to Ghazipur -->
+                <div class="space-y-1">
+                  <label class="block text-[10px] font-mono text-gray-400 uppercase tracking-wider">Lucknow → Ghazipur Timings</label>
+                  <input type="text" id="admin-timing-lg" class="w-full bg-black border border-white/10 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-gold" placeholder="e.g. 3:00 PM, 4:00 PM">
+                </div>
+                
+                <button onclick="saveAdminTimings()" class="w-full btn-gold text-black font-bold py-2 rounded text-xs uppercase tracking-wider transition-all mt-1">
+                  Save & Update Timings
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <!-- Right Panel: Passenger registers (Col Span 7) -->
@@ -1697,6 +1726,33 @@
         } catch (error) {
           handleFirestoreError(error, OperationType.DELETE, path);
         }
+      },
+
+      // Listen to real-time timings setting
+      onTimingsChange(callback) {
+        const path = 'settings/timings';
+        return onSnapshot(doc(db, 'settings', 'timings'), (docSnap) => {
+          if (docSnap.exists()) {
+            callback(docSnap.data());
+          } else {
+            callback(null);
+          }
+        }, (error) => {
+          console.warn("Could not read timings from Firestore, using defaults", error);
+        });
+      },
+
+      // Update timings setting
+      async updateTimings(ghazipurTimes, lucknowTimes) {
+        const path = 'settings/timings';
+        try {
+          await setDoc(doc(db, 'settings', 'timings'), {
+            ghazipur_to_lucknow: ghazipurTimes,
+            lucknow_to_ghazipur: lucknowTimes
+          });
+        } catch (error) {
+          handleFirestoreError(error, OperationType.UPDATE, path);
+        }
       }
     };
   </script>
@@ -1718,6 +1774,22 @@
     let currentSharingRoute = 'Ghazipur → Lucknow (Daily Sharing)';
     let localBookingsDb = {};
     let selectedCarModel = '';
+
+    // Global Timings Configuration (can be modified by Admin via Firestore)
+    let currentTimings = {
+      ghazipur_to_lucknow: ['6:00 AM', '6:30 AM'],
+      lucknow_to_ghazipur: ['3:00 PM', '4:00 PM']
+    };
+
+    // Load cached timings if they exist
+    const cachedTimings = localStorage.getItem('rentacar_daily_timings');
+    if (cachedTimings) {
+      try {
+        currentTimings = JSON.parse(cachedTimings);
+      } catch (e) {
+        console.warn("Failed to parse cached timings", e);
+      }
+    }
 
     // Helpers to access local storage database safely
     function getDbBookings() {
@@ -1765,9 +1837,9 @@
           targetTime = timeSelect.value;
         } else {
           if (targetPackage && targetPackage.includes('Ghazipur → Lucknow')) {
-            targetTime = '6:00 AM';
+            targetTime = currentTimings.ghazipur_to_lucknow[0] || '6:00 AM';
           } else if (targetPackage && targetPackage.includes('Lucknow → Ghazipur')) {
-            targetTime = '3:00 PM';
+            targetTime = currentTimings.lucknow_to_ghazipur[0] || '3:00 PM';
           }
         }
       }
@@ -1861,8 +1933,58 @@
             renderCustomerBookings();
           }
         });
+
+        if (window.firebaseService.onTimingsChange) {
+          window.firebaseService.onTimingsChange((timings) => {
+            if (timings) {
+              if (timings.ghazipur_to_lucknow && Array.isArray(timings.ghazipur_to_lucknow)) {
+                currentTimings.ghazipur_to_lucknow = timings.ghazipur_to_lucknow;
+              }
+              if (timings.lucknow_to_ghazipur && Array.isArray(timings.lucknow_to_ghazipur)) {
+                currentTimings.lucknow_to_ghazipur = timings.lucknow_to_ghazipur;
+              }
+              
+              localStorage.setItem('rentacar_daily_timings', JSON.stringify(currentTimings));
+              updateUIAfterTimingsChange();
+            }
+          });
+        }
       }
     });
+
+    function updateUIAfterTimingsChange() {
+      // 1. Update the description text on the main card (if it exists)
+      const dynamicSharingInfo = document.getElementById('dynamic-sharing-info');
+      if (dynamicSharingInfo) {
+        const glStr = currentTimings.ghazipur_to_lucknow.join(', ');
+        const lgStr = currentTimings.lucknow_to_ghazipur.join(' & ');
+        dynamicSharingInfo.textContent = `Available daily (Ghazipur to Lucknow: ${glStr} | Lucknow to Ghazipur: ${lgStr}).`;
+      }
+
+      // 2. Refresh the dynamic dropdown of the booking popup if it is open
+      const bookingModal = document.getElementById('booking-modal');
+      const bookPackage = document.getElementById('book-package');
+      if (bookingModal && !bookingModal.classList.contains('hidden') && bookPackage) {
+        handleModalPackageChange(bookPackage.value);
+      }
+
+      // 3. Refresh the admin panel dropdown filters if admin panel is open
+      const adminModal = document.getElementById('admin-modal');
+      if (adminModal && !adminModal.classList.contains('hidden')) {
+        updateAdminTimeFilter();
+        updateAdminDashboard();
+      }
+
+      // 4. Pre-fill the input fields in the Admin Timing Config form
+      const timingGLInput = document.getElementById('admin-timing-gl');
+      const timingLGInput = document.getElementById('admin-timing-lg');
+      if (timingGLInput) {
+        timingGLInput.value = currentTimings.ghazipur_to_lucknow.join(', ');
+      }
+      if (timingLGInput) {
+        timingLGInput.value = currentTimings.lucknow_to_ghazipur.join(', ');
+      }
+    }
 
     // Handle scroll features (sticky nav, scroll-to-top button visibility)
     window.addEventListener('scroll', () => {
@@ -2893,6 +3015,22 @@
       showToast(`Terminal synced to reservations of ${val}`, 'info');
     }
 
+    function getAdminActiveTime() {
+      const adminPackFilter = document.getElementById('admin-pack-filter');
+      const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
+      
+      const adminTimeFilter = document.getElementById('admin-time-filter');
+      if (adminTimeFilter && adminTimeFilter.value) {
+        return adminTimeFilter.value;
+      }
+      
+      if (activePackage.includes('Ghazipur → Lucknow')) {
+        return currentTimings.ghazipur_to_lucknow[0] || '6:00 AM';
+      } else {
+        return currentTimings.lucknow_to_ghazipur[0] || '3:00 PM';
+      }
+    }
+
     function updateAdminTimeFilter() {
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const adminTimeFilter = document.getElementById('admin-time-filter');
@@ -2903,31 +3041,64 @@
       adminTimeFilter.innerHTML = '';
 
       if (route.includes('Ghazipur → Lucknow')) {
-        const opt1 = document.createElement('option');
-        opt1.value = '6:00 AM';
-        opt1.textContent = '6:00 AM';
-        adminTimeFilter.appendChild(opt1);
-
-        const opt2 = document.createElement('option');
-        opt2.value = '6:30 AM';
-        opt2.textContent = '6:30 AM';
-        adminTimeFilter.appendChild(opt2);
+        currentTimings.ghazipur_to_lucknow.forEach(time => {
+          const opt = document.createElement('option');
+          opt.value = time;
+          opt.textContent = time;
+          adminTimeFilter.appendChild(opt);
+        });
       } else {
-        const opt1 = document.createElement('option');
-        opt1.value = '3:00 PM';
-        opt1.textContent = '3:00 PM';
-        adminTimeFilter.appendChild(opt1);
-
-        const opt2 = document.createElement('option');
-        opt2.value = '4:00 PM';
-        opt2.textContent = '4:00 PM';
-        adminTimeFilter.appendChild(opt2);
+        currentTimings.lucknow_to_ghazipur.forEach(time => {
+          const opt = document.createElement('option');
+          opt.value = time;
+          opt.textContent = time;
+          adminTimeFilter.appendChild(opt);
+        });
       }
 
       // Preserve previous selected value if still valid
       if (prevVal && Array.from(adminTimeFilter.options).some(o => o.value === prevVal)) {
         adminTimeFilter.value = prevVal;
       }
+    }
+
+    function saveAdminTimings() {
+      const timingGLInput = document.getElementById('admin-timing-gl');
+      const timingLGInput = document.getElementById('admin-timing-lg');
+      if (!timingGLInput || !timingLGInput) return;
+
+      // Parse comma-separated timings and clean whitespaces
+      const glTimes = timingGLInput.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
+      const lgTimes = timingLGInput.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
+
+      if (glTimes.length === 0 || lgTimes.length === 0) {
+        showToast("Error: Timings cannot be empty. Please enter at least one departure timing per route.", "error");
+        return;
+      }
+
+      // Update locally
+      currentTimings.ghazipur_to_lucknow = glTimes;
+      currentTimings.lucknow_to_ghazipur = lgTimes;
+
+      // Sync to local storage for instant update
+      localStorage.setItem('rentacar_daily_timings', JSON.stringify(currentTimings));
+
+      // Synchronize to Firestore
+      if (window.firebaseService && window.firebaseService.updateTimings) {
+        window.firebaseService.updateTimings(glTimes, lgTimes)
+          .then(() => {
+            showToast("Departure timings updated & synchronized successfully across all systems!", "success");
+          })
+          .catch((err) => {
+            console.error("Failed to sync timings to Firestore:", err);
+            showToast("Saved locally, but failed to synchronize to cloud.", "warning");
+          });
+      } else {
+        showToast("Departure timings updated locally!", "success");
+      }
+
+      // Trigger UI updates
+      updateUIAfterTimingsChange();
     }
 
     function updateAdminDashboard() {
@@ -2937,8 +3108,7 @@
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
 
-      const adminTimeFilter = document.getElementById('admin-time-filter');
-      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+      const activeTime = getAdminActiveTime();
 
       const db = getDbBookings();
       const allDateBookings = db[adminActiveDate] || [];
@@ -2973,8 +3143,7 @@
     function renderAdminSeatMap(date) {
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
-      const adminTimeFilter = document.getElementById('admin-time-filter');
-      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+      const activeTime = getAdminActiveTime();
       const booked = getBookedSeatsForDate(date, activePackage, activeTime);
       const db = getDbBookings();
       const bookings = db[date] || [];
@@ -3113,8 +3282,7 @@
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
 
-      const adminTimeFilter = document.getElementById('admin-time-filter');
-      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+      const activeTime = getAdminActiveTime();
 
       const db = getDbBookings();
       const bookings = db[adminActiveDate] || [];
@@ -3185,8 +3353,7 @@
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
 
-      const adminTimeFilter = document.getElementById('admin-time-filter');
-      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+      const activeTime = getAdminActiveTime();
 
       const manualBooking = {
         id: 'block-' + Date.now(),
@@ -3258,8 +3425,7 @@
     function printSharingReport() {
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
-      const adminTimeFilter = document.getElementById('admin-time-filter');
-      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+      const activeTime = getAdminActiveTime();
 
       const db = getDbBookings();
       const allDateBookings = db[adminActiveDate] || [];

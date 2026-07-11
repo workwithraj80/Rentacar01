@@ -68,5 +68,11 @@ service cloud.firestore {
       // Allow deleting a booking
       allow delete: if isValidId(bookingId);
     }
+
+    // 5. Secure Match Block for Settings Collection
+    match /settings/{settingId} {
+      allow read: if isValidId(settingId);
+      allow write: if isValidId(settingId);
+    }
   }
 }
