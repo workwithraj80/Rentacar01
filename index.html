@@ -1134,7 +1134,7 @@
             <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gold/60 text-base">
               <i class="fa-regular fa-clock"></i>
             </span>
-            <select id="book-time" class="w-full bg-black/50 border border-white/10 rounded-xl pl-12 pr-10 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors appearance-none cursor-pointer">
+            <select id="book-time" onchange="renderSeatsForDate(currentSharingDate)" class="w-full bg-black/50 border border-white/10 rounded-xl pl-12 pr-10 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors appearance-none cursor-pointer">
               <!-- Dynamically populated options based on route -->
             </select>
             <span class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-gold/60">
@@ -1340,9 +1340,16 @@
             </div>
             <div class="bg-black/60 border border-gold/20 p-2.5 sm:p-3 rounded-xl flex items-center justify-between sm:justify-start space-x-3">
               <span class="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-wider flex items-center gap-1"><i class="fa-solid fa-route text-gold"></i> Route:</span>
-              <select id="admin-pack-filter" onchange="updateAdminDashboard()" class="bg-black border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-gold text-center sm:text-left">
+              <select id="admin-pack-filter" onchange="updateAdminTimeFilter(); updateAdminDashboard()" class="bg-black border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-gold text-center sm:text-left">
                 <option value="Ghazipur → Lucknow (Daily Sharing)">Ghazipur → Lucknow</option>
                 <option value="Lucknow → Ghazipur (Daily Sharing)">Lucknow → Ghazipur</option>
+              </select>
+            </div>
+            <div class="bg-black/60 border border-gold/20 p-2.5 sm:p-3 rounded-xl flex items-center justify-between sm:justify-start space-x-3">
+              <span class="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-wider flex items-center gap-1"><i class="fa-regular fa-clock text-gold"></i> Time:</span>
+              <select id="admin-time-filter" onchange="updateAdminDashboard()" class="bg-black border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-gold text-center sm:text-left">
+                <option value="6:00 AM">6:00 AM</option>
+                <option value="6:30 AM">6:30 AM</option>
               </select>
             </div>
           </div>
@@ -1734,7 +1741,7 @@
       return {};
     }
 
-    function getBookedSeatsForDate(date, packageName) {
+    function getBookedSeatsForDate(date, packageName, departureTime) {
       const db = getDbBookings();
       const bookings = db[date] || [];
       const seats = [];
@@ -1750,9 +1757,30 @@
         }
       }
 
+      let targetTime = departureTime;
+      if (!targetTime) {
+        const modal = document.getElementById('booking-modal');
+        const timeSelect = document.getElementById('book-time');
+        if (modal && !modal.classList.contains('hidden') && timeSelect) {
+          targetTime = timeSelect.value;
+        } else {
+          if (targetPackage && targetPackage.includes('Ghazipur → Lucknow')) {
+            targetTime = '6:00 AM';
+          } else if (targetPackage && targetPackage.includes('Lucknow → Ghazipur')) {
+            targetTime = '3:00 PM';
+          }
+        }
+      }
+
       bookings.forEach(b => {
         if (b.packageName === targetPackage && b.seats && Array.isArray(b.seats)) {
-          b.seats.forEach(s => seats.push(Number(s)));
+          if (targetPackage.includes('Daily Sharing')) {
+            if (!targetTime || b.departureTime === targetTime) {
+              b.seats.forEach(s => seats.push(Number(s)));
+            }
+          } else {
+            b.seats.forEach(s => seats.push(Number(s)));
+          }
         }
       });
       return seats;
@@ -2521,7 +2549,6 @@
         if (seatLabel) {
           seatLabel.textContent = 'None (Optional - Select on layout)';
         }
-        renderSeatsForDate(currentSharingDate);
 
         // Populate & show dynamic timings based on route direction
         if (timingSection && timeSelect) {
@@ -2532,6 +2559,11 @@
             opt.value = '6:00 AM';
             opt.textContent = 'Ghazipur to Lucknow (6:00 AM)';
             timeSelect.appendChild(opt);
+
+            const opt2 = document.createElement('option');
+            opt2.value = '6:30 AM';
+            opt2.textContent = 'Ghazipur to Lucknow (6:30 AM)';
+            timeSelect.appendChild(opt2);
           } else if (value.includes('Lucknow → Ghazipur')) {
             const opt1 = document.createElement('option');
             opt1.value = '3:00 PM';
@@ -2544,6 +2576,8 @@
             timeSelect.appendChild(opt2);
           }
         }
+
+        renderSeatsForDate(currentSharingDate);
       } else {
         seatSection.style.display = 'none';
         if (timingSection) {
@@ -2837,6 +2871,7 @@
           adminDatePicker.value = adminActiveDate;
         }
 
+        updateAdminTimeFilter();
         updateAdminDashboard();
         showToast("Authenticated successfully! Welcome back, Administrator.", "success");
       } else {
@@ -2858,6 +2893,43 @@
       showToast(`Terminal synced to reservations of ${val}`, 'info');
     }
 
+    function updateAdminTimeFilter() {
+      const adminPackFilter = document.getElementById('admin-pack-filter');
+      const adminTimeFilter = document.getElementById('admin-time-filter');
+      if (!adminPackFilter || !adminTimeFilter) return;
+
+      const route = adminPackFilter.value;
+      const prevVal = adminTimeFilter.value;
+      adminTimeFilter.innerHTML = '';
+
+      if (route.includes('Ghazipur → Lucknow')) {
+        const opt1 = document.createElement('option');
+        opt1.value = '6:00 AM';
+        opt1.textContent = '6:00 AM';
+        adminTimeFilter.appendChild(opt1);
+
+        const opt2 = document.createElement('option');
+        opt2.value = '6:30 AM';
+        opt2.textContent = '6:30 AM';
+        adminTimeFilter.appendChild(opt2);
+      } else {
+        const opt1 = document.createElement('option');
+        opt1.value = '3:00 PM';
+        opt1.textContent = '3:00 PM';
+        adminTimeFilter.appendChild(opt1);
+
+        const opt2 = document.createElement('option');
+        opt2.value = '4:00 PM';
+        opt2.textContent = '4:00 PM';
+        adminTimeFilter.appendChild(opt2);
+      }
+
+      // Preserve previous selected value if still valid
+      if (prevVal && Array.from(adminTimeFilter.options).some(o => o.value === prevVal)) {
+        adminTimeFilter.value = prevVal;
+      }
+    }
+
     function updateAdminDashboard() {
       // Set date display
       document.getElementById('admin-map-date').textContent = adminActiveDate;
@@ -2865,9 +2937,12 @@
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
 
+      const adminTimeFilter = document.getElementById('admin-time-filter');
+      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+
       const db = getDbBookings();
       const allDateBookings = db[adminActiveDate] || [];
-      const dateBookings = allDateBookings.filter(b => b.packageName === activePackage);
+      const dateBookings = allDateBookings.filter(b => b.packageName === activePackage && (!b.departureTime || b.departureTime === activeTime));
       const allDates = Object.keys(db);
       
       // Calculate Total Metrics across all time
@@ -2877,7 +2952,7 @@
       });
 
       // Calculate Seats occupied on active date
-      const occupiedSeats = getBookedSeatsForDate(adminActiveDate, activePackage);
+      const occupiedSeats = getBookedSeatsForDate(adminActiveDate, activePackage, activeTime);
       const vacantSeatsCount = 7 - occupiedSeats.length;
 
       // Update DOM Metrics
@@ -2898,7 +2973,9 @@
     function renderAdminSeatMap(date) {
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
-      const booked = getBookedSeatsForDate(date, activePackage);
+      const adminTimeFilter = document.getElementById('admin-time-filter');
+      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+      const booked = getBookedSeatsForDate(date, activePackage, activeTime);
       const db = getDbBookings();
       const bookings = db[date] || [];
 
@@ -3036,11 +3113,14 @@
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
 
+      const adminTimeFilter = document.getElementById('admin-time-filter');
+      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+
       const db = getDbBookings();
       const bookings = db[adminActiveDate] || [];
       
-      // Find booking occupying this seat for the active route package
-      const booking = bookings.find(b => b.packageName === activePackage && b.seats && b.seats.includes(seatNum));
+      // Find booking occupying this seat for the active route package & timing
+      const booking = bookings.find(b => b.packageName === activePackage && (!b.departureTime || b.departureTime === activeTime) && b.seats && b.seats.includes(seatNum));
       
       const ctrlBox = document.getElementById('admin-seat-ctrl-box');
       const ctrlLabel = document.getElementById('admin-ctrl-seat-label');
@@ -3105,6 +3185,9 @@
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
 
+      const adminTimeFilter = document.getElementById('admin-time-filter');
+      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
+
       const manualBooking = {
         id: 'block-' + Date.now(),
         name: name,
@@ -3115,6 +3198,7 @@
         seats: [adminCtrlSeat],
         price: getSeatPrice(adminCtrlSeat),
         date: adminActiveDate,
+        departureTime: activeTime,
         timestamp: new Date().toISOString()
       };
 
@@ -3174,10 +3258,12 @@
     function printSharingReport() {
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
+      const adminTimeFilter = document.getElementById('admin-time-filter');
+      const activeTime = adminTimeFilter ? adminTimeFilter.value : '6:00 AM';
 
       const db = getDbBookings();
       const allDateBookings = db[adminActiveDate] || [];
-      const dateBookings = allDateBookings.filter(b => b.packageName === activePackage);
+      const dateBookings = allDateBookings.filter(b => b.packageName === activePackage && (!b.departureTime || b.departureTime === activeTime));
 
       // Map out all seats 1-7
       const seatMap = {};
@@ -3270,10 +3356,10 @@
           <div style="display: flex; justify-content: space-between; margin-bottom: 25px; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
             <div>
               <p style="margin: 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">JOURNEY DATE</span> <span style="font-size: 16px; font-family: monospace; font-weight: bold; color: #000;">${adminActiveDate}</span></p>
-              <p style="margin: 10px 0 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">ROUTE</span> <span style="font-size: 15px; font-weight: bold; color: #000;">${routeText}</span></p>
+              <p style="margin: 10px 0 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">ROUTE</span> <span style="font-size: 15px; font-weight: bold; color: #000;">${routeText} ${activeTime ? `(${activeTime})` : ''}</span></p>
             </div>
             <div style="text-align: right;">
-              <p style="margin: 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">SEATS OCCUPIED</span> <span style="font-size: 16px; font-weight: bold; color: #cc0000;">${getBookedSeatsForDate(adminActiveDate, activePackage).length} / 7 Seats</span></p>
+              <p style="margin: 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">SEATS OCCUPIED</span> <span style="font-size: 16px; font-weight: bold; color: #cc0000;">${getBookedSeatsForDate(adminActiveDate, activePackage, activeTime).length} / 7 Seats</span></p>
               <p style="margin: 10px 0 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">GENERATED TIMELOG</span> <span style="font-family: monospace; font-size: 12px; color: #000;">${new Date().toLocaleDateString('en-IN')} ${new Date().toLocaleTimeString('en-IN', {hour: '2-digit', minute:'2-digit'})}</span></p>
             </div>
           </div>
