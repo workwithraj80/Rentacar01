@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rent a Car | Premium Luxury Travel Ghazipur">
   <meta property="og:description" content="Experience premium intercity transit and custom vacation tours in ultimate comfort with professional drivers.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:image" content="https://ibb.co/xqnZnDCT">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -493,6 +493,7 @@
                 <input type="date" id="custom-date" required 
                        class="w-full bg-black/60 border border-white/10 rounded-xl pl-12 pr-4 py-4 text-base text-white focus:outline-none focus:border-gold transition-colors">
               </div>
+              <span id="custom-date-preview" class="text-xs text-gold/80 mt-1.5 block"></span>
             </div>
 
             <!-- Passengers Count -->
@@ -1114,6 +1115,7 @@
           <div>
             <label for="book-date" class="block text-xs sm:text-[13px] font-bold text-gray-300 uppercase font-mono tracking-wider mb-1.5">Journey Date *</label>
             <input type="date" id="book-date" required onchange="onModalDateChange(this.value)" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors">
+            <span id="book-date-preview" class="text-xs text-gold/80 mt-1 block"></span>
           </div>
           
           <!-- Passengers -->
@@ -1770,6 +1772,31 @@
     // ==========================================
     const carImage = "https://i.ibb.co/39SnrR1H/4e337c74-87b1-4d51-bfbb-b6c67cad8a36.jpg";
 
+    // Helper to format YYYY-MM-DD to DD/MM/YYYY
+    function formatDateToDMY(dateStr) {
+      if (!dateStr) return '';
+      if (dateStr.includes('/')) return dateStr;
+      const parts = dateStr.split('-');
+      if (parts.length === 3) {
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+      }
+      return dateStr;
+    }
+
+    function updateDateInputPreviews() {
+      const bookDateInput = document.getElementById('book-date');
+      const bookDatePreview = document.getElementById('book-date-preview');
+      if (bookDateInput && bookDatePreview) {
+        bookDatePreview.textContent = `Selected: ${formatDateToDMY(bookDateInput.value)}`;
+      }
+
+      const customDateInput = document.getElementById('custom-date');
+      const customDatePreview = document.getElementById('custom-date-preview');
+      if (customDateInput && customDatePreview) {
+        customDatePreview.textContent = `Selected: ${formatDateToDMY(customDateInput.value)}`;
+      }
+    }
+
     // Global Reservation State & Dynamic DB System
     let selectedSeatsList = [];
     let currentSharingDate = new Date().toISOString().split('T')[0]; // Default to today's date
@@ -1907,15 +1934,22 @@
       if (dateInput) {
         dateInput.min = today;
         dateInput.value = today;
+        dateInput.addEventListener('input', updateDateInputPreviews);
       }
       if (sharingDateInput) {
         sharingDateInput.min = today;
         sharingDateInput.value = today;
       }
+      
+      const customDateInput = document.getElementById('custom-date');
+      if (customDateInput) {
+        customDateInput.addEventListener('input', updateDateInputPreviews);
+      }
 
       // Seed database if empty and draw initial sharing seats
       getDbBookings();
       renderSeatsForDate(currentSharingDate);
+      updateDateInputPreviews();
 
       // Subscribe to real-time Firestore synchronization
       if (window.firebaseService) {
@@ -2276,7 +2310,8 @@
       
       selectedSeatsList = [];
       renderSeatsForDate(currentSharingDate);
-      showToast(`Switched view to ${val}. Loaded seating register successfully!`, 'info');
+      updateDateInputPreviews();
+      showToast(`Switched view to ${formatDateToDMY(val)}. Loaded seating register successfully!`, 'info');
     }
 
     // Modal date change triggers dynamic update to main view & seats
@@ -2292,7 +2327,8 @@
       
       selectedSeatsList = [];
       renderSeatsForDate(currentSharingDate);
-      showToast(`Journey date updated to ${val}. Available seats updated.`, 'info');
+      updateDateInputPreviews();
+      showToast(`Journey date updated to ${formatDateToDMY(val)}. Available seats updated.`, 'info');
     }
 
     function setSharingRoute(route) {
@@ -2608,7 +2644,7 @@
       }
 
       // Pre-filled Message Formatting for Custom Trip
-      const textMessage = `Hello Rent a Car,\n\nI want to request a quote for a Custom Outstation Trip.\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage/Type:\nCustom Route (All India)\n\nJourney Date:\n${date}\n\nPickup City:\n${pickup}\n\nDestination City:\n${drop}\n\nNo. of Passengers:\n${passengers}\n\nPlease share the custom price quote for this ride. Thank you!`;
+      const textMessage = `Hello Rent a Car,\n\nI want to request a quote for a Custom Outstation Trip.\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage/Type:\nCustom Route (All India)\n\nJourney Date:\n${formatDateToDMY(date)}\n\nPickup City:\n${pickup}\n\nDestination City:\n${drop}\n\nNo. of Passengers:\n${passengers}\n\nPlease share the custom price quote for this ride. Thank you!`;
 
       const encodedMsg = encodeURIComponent(textMessage);
       const whatsappURL = `https://wa.me/9454003387?text=${encodedMsg}`;
@@ -2797,7 +2833,7 @@
       if (departureTime) {
         timingText = `\n\nDeparture Time:\n${departureTime}`;
       }
-      const textMessage = `Hello Rent a Car,\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage:\n${packageSelected}${carText}${timingText}\n\nJourney Date:\n${date}\n\nPickup:\n${pickup || 'Not Declared'}\n\nPassengers:\n${passengers}\n\nSelected Seats:\n${seatsMsg}${priceMsg}\n\nPlease confirm my booking.`;
+      const textMessage = `Hello Rent a Car,\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage:\n${packageSelected}${carText}${timingText}\n\nJourney Date:\n${formatDateToDMY(date)}\n\nPickup:\n${pickup || 'Not Declared'}\n\nPassengers:\n${passengers}\n\nSelected Seats:\n${seatsMsg}${priceMsg}\n\nPlease confirm my booking.`;
 
       const encodedMsg = encodeURIComponent(textMessage);
       const whatsappURL = `https://wa.me/9454003387?text=${encodedMsg}`;
@@ -2907,7 +2943,7 @@
               <span class="text-[9px] font-mono text-gold bg-gold/10 px-2 py-0.5 rounded border border-gold/20 uppercase tracking-wider">${booking.packageName}</span>
               <h4 class="text-sm font-medium text-white mt-1.5 flex items-center">
                 <i class="fa-regular fa-calendar-check text-gold mr-1.5 text-xs"></i>
-                Journey Date: ${booking.date}
+                Journey Date: ${formatDateToDMY(booking.date)}
               </h4>
               <p class="text-xs text-gray-400 font-light">${seatsDisplay}</p>
               <p class="text-xs text-gray-400 font-light">Pickup: ${booking.pickup}</p>
@@ -3105,7 +3141,7 @@
 
     function updateAdminDashboard() {
       // Set date display
-      document.getElementById('admin-map-date').textContent = adminActiveDate;
+      document.getElementById('admin-map-date').textContent = formatDateToDMY(adminActiveDate);
 
       const adminPackFilter = document.getElementById('admin-pack-filter');
       const activePackage = adminPackFilter ? adminPackFilter.value : 'Ghazipur → Lucknow (Daily Sharing)';
@@ -3241,7 +3277,7 @@
           tr.innerHTML = `
             <td class="block sm:table-cell p-1.5 sm:p-3 border-b border-white/5 sm:border-none pb-2 sm:pb-3 flex justify-between sm:block">
               <span class="sm:hidden text-gray-500 font-mono text-[10px] uppercase tracking-wider self-center">Journey Date</span>
-              <span class="text-gold font-mono font-medium text-right sm:text-left">${date}</span>
+              <span class="text-gold font-mono font-medium text-right sm:text-left">${formatDateToDMY(date)}</span>
             </td>
             <td class="block sm:table-cell p-1.5 sm:p-3 border-b border-white/5 sm:border-none py-2 sm:py-3 flex justify-between sm:block">
               <span class="sm:hidden text-gray-500 font-mono text-[10px] uppercase tracking-wider self-center">Passenger</span>
@@ -3523,7 +3559,7 @@
           <!-- Metadata Section -->
           <div style="display: flex; justify-content: space-between; margin-bottom: 25px; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
             <div>
-              <p style="margin: 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">JOURNEY DATE</span> <span style="font-size: 16px; font-family: monospace; font-weight: bold; color: #000;">${adminActiveDate}</span></p>
+              <p style="margin: 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">JOURNEY DATE</span> <span style="font-size: 16px; font-family: monospace; font-weight: bold; color: #000;">${formatDateToDMY(adminActiveDate)}</span></p>
               <p style="margin: 10px 0 4px 0;"><span style="color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px;">ROUTE</span> <span style="font-size: 15px; font-weight: bold; color: #000;">${routeText} ${activeTime ? `(${activeTime})` : ''}</span></p>
             </div>
             <div style="text-align: right;">
@@ -3672,7 +3708,7 @@
       if (bObj && isCustomerCancelling) {
         const adminPhone = "9454003387";
         const seatText = (bObj.seats && bObj.seats.length > 0) ? `\nSelected Seats: ${bObj.seats.map(getSeatName).join(', ')}` : '';
-        const msgText = `Hello Rent a Car,\n\nI want to CANCEL my booking.\n\nCancellation Details:\nName: ${bObj.name}\nMobile: ${bObj.mobile}\nPackage: ${bObj.packageName}\nJourney Date: ${pendingDeleteDate}${seatText}\nPickup: ${bObj.pickup}\n\nPlease cancel this reservation in your system. Thank you!`;
+        const msgText = `Hello Rent a Car,\n\nI want to CANCEL my booking.\n\nCancellation Details:\nName: ${bObj.name}\nMobile: ${bObj.mobile}\nPackage: ${bObj.packageName}\nJourney Date: ${formatDateToDMY(pendingDeleteDate)}${seatText}\nPickup: ${bObj.pickup}\n\nPlease cancel this reservation in your system. Thank you!`;
         const whatsappUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(msgText)}`;
         setTimeout(() => {
           window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
