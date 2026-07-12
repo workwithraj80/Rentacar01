@@ -230,6 +230,25 @@
         padding: 0 !important;
       }
     }
+    
+    /* Enhanced Clickable Date Inputs on Laptops/Desktops */
+    input[type="date"] {
+      cursor: pointer;
+      position: relative;
+    }
+    /* Style Webkit Date Picker indicators to be visible, pointer, and clear in dark theme */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: invert(1) sepia(50%) saturate(1000%) hue-rotate(10deg); /* Gold/White glow tint */
+      opacity: 0.85;
+      padding: 4px;
+      margin-left: 8px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body class="bg-[#050505] text-gray-100 font-sans overflow-x-hidden antialiased">
@@ -1493,7 +1512,7 @@
                 <i class="fa-solid fa-toggle-on text-gold"></i>
               </h4>
               <p class="text-[11px] text-gray-400 font-light leading-normal">
-                Enable or disable specific timings for <span id="admin-toggle-date-label" class="text-gold font-mono font-bold">2026-07-12</span>. Disabled timings will be hidden from customers.
+                Enable or disable specific timings for <span id="admin-toggle-date-label" class="text-gold font-mono font-bold">DD/MM/YYYY</span>. Disabled timings will be hidden from customers.
               </p>
               
               <div class="space-y-4 pt-1">
@@ -2084,6 +2103,38 @@
       if (customDateInput) {
         customDateInput.addEventListener('input', updateDateInputPreviews);
       }
+
+      // Enhance date inputs: clicking anywhere on the input element triggers the native browser calendar picker
+      document.querySelectorAll('input[type="date"]').forEach(input => {
+        // Force picker to show when the input is clicked
+        input.addEventListener('click', function(e) {
+          try {
+            if (typeof this.showPicker === 'function') {
+              this.showPicker();
+            }
+          } catch (err) {
+            console.warn("showPicker failed or not supported on this browser:", err);
+          }
+        });
+        
+        // Clicking on the surrounding relative container or nearby calendar icon should also open the calendar
+        const parentRelative = input.closest('.relative');
+        if (parentRelative) {
+          parentRelative.addEventListener('click', function(e) {
+            // Only trigger if clicking the container wrapper, not the input itself to avoid double-triggers
+            if (e.target !== input) {
+              input.focus();
+              try {
+                if (typeof input.showPicker === 'function') {
+                  input.showPicker();
+                }
+              } catch (err) {
+                console.warn("showPicker on container click failed:", err);
+              }
+            }
+          });
+        }
+      });
 
       // Seed database if empty and draw initial sharing seats
       getDbBookings();
