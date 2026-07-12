@@ -506,7 +506,7 @@
             <!-- Journey Date -->
             <div>
               <label for="custom-date" class="block text-xs sm:text-[13px] font-bold text-gray-300 uppercase font-mono tracking-wider mb-2">Journey Date *</label>
-              <div class="relative">
+              <div class="date-input-wrapper relative">
                 <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gold/60 text-base">
                   <i class="fa-solid fa-calendar-days"></i>
                 </span>
@@ -1134,7 +1134,12 @@
           <!-- Date -->
           <div>
             <label for="book-date" class="block text-xs sm:text-[13px] font-bold text-gray-300 uppercase font-mono tracking-wider mb-1.5">Journey Date *</label>
-            <input type="date" id="book-date" required onchange="onModalDateChange(this.value)" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors">
+            <div class="date-input-wrapper relative">
+              <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gold/60 text-base">
+                <i class="fa-regular fa-calendar"></i>
+              </span>
+              <input type="date" id="book-date" required onchange="onModalDateChange(this.value)" class="w-full bg-black/50 border border-white/10 rounded-xl pl-12 pr-4 py-3.5 text-base text-white focus:outline-none focus:border-gold transition-colors">
+            </div>
             <span id="book-date-preview" class="text-xs text-gold/80 mt-1 block"></span>
           </div>
           
@@ -2117,10 +2122,10 @@
           }
         });
         
-        // Clicking on the surrounding relative container or nearby calendar icon should also open the calendar
-        const parentRelative = input.closest('.relative');
-        if (parentRelative) {
-          parentRelative.addEventListener('click', function(e) {
+        // Clicking on the surrounding specific date input wrapper or nearby calendar icon should also open the calendar
+        const parentWrapper = input.closest('.date-input-wrapper');
+        if (parentWrapper) {
+          parentWrapper.addEventListener('click', function(e) {
             // Only trigger if clicking the container wrapper, not the input itself to avoid double-triggers
             if (e.target !== input) {
               input.focus();
