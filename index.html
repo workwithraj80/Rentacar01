@@ -1784,6 +1784,61 @@
       return dateStr;
     }
 
+    // Helper to format date into "DD Month YYYY" format (e.g., "12 July 2026")
+    function formatDateToLongDMY(dateStr) {
+      if (!dateStr) return '';
+      const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+      
+      const cleanStr = dateStr.trim();
+      let year, month, day;
+      
+      if (cleanStr.includes('-')) {
+        const parts = cleanStr.split('-');
+        if (parts.length === 3) {
+          if (parts[0].length === 4) {
+            // YYYY-MM-DD
+            year = parts[0];
+            month = parts[1];
+            day = parts[2];
+          } else {
+            // DD-MM-YYYY
+            day = parts[0];
+            month = parts[1];
+            year = parts[2];
+          }
+        }
+      } else if (cleanStr.includes('/')) {
+        const parts = cleanStr.split('/');
+        if (parts.length === 3) {
+          if (parts[2].length === 4) {
+            // DD/MM/YYYY
+            day = parts[0];
+            month = parts[1];
+            year = parts[2];
+          } else if (parts[0].length === 4) {
+            // YYYY/MM/DD
+            year = parts[0];
+            month = parts[1];
+            day = parts[2];
+          }
+        }
+      }
+      
+      if (year && month && day) {
+        const monthIdx = parseInt(month, 10) - 1;
+        if (monthIdx >= 0 && monthIdx < 12) {
+          const monthName = months[monthIdx];
+          const cleanDay = parseInt(day, 10).toString();
+          return `${cleanDay} ${monthName} ${year}`;
+        }
+      }
+      
+      return dateStr;
+    }
+
     function updateDateInputPreviews() {
       const bookDateInput = document.getElementById('book-date');
       const bookDatePreview = document.getElementById('book-date-preview');
@@ -2645,7 +2700,7 @@
       }
 
       // Pre-filled Message Formatting for Custom Trip
-      const textMessage = `Hello Rent a Car,\n\nI want to request a quote for a Custom Outstation Trip.\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage/Type:\nCustom Route (All India)\n\nJourney Date:\n${formatDateToDMY(date)}\n\nPickup City:\n${pickup}\n\nDestination City:\n${drop}\n\nNo. of Passengers:\n${passengers}\n\nPlease share the custom price quote for this ride. Thank you!`;
+      const textMessage = `Hello Rent a Car,\n\nI want to request a quote for a Custom Outstation Trip.\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage/Type:\nCustom Route (All India)\n\nJourney Date:\n${formatDateToLongDMY(date)}\n\nPickup City:\n${pickup}\n\nDestination City:\n${drop}\n\nNo. of Passengers:\n${passengers}\n\nPlease share the custom price quote for this ride. Thank you!\n\nWebsite: rentacarservice.in`;
 
       const encodedMsg = encodeURIComponent(textMessage);
       const whatsappURL = `https://wa.me/9454003387?text=${encodedMsg}`;
@@ -2834,7 +2889,7 @@
       if (departureTime) {
         timingText = `\n\nDeparture Time:\n${departureTime}`;
       }
-      const textMessage = `Hello Rent a Car,\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage:\n${packageSelected}${carText}${timingText}\n\nJourney Date:\n${formatDateToDMY(date)}\n\nPickup:\n${pickup || 'Not Declared'}\n\nPassengers:\n${passengers}\n\nSelected Seats:\n${seatsMsg}${priceMsg}\n\nPlease confirm my booking.`;
+      const textMessage = `Hello Rent a Car,\n\nName:\n${name}\n\nMobile:\n${mobile}\n\nPackage:\n${packageSelected}${carText}${timingText}\n\nJourney Date:\n${formatDateToLongDMY(date)}\n\nPickup:\n${pickup || 'Not Declared'}\n\nPassengers:\n${passengers}\n\nSelected Seats:\n${seatsMsg}${priceMsg}\n\nPlease confirm my booking.\n\nWebsite: rentacarservice.in`;
 
       const encodedMsg = encodeURIComponent(textMessage);
       const whatsappURL = `https://wa.me/9454003387?text=${encodedMsg}`;
@@ -2929,7 +2984,7 @@
 
       foundBookings.forEach(booking => {
         const seatsDisplay = booking.seats && booking.seats.length > 0 
-          ? `Seats: ${booking.seats.map(s => `S${s}`).join(', ')}` 
+          ? `Seats: ${booking.seats.map(s => getSeatName(s)).join(', ')}` 
           : 'Cab Booking (No specific seats)';
           
         const formattedPrice = booking.price && booking.price > 0 
@@ -3709,7 +3764,7 @@
       if (bObj && isCustomerCancelling) {
         const adminPhone = "9454003387";
         const seatText = (bObj.seats && bObj.seats.length > 0) ? `\nSelected Seats: ${bObj.seats.map(getSeatName).join(', ')}` : '';
-        const msgText = `Hello Rent a Car,\n\nI want to CANCEL my booking.\n\nCancellation Details:\nName: ${bObj.name}\nMobile: ${bObj.mobile}\nPackage: ${bObj.packageName}\nJourney Date: ${formatDateToDMY(pendingDeleteDate)}${seatText}\nPickup: ${bObj.pickup}\n\nPlease cancel this reservation in your system. Thank you!`;
+        const msgText = `Hello Rent a Car,\n\nI want to CANCEL my booking.\n\nCancellation Details:\nName: ${bObj.name}\nMobile: ${bObj.mobile}\nPackage: ${bObj.packageName}\nJourney Date: ${formatDateToLongDMY(pendingDeleteDate)}${seatText}\nPickup: ${bObj.pickup}\n\nPlease cancel this reservation in your system. Thank you!\n\nWebsite: rentacarservice.in`;
         const whatsappUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(msgText)}`;
         setTimeout(() => {
           window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
