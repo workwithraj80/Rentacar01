@@ -1486,6 +1486,39 @@
               </div>
             </div>
 
+            <!-- Daily Cab Operations (Enable/Disable Timings) Card -->
+            <div class="bg-black/50 border border-white/10 p-4 sm:p-6 rounded-2xl space-y-4 mt-4">
+              <h4 class="font-serif text-base font-bold text-white flex items-center justify-between">
+                <span>Enable/Disable Timings</span>
+                <i class="fa-solid fa-toggle-on text-gold"></i>
+              </h4>
+              <p class="text-[11px] text-gray-400 font-light leading-normal">
+                Enable or disable specific timings for <span id="admin-toggle-date-label" class="text-gold font-mono font-bold">2026-07-12</span>. Disabled timings will be hidden from customers.
+              </p>
+              
+              <div class="space-y-4 pt-1">
+                <!-- Ghazipur to Lucknow checkboxes -->
+                <div>
+                  <h5 class="text-[10px] font-mono text-gold uppercase tracking-wider mb-2">Ghazipur → Lucknow</h5>
+                  <div id="admin-toggle-gl-container" class="space-y-2">
+                    <!-- Dynamically filled with checkboxes -->
+                  </div>
+                </div>
+                
+                <!-- Lucknow to Ghazipur checkboxes -->
+                <div>
+                  <h5 class="text-[10px] font-mono text-gold uppercase tracking-wider mb-2">Lucknow → Ghazipur</h5>
+                  <div id="admin-toggle-lg-container" class="space-y-2">
+                    <!-- Dynamically filled with checkboxes -->
+                  </div>
+                </div>
+                
+                <button onclick="saveDisabledTimings()" class="w-full bg-gold/10 hover:bg-gold/20 border border-gold/30 text-gold font-bold py-2 rounded text-xs uppercase tracking-wider transition-all mt-1 cursor-pointer">
+                  Save Operations
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <!-- Right Panel: Passenger registers (Col Span 7) -->
@@ -1754,7 +1787,19 @@
           await setDoc(doc(db, 'settings', 'timings'), {
             ghazipur_to_lucknow: ghazipurTimes,
             lucknow_to_ghazipur: lucknowTimes
-          });
+          }, { merge: true });
+        } catch (error) {
+          handleFirestoreError(error, OperationType.UPDATE, path);
+        }
+      },
+
+      // Update disabled timings
+      async updateDisabledTimings(disabledTimings) {
+        const path = 'settings/timings';
+        try {
+          await setDoc(doc(db, 'settings', 'timings'), {
+            disabled_timings: disabledTimings
+          }, { merge: true });
         } catch (error) {
           handleFirestoreError(error, OperationType.UPDATE, path);
         }
@@ -1853,9 +1898,37 @@
       }
     }
 
+    // Returns minimum allowed booking date for daily sharing.
+    // If current time in India (IST) is 6:00 AM or later, same-day is closed, returns tomorrow's date.
+    // Otherwise, returns today's date.
+    function getMinSharingDate() {
+      const now = new Date();
+      // Calculate IST time (UTC + 5:30)
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const ist = new Date(utc + (3600000 * 5.5));
+      
+      const istHours = ist.getHours();
+      
+      const year = ist.getFullYear();
+      const month = String(ist.getMonth() + 1).padStart(2, '0');
+      const day = String(ist.getDate()).padStart(2, '0');
+      const todayStr = `${year}-${month}-${day}`;
+      
+      if (istHours >= 6) {
+        // It's 6:00 AM or later in IST, so minimum is tomorrow
+        const tomorrow = new Date(ist.getTime() + 24 * 60 * 60 * 1000);
+        const tYear = tomorrow.getFullYear();
+        const tMonth = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const tDay = String(tomorrow.getDate()).padStart(2, '0');
+        return `${tYear}-${tMonth}-${tDay}`;
+      } else {
+        return todayStr;
+      }
+    }
+
     // Global Reservation State & Dynamic DB System
     let selectedSeatsList = [];
-    let currentSharingDate = new Date().toISOString().split('T')[0]; // Default to today's date
+    let currentSharingDate = getMinSharingDate(); // Default to today's or tomorrow's date based on 6:00 AM cutoff rule
     let currentSharingRoute = 'Ghazipur → Lucknow (Daily Sharing)';
     let localBookingsDb = {};
     let selectedCarModel = '';
@@ -1873,6 +1946,16 @@
         currentTimings = JSON.parse(cachedTimings);
       } catch (e) {
         console.warn("Failed to parse cached timings", e);
+      }
+    }
+
+    let disabledTimingsByDate = {};
+    const cachedDisabledTimings = localStorage.getItem('rentacar_disabled_timings');
+    if (cachedDisabledTimings) {
+      try {
+        disabledTimingsByDate = JSON.parse(cachedDisabledTimings);
+      } catch (e) {
+        console.warn("Failed to parse cached disabled timings", e);
       }
     }
 
@@ -1982,19 +2065,19 @@
       // 3. Automate Hero Slider Rotate (every 5 seconds)
       setInterval(rotateHeroSlider, 5000);
 
-      // 4. Set today as minimum date & value for journey bookings
+      // 4. Set today or tomorrow (based on 6:00 AM cutoff) as minimum date & value for journey bookings
       const dateInput = document.getElementById('book-date');
       const sharingDateInput = document.getElementById('sharing-date');
-      const today = new Date().toISOString().split('T')[0];
+      const minSharingDate = getMinSharingDate();
 
       if (dateInput) {
-        dateInput.min = today;
-        dateInput.value = today;
+        dateInput.min = minSharingDate;
+        dateInput.value = minSharingDate;
         dateInput.addEventListener('input', updateDateInputPreviews);
       }
       if (sharingDateInput) {
-        sharingDateInput.min = today;
-        sharingDateInput.value = today;
+        sharingDateInput.min = minSharingDate;
+        sharingDateInput.value = minSharingDate;
       }
       
       const customDateInput = document.getElementById('custom-date');
@@ -2035,8 +2118,14 @@
               if (timings.lucknow_to_ghazipur && Array.isArray(timings.lucknow_to_ghazipur)) {
                 currentTimings.lucknow_to_ghazipur = timings.lucknow_to_ghazipur;
               }
+              if (timings.disabled_timings) {
+                disabledTimingsByDate = timings.disabled_timings;
+              } else {
+                disabledTimingsByDate = {};
+              }
               
               localStorage.setItem('rentacar_daily_timings', JSON.stringify(currentTimings));
+              localStorage.setItem('rentacar_disabled_timings', JSON.stringify(disabledTimingsByDate));
               updateUIAfterTimingsChange();
             }
           });
@@ -2334,7 +2423,7 @@
     function toggleSeatSelection(seatNumber) {
       const booked = getBookedSeatsForDate(currentSharingDate);
       if (booked.includes(seatNumber)) {
-        showToast(`Seat ${seatNumber} has already been reserved for this date.`, 'error');
+        showToast(`Seat ${getSeatName(seatNumber)} has already been reserved for this date.`, 'error');
         return;
       }
 
@@ -2356,35 +2445,73 @@
 
     function onSharingDateChange(val) {
       if (!val) return;
-      currentSharingDate = val;
       
-      // Keep booking modal input in sync
-      const modalDateInput = document.getElementById('book-date');
-      if (modalDateInput) {
-        modalDateInput.value = val;
+      const minAllowed = getMinSharingDate();
+      if (val < minAllowed) {
+        showToast(`Same-day booking for Daily Sharing Cab is closed after 6:00 AM. Minimum allowed date is ${formatDateToLongDMY(minAllowed)}.`, "warning");
+        const sharingDateInput = document.getElementById('sharing-date');
+        if (sharingDateInput) sharingDateInput.value = minAllowed;
+        currentSharingDate = minAllowed;
+        
+        // Keep booking modal input in sync
+        const modalDateInput = document.getElementById('book-date');
+        if (modalDateInput) modalDateInput.value = minAllowed;
+      } else {
+        currentSharingDate = val;
+        
+        // Keep booking modal input in sync
+        const modalDateInput = document.getElementById('book-date');
+        if (modalDateInput) {
+          modalDateInput.value = val;
+        }
       }
       
       selectedSeatsList = [];
-      renderSeatsForDate(currentSharingDate);
+      const bookPackage = document.getElementById('book-package');
+      if (bookPackage) {
+        handleModalPackageChange(bookPackage.value);
+      } else {
+        renderSeatsForDate(currentSharingDate);
+      }
       updateDateInputPreviews();
-      showToast(`Switched view to ${formatDateToDMY(val)}. Loaded seating register successfully!`, 'info');
+      showToast(`Switched view to ${formatDateToDMY(currentSharingDate)}. Loaded seating register successfully!`, 'info');
     }
 
     // Modal date change triggers dynamic update to main view & seats
     function onModalDateChange(val) {
       if (!val) return;
-      currentSharingDate = val;
       
-      // Sync main date field
-      const mainSharingDate = document.getElementById('sharing-date');
-      if (mainSharingDate) {
-        mainSharingDate.value = val;
+      const bookPackage = document.getElementById('book-package');
+      const isSharing = bookPackage && bookPackage.value.includes('Daily Sharing');
+      const minAllowed = getMinSharingDate();
+      
+      if (isSharing && val < minAllowed) {
+        showToast(`Same-day booking for Daily Sharing Cab is closed after 6:00 AM. Minimum allowed date is ${formatDateToLongDMY(minAllowed)}.`, "warning");
+        const modalDateInput = document.getElementById('book-date');
+        if (modalDateInput) modalDateInput.value = minAllowed;
+        currentSharingDate = minAllowed;
+        
+        // Sync main date field
+        const mainSharingDate = document.getElementById('sharing-date');
+        if (mainSharingDate) mainSharingDate.value = minAllowed;
+      } else {
+        currentSharingDate = val;
+        
+        // Sync main date field
+        const mainSharingDate = document.getElementById('sharing-date');
+        if (mainSharingDate) {
+          mainSharingDate.value = val;
+        }
       }
       
       selectedSeatsList = [];
-      renderSeatsForDate(currentSharingDate);
+      if (bookPackage) {
+        handleModalPackageChange(bookPackage.value);
+      } else {
+        renderSeatsForDate(currentSharingDate);
+      }
       updateDateInputPreviews();
-      showToast(`Journey date updated to ${formatDateToDMY(val)}. Available seats updated.`, 'info');
+      showToast(`Journey date updated to ${formatDateToDMY(currentSharingDate)}. Available seats updated.`, 'info');
     }
 
     function setSharingRoute(route) {
@@ -2766,30 +2893,65 @@
           seatLabel.textContent = 'None (Optional - Select on layout)';
         }
 
+        // Adjust date dynamically if it is in the past or same-day after 6:00 AM for Daily Sharing
+        const modalDateInput = document.getElementById('book-date');
+        const minAllowed = getMinSharingDate();
+        if (modalDateInput) {
+          modalDateInput.min = minAllowed;
+          if (modalDateInput.value < minAllowed) {
+            modalDateInput.value = minAllowed;
+            currentSharingDate = minAllowed;
+            
+            // Sync main date field
+            const mainSharingDate = document.getElementById('sharing-date');
+            if (mainSharingDate) {
+              mainSharingDate.value = minAllowed;
+            }
+            updateDateInputPreviews();
+            showToast(`Adjusted journey date to ${formatDateToLongDMY(minAllowed)} as same-day Daily Sharing closes at 6:00 AM.`, 'info');
+          }
+        }
+
         // Populate & show dynamic timings based on route direction
         if (timingSection && timeSelect) {
           timingSection.classList.remove('hidden');
           timeSelect.innerHTML = '';
+          const disabledOnDate = disabledTimingsByDate[currentSharingDate] || { ghazipur_to_lucknow: [], lucknow_to_ghazipur: [] };
+          const disabledGL = disabledOnDate.ghazipur_to_lucknow || [];
+          const disabledLG = disabledOnDate.lucknow_to_ghazipur || [];
+
           if (value.includes('Ghazipur → Lucknow')) {
-            const opt = document.createElement('option');
-            opt.value = '6:00 AM';
-            opt.textContent = 'Ghazipur to Lucknow (6:00 AM)';
-            timeSelect.appendChild(opt);
-
-            const opt2 = document.createElement('option');
-            opt2.value = '6:30 AM';
-            opt2.textContent = 'Ghazipur to Lucknow (6:30 AM)';
-            timeSelect.appendChild(opt2);
+            const enabledGL = currentTimings.ghazipur_to_lucknow.filter(t => !disabledGL.includes(t));
+            if (enabledGL.length === 0) {
+              const opt = document.createElement('option');
+              opt.value = '';
+              opt.textContent = 'No cabs running on this date';
+              timeSelect.appendChild(opt);
+              showToast("Sorry, no sharing cabs are scheduled for Ghazipur to Lucknow on this date.", "warning");
+            } else {
+              enabledGL.forEach(time => {
+                const opt = document.createElement('option');
+                opt.value = time;
+                opt.textContent = `Ghazipur to Lucknow (${time})`;
+                timeSelect.appendChild(opt);
+              });
+            }
           } else if (value.includes('Lucknow → Ghazipur')) {
-            const opt1 = document.createElement('option');
-            opt1.value = '3:00 PM';
-            opt1.textContent = 'Lucknow to Ghazipur (3:00 PM)';
-            timeSelect.appendChild(opt1);
-
-            const opt2 = document.createElement('option');
-            opt2.value = '4:00 PM';
-            opt2.textContent = 'Lucknow to Ghazipur (4:00 PM)';
-            timeSelect.appendChild(opt2);
+            const enabledLG = currentTimings.lucknow_to_ghazipur.filter(t => !disabledLG.includes(t));
+            if (enabledLG.length === 0) {
+              const opt = document.createElement('option');
+              opt.value = '';
+              opt.textContent = 'No cabs running on this date';
+              timeSelect.appendChild(opt);
+              showToast("Sorry, no sharing cabs are scheduled for Lucknow to Ghazipur on this date.", "warning");
+            } else {
+              enabledLG.forEach(time => {
+                const opt = document.createElement('option');
+                opt.value = time;
+                opt.textContent = `Lucknow to Ghazipur (${time})`;
+                timeSelect.appendChild(opt);
+              });
+            }
           }
         }
 
@@ -2798,6 +2960,13 @@
         seatSection.style.display = 'none';
         if (timingSection) {
           timingSection.classList.add('hidden');
+        }
+
+        // Restore standard today as minimum date for private/custom trips
+        const modalDateInput = document.getElementById('book-date');
+        if (modalDateInput) {
+          const todayStr = new Date().toISOString().split('T')[0];
+          modalDateInput.min = todayStr;
         }
       }
     }
@@ -2820,6 +2989,14 @@
         return;
       }
 
+      if (packageSelected && packageSelected.includes('Daily Sharing')) {
+        const minAllowedDate = getMinSharingDate();
+        if (date < minAllowedDate) {
+          showToast(`Same-day booking for Daily Sharing Cab is closed after 6:00 AM. Please select a journey date from ${formatDateToLongDMY(minAllowedDate)} onwards.`, "error");
+          return;
+        }
+      }
+
       let bookedSeatsForThis = [];
       let seatsMsg = 'Not Applicable';
       let priceMsg = '';
@@ -2836,6 +3013,10 @@
         const timeEl = document.getElementById('book-time');
         if (timeEl) {
           departureTime = timeEl.value;
+        }
+        if (!departureTime) {
+          showToast("Error: No departure cabs are scheduled or active on this selected journey date. Please select a different date or route.", "error");
+          return;
         }
       } else if (packageSelected === 'Ghazipur → Lucknow (Private Cab)' || packageSelected === 'Lucknow → Ghazipur (Private Cab)') {
         seatsMsg = 'Full Cab (No Sharing)';
@@ -3135,17 +3316,23 @@
       adminTimeFilter.innerHTML = '';
 
       if (route.includes('Ghazipur → Lucknow')) {
+        const disabledOnDate = disabledTimingsByDate[adminActiveDate] || { ghazipur_to_lucknow: [] };
+        const disabledGL = disabledOnDate.ghazipur_to_lucknow || [];
         currentTimings.ghazipur_to_lucknow.forEach(time => {
           const opt = document.createElement('option');
           opt.value = time;
-          opt.textContent = time;
+          const isDisabled = disabledGL.includes(time);
+          opt.textContent = isDisabled ? `${time} (Disabled)` : time;
           adminTimeFilter.appendChild(opt);
         });
       } else {
+        const disabledOnDate = disabledTimingsByDate[adminActiveDate] || { lucknow_to_ghazipur: [] };
+        const disabledLG = disabledOnDate.lucknow_to_ghazipur || [];
         currentTimings.lucknow_to_ghazipur.forEach(time => {
           const opt = document.createElement('option');
           opt.value = time;
-          opt.textContent = time;
+          const isDisabled = disabledLG.includes(time);
+          opt.textContent = isDisabled ? `${time} (Disabled)` : time;
           adminTimeFilter.appendChild(opt);
         });
       }
@@ -3195,6 +3382,104 @@
       updateUIAfterTimingsChange();
     }
 
+    function renderAdminTimingToggles() {
+      const labelEl = document.getElementById('admin-toggle-date-label');
+      if (labelEl) {
+        labelEl.textContent = formatDateToDMY(adminActiveDate);
+      }
+
+      const glContainer = document.getElementById('admin-toggle-gl-container');
+      const lgContainer = document.getElementById('admin-toggle-lg-container');
+      if (!glContainer || !lgContainer) return;
+
+      // Get disabled timings on active date
+      const disabledOnDate = disabledTimingsByDate[adminActiveDate] || { ghazipur_to_lucknow: [], lucknow_to_ghazipur: [] };
+      const disabledGL = disabledOnDate.ghazipur_to_lucknow || [];
+      const disabledLG = disabledOnDate.lucknow_to_ghazipur || [];
+
+      // Render Ghazipur to Lucknow list
+      glContainer.innerHTML = '';
+      currentTimings.ghazipur_to_lucknow.forEach((time, index) => {
+        const isEnabled = !disabledGL.includes(time);
+        const div = document.createElement('div');
+        div.className = "flex items-center justify-between bg-black/30 border border-white/5 rounded px-2.5 py-2";
+        div.innerHTML = `
+          <span class="text-xs text-white font-medium">${time}</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="toggle-gl" value="${time}" ${isEnabled ? 'checked' : ''} class="sr-only peer">
+            <div class="w-8 h-4 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-gold"></div>
+          </label>
+        `;
+        glContainer.appendChild(div);
+      });
+
+      // Render Lucknow to Ghazipur list
+      lgContainer.innerHTML = '';
+      currentTimings.lucknow_to_ghazipur.forEach((time, index) => {
+        const isEnabled = !disabledLG.includes(time);
+        const div = document.createElement('div');
+        div.className = "flex items-center justify-between bg-black/30 border border-white/5 rounded px-2.5 py-2";
+        div.innerHTML = `
+          <span class="text-xs text-white font-medium">${time}</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="toggle-lg" value="${time}" ${isEnabled ? 'checked' : ''} class="sr-only peer">
+            <div class="w-8 h-4 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-gold"></div>
+          </label>
+        `;
+        lgContainer.appendChild(div);
+      });
+    }
+
+    function saveDisabledTimings() {
+      const glCheckboxes = document.querySelectorAll('input[name="toggle-gl"]');
+      const lgCheckboxes = document.querySelectorAll('input[name="toggle-lg"]');
+
+      const disabledGL = [];
+      const disabledLG = [];
+
+      glCheckboxes.forEach(cb => {
+        if (!cb.checked) {
+          disabledGL.push(cb.value);
+        }
+      });
+
+      lgCheckboxes.forEach(cb => {
+        if (!cb.checked) {
+          disabledLG.push(cb.value);
+        }
+      });
+
+      // Update disabledTimingsByDate
+      if (disabledGL.length === 0 && disabledLG.length === 0) {
+        delete disabledTimingsByDate[adminActiveDate];
+      } else {
+        disabledTimingsByDate[adminActiveDate] = {
+          ghazipur_to_lucknow: disabledGL,
+          lucknow_to_ghazipur: disabledLG
+        };
+      }
+
+      // Sync local storage
+      localStorage.setItem('rentacar_disabled_timings', JSON.stringify(disabledTimingsByDate));
+
+      // Synchronize to Firestore
+      if (window.firebaseService && window.firebaseService.updateDisabledTimings) {
+        window.firebaseService.updateDisabledTimings(disabledTimingsByDate)
+          .then(() => {
+            showToast(`Operations updated and synchronized successfully for ${formatDateToDMY(adminActiveDate)}!`, "success");
+          })
+          .catch((err) => {
+            console.error("Failed to sync operations to Firestore:", err);
+            showToast("Saved operations locally, but failed to synchronize to cloud.", "warning");
+          });
+      } else {
+        showToast("Operations updated locally!", "success");
+      }
+
+      // Refresh dynamic listings / selects across both Admin and Customer views
+      updateUIAfterTimingsChange();
+    }
+
     function updateAdminDashboard() {
       // Set date display
       document.getElementById('admin-map-date').textContent = formatDateToDMY(adminActiveDate);
@@ -3232,6 +3517,9 @@
 
       // Reset controller panel
       hideAdminSeatCtrlBox();
+      
+      // Update toggle UI with timing checkboxes
+      renderAdminTimingToggles();
     }
 
     function renderAdminSeatMap(date) {
