@@ -1922,42 +1922,8 @@
       }
     }
 
-    // Returns minimum allowed booking date for daily sharing.
-    // If current time in India (IST) is 6:00 AM or later, same-day is closed, returns tomorrow's date.
-    // Otherwise, returns today's date.
-    function getMinSharingDate() {
-      const now = new Date();
-      // Calculate IST time (UTC + 5:30)
-      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      const ist = new Date(utc + (3600000 * 5.5));
-      
-      const istHours = ist.getHours();
-      
-      const year = ist.getFullYear();
-      const month = String(ist.getMonth() + 1).padStart(2, '0');
-      const day = String(ist.getDate()).padStart(2, '0');
-      const todayStr = `${year}-${month}-${day}`;
-      
-      if (istHours >= 6) {
-        // It's 6:00 AM or later in IST, so minimum is tomorrow
-        const tomorrow = new Date(ist.getTime() + 24 * 60 * 60 * 1000);
-        const tYear = tomorrow.getFullYear();
-        const tMonth = String(tomorrow.getMonth() + 1).padStart(2, '0');
-        const tDay = String(tomorrow.getDate()).padStart(2, '0');
-        return `${tYear}-${tMonth}-${tDay}`;
-      } else {
-        return todayStr;
-      }
-    }
-
-    // Global Reservation State & Dynamic DB System
-    let selectedSeatsList = [];
-    let currentSharingDate = getMinSharingDate(); // Default to today's or tomorrow's date based on 6:00 AM cutoff rule
+    // Global Routing and Timings State
     let currentSharingRoute = 'Ghazipur → Lucknow (Daily Sharing)';
-    let localBookingsDb = {};
-    let selectedCarModel = '';
-
-    // Global Timings Configuration (can be modified by Admin via Firestore)
     let currentTimings = {
       ghazipur_to_lucknow: ['6:00 AM', '6:30 AM'],
       lucknow_to_ghazipur: ['3:00 PM', '4:00 PM']
@@ -1982,6 +1948,119 @@
         console.warn("Failed to parse cached disabled timings", e);
       }
     }
+
+    // Returns true if the departure time for a specific date has passed in IST.
+    // Compares with current time in India (IST, UTC+5:30).
+    function isDepartureTimePassed(timeStr, dateStr) {
+      if (!timeStr) return false;
+      
+      const now = new Date();
+      // Calculate IST time (UTC + 5:30)
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const ist = new Date(utc + (3600000 * 5.5));
+      
+      const istYear = ist.getFullYear();
+      const istMonth = String(ist.getMonth() + 1).padStart(2, '0');
+      const istDay = String(ist.getDate()).padStart(2, '0');
+      const todayStr = `${istYear}-${istMonth}-${istDay}`;
+      
+      if (dateStr < todayStr) {
+        return true; // Already in the past
+      }
+      if (dateStr > todayStr) {
+        return false; // In the future
+      }
+      
+      // If today, parse the departure time
+      try {
+        const clean = timeStr.trim().toUpperCase();
+        const isPM = clean.includes('PM');
+        const isAM = clean.includes('AM');
+        const timePart = clean.replace(/[AP]M/g, '').trim();
+        const parts = timePart.split(':');
+        let hours = parseInt(parts[0], 10);
+        let minutes = parts[1] ? parseInt(parts[1], 10) : 0;
+        
+        if (isNaN(hours)) return false;
+        
+        if (isPM && hours < 12) {
+          hours += 12;
+        } else if (isAM && hours === 12) {
+          hours = 0;
+        }
+        
+        const istHours = ist.getHours();
+        const istMinutes = ist.getMinutes();
+        
+        const currentMins = istHours * 60 + istMinutes;
+        const departureMins = hours * 60 + minutes;
+        
+        return currentMins > departureMins;
+      } catch (err) {
+        console.error("Error checking departure time:", err);
+        return false;
+      }
+    }
+
+    // Returns minimum allowed booking date for daily sharing.
+    // If all departure times for today have already passed on the active route, returns tomorrow's date.
+    // Otherwise, returns today's date.
+    function getMinSharingDate() {
+      const now = new Date();
+      // Calculate IST time (UTC + 5:30)
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const ist = new Date(utc + (3600000 * 5.5));
+      
+      const istYear = ist.getFullYear();
+      const istMonth = String(ist.getMonth() + 1).padStart(2, '0');
+      const istDay = String(ist.getDate()).padStart(2, '0');
+      const todayStr = `${istYear}-${istMonth}-${istDay}`;
+      
+      let timingsList = [];
+      const route = typeof currentSharingRoute !== 'undefined' ? currentSharingRoute : 'Ghazipur → Lucknow (Daily Sharing)';
+      if (route.includes('Lucknow → Ghazipur')) {
+        timingsList = currentTimings ? currentTimings.lucknow_to_ghazipur : ['3:00 PM', '4:00 PM'];
+      } else {
+        timingsList = currentTimings ? currentTimings.ghazipur_to_lucknow : ['6:00 AM', '6:30 AM'];
+      }
+      
+      if (!timingsList || timingsList.length === 0) {
+        return todayStr;
+      }
+      
+      // Determine disabled timings on today's date
+      const disabledOnDate = (typeof disabledTimingsByDate !== 'undefined' ? disabledTimingsByDate[todayStr] : null) || {};
+      const disabledList = route.includes('Lucknow → Ghazipur') ? 
+        (disabledOnDate.lucknow_to_ghazipur || []) : 
+        (disabledOnDate.ghazipur_to_lucknow || []);
+        
+      const activeTimings = timingsList.filter(t => !disabledList.includes(t));
+      
+      let hasFutureDepartureToday = false;
+      for (const time of activeTimings) {
+        if (!isDepartureTimePassed(time, todayStr)) {
+          hasFutureDepartureToday = true;
+          break;
+        }
+      }
+      
+      if (!hasFutureDepartureToday) {
+        // All departure times for today have passed, minimum is tomorrow
+        const tomorrow = new Date(ist.getTime() + 24 * 60 * 60 * 1000);
+        const tYear = tomorrow.getFullYear();
+        const tMonth = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const tDay = String(tomorrow.getDate()).padStart(2, '0');
+        return `${tYear}-${tMonth}-${tDay}`;
+      } else {
+        return todayStr;
+      }
+    }
+
+    // Global Reservation State & Dynamic DB System
+    let selectedSeatsList = [];
+    let currentSharingDate = getMinSharingDate(); // Default to today's or tomorrow's date based on departure cutoff rule
+    let localBookingsDb = {};
+    let selectedCarModel = '';
 
     // Helpers to access local storage database safely
     function getDbBookings() {
@@ -2504,7 +2583,7 @@
       
       const minAllowed = getMinSharingDate();
       if (val < minAllowed) {
-        showToast(`Same-day booking for Daily Sharing Cab is closed after 6:00 AM. Minimum allowed date is ${formatDateToLongDMY(minAllowed)}.`, "warning");
+        showToast(`Same-day booking for this Daily Sharing route is closed as departure times have passed. Minimum allowed date is ${formatDateToLongDMY(minAllowed)}.`, "warning");
         const sharingDateInput = document.getElementById('sharing-date');
         if (sharingDateInput) sharingDateInput.value = minAllowed;
         currentSharingDate = minAllowed;
@@ -2542,7 +2621,7 @@
       const minAllowed = getMinSharingDate();
       
       if (isSharing && val < minAllowed) {
-        showToast(`Same-day booking for Daily Sharing Cab is closed after 6:00 AM. Minimum allowed date is ${formatDateToLongDMY(minAllowed)}.`, "warning");
+        showToast(`Same-day booking for this Daily Sharing route is closed as departure times have passed. Minimum allowed date is ${formatDateToLongDMY(minAllowed)}.`, "warning");
         const modalDateInput = document.getElementById('book-date');
         if (modalDateInput) modalDateInput.value = minAllowed;
         currentSharingDate = minAllowed;
@@ -2943,13 +3022,14 @@
       }
 
       if (value && value.includes('Daily Sharing')) {
+        currentSharingRoute = value; // Update active route to ensure getMinSharingDate knows the selected direction
         seatSection.style.display = 'block';
         selectedSeatsList = []; // Reset selected seats to prevent carryover
         if (seatLabel) {
           seatLabel.textContent = 'None (Optional - Select on layout)';
         }
 
-        // Adjust date dynamically if it is in the past or same-day after 6:00 AM for Daily Sharing
+        // Adjust date dynamically if it is in the past or same-day departure times have passed for Daily Sharing
         const modalDateInput = document.getElementById('book-date');
         const minAllowed = getMinSharingDate();
         if (modalDateInput) {
@@ -2964,7 +3044,7 @@
               mainSharingDate.value = minAllowed;
             }
             updateDateInputPreviews();
-            showToast(`Adjusted journey date to ${formatDateToLongDMY(minAllowed)} as same-day Daily Sharing closes at 6:00 AM.`, 'info');
+            showToast(`Adjusted journey date to ${formatDateToLongDMY(minAllowed)} as same-day departure times have already passed.`, 'info');
           }
         }
 
@@ -2977,13 +3057,16 @@
           const disabledLG = disabledOnDate.lucknow_to_ghazipur || [];
 
           if (value.includes('Ghazipur → Lucknow')) {
-            const enabledGL = currentTimings.ghazipur_to_lucknow.filter(t => !disabledGL.includes(t));
+            let enabledGL = currentTimings.ghazipur_to_lucknow.filter(t => !disabledGL.includes(t));
+            // Filter out passed departure times for today's date
+            enabledGL = enabledGL.filter(time => !isDepartureTimePassed(time, currentSharingDate));
+            
             if (enabledGL.length === 0) {
               const opt = document.createElement('option');
               opt.value = '';
-              opt.textContent = 'No cabs running on this date';
+              opt.textContent = 'No active cabs for this date';
               timeSelect.appendChild(opt);
-              showToast("Sorry, no sharing cabs are scheduled for Ghazipur to Lucknow on this date.", "warning");
+              showToast("Sorry, no active sharing cabs are available for Ghazipur to Lucknow at this time on this date.", "warning");
             } else {
               enabledGL.forEach(time => {
                 const opt = document.createElement('option');
@@ -2993,13 +3076,16 @@
               });
             }
           } else if (value.includes('Lucknow → Ghazipur')) {
-            const enabledLG = currentTimings.lucknow_to_ghazipur.filter(t => !disabledLG.includes(t));
+            let enabledLG = currentTimings.lucknow_to_ghazipur.filter(t => !disabledLG.includes(t));
+            // Filter out passed departure times for today's date
+            enabledLG = enabledLG.filter(time => !isDepartureTimePassed(time, currentSharingDate));
+            
             if (enabledLG.length === 0) {
               const opt = document.createElement('option');
               opt.value = '';
-              opt.textContent = 'No cabs running on this date';
+              opt.textContent = 'No active cabs for this date';
               timeSelect.appendChild(opt);
-              showToast("Sorry, no sharing cabs are scheduled for Lucknow to Ghazipur on this date.", "warning");
+              showToast("Sorry, no active sharing cabs are available for Lucknow to Ghazipur at this time on this date.", "warning");
             } else {
               enabledLG.forEach(time => {
                 const opt = document.createElement('option');
@@ -3048,7 +3134,7 @@
       if (packageSelected && packageSelected.includes('Daily Sharing')) {
         const minAllowedDate = getMinSharingDate();
         if (date < minAllowedDate) {
-          showToast(`Same-day booking for Daily Sharing Cab is closed after 6:00 AM. Please select a journey date from ${formatDateToLongDMY(minAllowedDate)} onwards.`, "error");
+          showToast(`Same-day booking for Daily Sharing Cab is closed because departure times have passed. Please select a journey date from ${formatDateToLongDMY(minAllowedDate)} onwards.`, "error");
           return;
         }
       }
@@ -3061,6 +3147,13 @@
 
       if (packageSelected && packageSelected.includes('Daily Sharing')) {
         bookedSeatsForThis = [...selectedSeatsList];
+        
+        // STRICTOR SEAT MANDATE REQUIREMENT (MUST select at least one seat)
+        if (bookedSeatsForThis.length === 0) {
+          showToast("Please select at least one seat from the layout before proceeding with Daily Sharing Cab booking.", "error");
+          return;
+        }
+        
         seatsMsg = bookedSeatsForThis.length > 0 ? bookedSeatsForThis.map(getSeatName).join(', ') : 'None Declared';
         if (bookedSeatsForThis.length > 0) {
           totalBookingAmt = bookedSeatsForThis.reduce((sum, s) => sum + getSeatPrice(s), 0);
@@ -3072,6 +3165,12 @@
         }
         if (!departureTime) {
           showToast("Error: No departure cabs are scheduled or active on this selected journey date. Please select a different date or route.", "error");
+          return;
+        }
+        
+        // STRICTOR TIME CUTOFF CHECK
+        if (isDepartureTimePassed(departureTime, date)) {
+          showToast(`The departure time (${departureTime}) for today's journey has already passed. Please select another active time slot or tomorrow's date.`, "error");
           return;
         }
       } else if (packageSelected === 'Ghazipur → Lucknow (Private Cab)' || packageSelected === 'Lucknow → Ghazipur (Private Cab)') {
